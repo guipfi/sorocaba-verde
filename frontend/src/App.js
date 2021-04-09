@@ -7,6 +7,7 @@ import ShowBookList from './components/ShowBookList';
 import ShowBookDetails from './components/ShowBookDetails';
 import UpdateBookInfo from './components/UpdateBookInfo';
 import UserLogin from './UserLogin';
+import UserPage from './UserPage';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route path='/edit-book/:id' component={UpdateBookInfo} />
           <Route path='/show-book/:id' component={ShowBookDetails} />
           <Route path='/login' component= {UserLogin} />
+          <Route path="/user" component={UserPage} />
         </div>
       </Router>
     );
