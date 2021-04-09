@@ -1,0 +1,52 @@
+.logo-container{
+    display: flex;
+    margin-left: 2%;
+    width: 40%;
+}
+
+.title a{
+    color:#365B2A;
+    text-decoration: none;
+}
+
+.menu-items{
+    display:flex;
+    width:100%;
+}
+
+nav{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    width: 100%;
+    background-color: #E6EFE4;
+}
+
+ul li{
+    list-style: none;
+    font-style: none;
+    margin-right: 15%;
+}
+
+ul li .nav-links{
+    font-size: 1em;
+    color: black;
+}
+
+ul li .nav-links:hover{
+    color: #365B2A;
+    text-decoration: none;
+}
+
+.login-nav{
+    margin-right: 5%;
+}
+
+.login-nav a{
+    color:black;
+    text-decoration: none;
+}
+
+.login-nav a:hover{
+    color: #365B2A;
+}

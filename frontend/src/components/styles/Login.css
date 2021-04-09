@@ -1,0 +1,117 @@
+/* Tag */
+input{
+    border: 1px solid  #9F9F9F;
+    border-radius: 7px;
+    width: 100%;
+    background: #FAFAFA;
+    margin-top: 4%;
+    padding-left: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* Classes*/
+.card-login{
+    background-color: #DCF0D8;
+    max-width: 30%;
+    max-height:10%;
+    border-radius: 20px;
+    padding:25px;
+    margin-bottom: 100px;
+}
+
+.button{
+    background-color: #1A3215;
+    color: #F4F4F4;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 10px;
+    max-width: 100%;
+}
+
+.link{
+    color: #060606;
+    text-align: center;
+    text-decoration-line: underline;
+    font-size: 16px;
+}
+
+.register-area{
+    margin-top: 10%;
+    border-top: 1px solid black;
+}
+
+.register-button{
+    margin:0 auto;
+    background-color: #1A3215;
+    color: #F4F4F4;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    padding: 10px;
+    max-width: 75%;
+}
+
+@media (max-width:675px){
+ 
+    /* Tag */
+    input{
+        border: 1px solid  #9F9F9F;
+        border-radius: 7px;
+        width: 100%;
+        background: #FAFAFA;
+        margin-top: 4%;
+        padding-left: 15px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    /* Classes*/
+    .card-login{
+        background-color: #DCF0D8;
+        margin-left:5%;
+        max-width: 100%;
+        min-height:100%;
+        justify-self: stretch;
+        border-radius: 20px;
+        padding:25px;
+    }
+
+    .button{
+        background-color: #1A3215;
+        color: #F4F4F4;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    .link{
+        color: #060606;
+        text-align: center;
+        text-decoration-line: underline;
+        font-size: 16px;
+    }
+
+    .register-area{
+        margin-top: 10%;
+        border-top: 1px solid black;
+    }
+
+    .register-button{
+        margin:0 auto;
+        background-color: #1A3215;
+        color: #F4F4F4;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 8%;
+        margin-bottom: 8%;
+        padding: 10px;
+        max-width: 75%;
+    }
+}
