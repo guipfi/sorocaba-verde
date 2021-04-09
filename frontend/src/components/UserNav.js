@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import MenuItems from './MenuItems';
 
 import "./styles/UserNav.css"
-import "./styles/global.css"
+import "../styles/global.css"
 import logo from './assets/logo.png'
 
 class UserNav extends Component{

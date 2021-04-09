@@ -1,0 +1,4 @@
+.page-sections {
+    display: flex;
+    justify-content: space-around;
+}
