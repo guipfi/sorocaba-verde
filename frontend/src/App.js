@@ -2,24 +2,19 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
-import CreateBook from './components/CreateBook';
-import ShowBookList from './components/ShowBookList';
-import ShowBookDetails from './components/ShowBookDetails';
-import UpdateBookInfo from './components/UpdateBookInfo';
-import UserLogin from './UserLogin';
-import UserPage from './UserPage';
-
+import UserLogin from './pages/client/UserLogin';
+import HomeSistema from './pages/management/Home';
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
-          <Route exact path='/' component={ShowBookList} />
+          {/* <Route exact path='/' component={ShowBookList} />
           <Route path='/create-book' component={CreateBook} />
           <Route path='/edit-book/:id' component={UpdateBookInfo} />
-          <Route path='/show-book/:id' component={ShowBookDetails} />
+          <Route path='/show-book/:id' component={ShowBookDetails} /> */}
           <Route path='/login' component= {UserLogin} />
-          <Route path="/user" component={UserPage} />
+          <Route path='/sistema/home' component= {HomeSistema} />
         </div>
       </Router>
     );

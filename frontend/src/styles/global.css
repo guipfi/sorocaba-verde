@@ -1,0 +1,74 @@
+/* Use this for all components */
+
+:root {
+    --white: #F4F4F4;
+    --gray-light: #F2F2F2;
+    --gray: #9F9F9F;
+    --black: #131313;
+    --gren: #365B2A;
+    --green-dark: #1A3215;
+    --green-light: #DCF0D8;
+    --green-light2: #E6EFE4;
+    --orange: #FFA654;
+    --gradient: linear-gradient(90deg, #DEE6DC 0%, #ECF7EA 100%);
+
+}
+
+/* class */
+.title{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Tags */
+h1{
+    font-size: 2.25rem; 
+    font-style: normal;
+}
+
+h2{
+    font-size: 2rem;
+    font-style: normal;
+}
+
+h3{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+h4{
+    font-size: 1.5rem;
+    font-style: normal;
+}
+
+h5{
+    font-size: 1.25rem;
+    font-style: normal;
+}
+
+.caption{
+    font-size: 1.25rem;
+    font-weight: 200;
+}
+
+.subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+body{
+    margin:0;
+    font-size: 16px;
+    font-style: normal;
+}
+
+button {
+    width: 20rem;
+    height: 5rem;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    background-color: var(--green-dark);
+    color: var(--white);
+    border: 0;
+}

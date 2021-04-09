@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Login from './components/Login';
-import './UserLogin.css';
-import './components/styles/global.css'
-import UserNav from './components/UserNav';
+import Login from '../../components/Login';
+import './styles/UserLogin.css';
+import '../../styles/global.css'
+import UserNav from '../../components/UserNav';
 
 class UserLogin extends Component{
     render(){
