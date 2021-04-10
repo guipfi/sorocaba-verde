@@ -12,7 +12,6 @@ h1 {
 
 .page-sections {
     display: flex;
-    flex-wrap: wrap;
 }
 
 section {
@@ -47,9 +46,15 @@ button {
     max-width: 100%;
 }
 
+@media screen and (max-width: 1760px) {
+    .page-sections {
+        flex-wrap: wrap;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     :root {
-      font-size: 12px;
+      font-size: 14px;
     }
     .home-content {
         margin: 0 2rem;
@@ -62,5 +67,11 @@ button {
     }
     .home-content {
         margin: 0 3rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .home-content {
+        margin: 0 1.5rem;
     }
 }

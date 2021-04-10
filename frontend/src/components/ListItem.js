@@ -1,16 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import '../styles/global.css'
 import './styles/ListItem.css'
 
-function ListItem({hasPriority}) {
+function ListItem({data}) {
+    console.log(data);
     return(
         <div className="list-item">
             <div className="list-item-content">
-                <span className="subtitle">Poda | Rua Abraão Pereira, 530 - Parque Campolim</span><br/>
+                <span className="subtitle">{data.type} | {data.adress}</span><br/>
                 <div className="infos">
-                    <span>Data: 12/01/2021</span>
-                    {hasPriority && <span className="priority">Prioridade: <b>POUCO URGENTE</b></span>}
+                    <span>Data: {data.date}</span>
+                    {data.priority && 
+                    <div className="priority">
+                        <span>Prioridade: </span>
+                        <span><b>{data.priority}</b></span>
+                    </div>
+                    }
                 </div>
             </div>
         </div>
