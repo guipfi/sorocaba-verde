@@ -1,15 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axios from 'axios';
+
 import './styles/Login.css';
 
 const Login = (props) =>{
+    
+    const [data,setData] = useState({
+        cpf:'',
+        password:''
+    })
+    
+    const onCPFChange = (e) => setData({...data, cpf:e.target.value})
+    const onPasswordChange= (e) => setData({...data,password:e.target.value})
+    
+    const onSubmit = (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:8082/api/users/login', data).then(res => {
+            if(res.data.token){
+                alert('logado')
+            } else{
+                alert(res.data.error)
+            }
+        }).catch(err => console.log(err))
+    
+    }
+
     return(
         <div className="card-login">
             <h3>Faça o Login</h3>
-            <form>
-                <input type="text" placeholder="CPF" name="cpf"/>
-                <input type="password" placeholder="Senha" name="senha"/>
+            <form onSubmit={(e) => onSubmit(e)}>
+                <input type="text" placeholder="CPF" value={data.cpf} name="cpf" onChange={(e) => onCPFChange(e)}/>
+                <input type="password" value={data.password} placeholder="Senha" name="password" onChange={(e) => onPasswordChange(e)}/>
+                <div  className="button"> <button type="submit">Entrar</button></div>
             </form>
-            <div className="button">Entrar</div>
             <div>
                 <div className="link">Esqueci minha senha</div>
                 <div className="register-area">
