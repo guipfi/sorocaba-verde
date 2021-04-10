@@ -10,6 +10,23 @@ input{
     padding-bottom: 8px;
 }
 
+button{
+    background-color: #1A3219;
+    text-align: center;
+    max-height: 80%;
+    min-width: 100%;
+}
+
+.button{
+    color: #F4F4F4;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    height: 82px;
+    min-width: 100%;
+}
+
 /* Classes*/
 .card-login{
     background-color: #DCF0D8;
@@ -18,17 +35,6 @@ input{
     border-radius: 20px;
     padding:25px;
     margin-bottom: 100px;
-}
-
-.button{
-    background-color: #1A3215;
-    color: #F4F4F4;
-    border-radius: 8px;
-    text-align: center;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    padding: 10px;
-    max-width: 100%;
 }
 
 .link{
@@ -51,8 +57,8 @@ input{
     text-align: center;
     margin-top: 8%;
     margin-bottom: 8%;
-    padding: 10px;
-    max-width: 75%;
+    padding: 15px;
+    max-width: 65%;
 }
 
 @media (max-width:675px){
