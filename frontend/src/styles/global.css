@@ -11,7 +11,9 @@
     --green-light2: #E6EFE4;
     --orange: #FFA654;
     --gradient: linear-gradient(90deg, #DEE6DC 0%, #ECF7EA 100%);
-
+    
+    font-size: 16px;
+    font-style: normal;
 }
 
 /* class */
@@ -62,8 +64,6 @@ span {
 
 body{
     margin:0;
-    font-size: 16px;
-    font-style: normal;
 }
 
 button {

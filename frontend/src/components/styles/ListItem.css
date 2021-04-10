@@ -1,8 +1,8 @@
 .list-item {
     display: flex;
     align-items: center;
-    width: 27.5rem;
-    height: 5rem;
+    min-width: 27.5rem;
+    min-height: 5rem;
     background-color: var(--green-light);
     border-radius: 10px;
     transition: filter 0.2s;
@@ -18,8 +18,17 @@
 
 .list-item-content .infos {
     display: flex;
+    align-items: center;
 }
 
 .list-item-content .infos .priority {
     margin-left: 1rem;
+}
+
+
+@media screen and (max-width: 400px) {
+    .list-item {
+        min-width: 24rem;
+        min-height: 5rem;
+    }
 }

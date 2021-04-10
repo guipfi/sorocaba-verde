@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 import ListItem from '../../components/ListItem';
 import UserNav from '../../components/UserNav';
 
@@ -8,6 +8,65 @@ import '../../styles/global.css'
 import './styles/Home.css'
 
 function HomeSistema() {
+
+	const [newSolicitations, setNewSolicitations] = useState([{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+	},{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+	},{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+	},{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+	},{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+	},{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+	},]);
+	
+	const [solicitationsQueue, setSolicitationsQueue] = useState([{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+		priority: "POUCO URGENTE"
+	},{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+		priority: "POUCO URGENTE"
+	},{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+		priority: "POUCO URGENTE"
+	},{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+		priority: "POUCO URGENTE"
+	},{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+		priority: "POUCO URGENTE"
+	},{
+		type: "Poda",
+		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		date: "12/01/2021",
+		priority: "POUCO URGENTE"
+	},]);
+
 	return (
 		<div className="home-sistema">
 			<UserNav></UserNav>
@@ -17,24 +76,16 @@ function HomeSistema() {
 					<section className="new-solicitations">
 						<h3>Novas solicitações (12)</h3>
 						<div className="solicitations-list">
-							<ListItem hasPriority={false}></ListItem>
-							<ListItem hasPriority={false}></ListItem>
-							<ListItem hasPriority={false}></ListItem>
-							<ListItem hasPriority={false}></ListItem>
-							<ListItem hasPriority={false}></ListItem>
-							<ListItem hasPriority={false}></ListItem>
+							{newSolicitations.map(item => 
+								<ListItem data={item}></ListItem>)}
 						</div>
 						<button>Acessar solicitações</button>
 					</section>
 					<section className="solicitations-queue">
 						<h3>Solicitações na fila (15)</h3>
 						<div className="solicitations-list">
-							<ListItem hasPriority={true}></ListItem>
-							<ListItem hasPriority={true}></ListItem>
-							<ListItem hasPriority={true}></ListItem>
-							<ListItem hasPriority={true}></ListItem>
-							<ListItem hasPriority={true}></ListItem>
-							<ListItem hasPriority={true}></ListItem>
+							{solicitationsQueue.map(item =>
+								<ListItem data={item}></ListItem>)}
 						</div>
 						<button>Acessar solicitações</button>
 					</section>
