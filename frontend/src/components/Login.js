@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 
 import './styles/Login.css';
+import '../styles/global.css'
 
 const Login = (props) =>{
     
@@ -31,7 +32,7 @@ const Login = (props) =>{
             <form onSubmit={(e) => onSubmit(e)}>
                 <input type="text" placeholder="CPF" value={data.cpf} name="cpf" onChange={(e) => onCPFChange(e)}/>
                 <input type="password" value={data.password} placeholder="Senha" name="password" onChange={(e) => onPasswordChange(e)}/>
-                <div  className="button"> <button type="submit">Entrar</button></div>
+                <button type="submit">Entrar</button>
             </form>
             <div>
                 <div className="link">Esqueci minha senha</div>
