@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ListItem from '../../components/ListItem';
 import UserNav from '../../components/UserNav';
 
@@ -6,8 +6,23 @@ import map from './assets/map-example.png';
 
 import '../../styles/global.css'
 import './styles/Home.css'
+import axios from 'axios';
 
 function HomeSistema() {
+
+	useEffect(() => {
+		axios.get('http://localhost:8082/api/solicitations/new/0/6')
+		.then(res => {
+			setNewSolicitations(res.data);
+		})
+		.catch(err => console.log(err));
+
+		axios.get('http://localhost:8082/api/solicitations/queue/0/6')
+		.then(res => {
+			setSolicitationsQueue(res.data);
+		})
+		.catch(err => console.log(err));
+	}, []);
 
 	const [newSolicitations, setNewSolicitations] = useState([{
 		type: "Poda",
