@@ -4,8 +4,7 @@ import axios from 'axios';
 import './styles/Login.css';
 import '../styles/global.css'
 
-const Login = (props) =>{
-    
+const Login = ({isAdmin}) =>{
     const [data,setData] = useState({
         cpf:'',
         password:''
@@ -34,12 +33,16 @@ const Login = (props) =>{
                 <input type="password" value={data.password} placeholder="Senha" name="password" onChange={(e) => onPasswordChange(e)}/>
                 <button type="submit">Entrar</button>
             </form>
-            <div>
-                <div className="link">Esqueci minha senha</div>
-                <div className="register-area">
-                    <div className="register-button">Fazer Cadastro</div>
-                </div>
-            </div>
+        
+                {   isAdmin != true &&
+                    <div>
+                        <div className="link">Esqueci minha senha</div>
+                        <div className="register-area">
+                            <div className="register-button">Fazer Cadastro</div>
+                        </div>
+                    </div>
+                }
+  
         </div>
     );
 }
