@@ -10,19 +10,8 @@ import axios from 'axios';
 
 function HomeSistema() {
 
-	useEffect(() => {
-		axios.get('http://localhost:8082/api/solicitations/new/0/6')
-		.then(res => {
-			setNewSolicitations(res.data);
-		})
-		.catch(err => console.log(err));
-
-		axios.get('http://localhost:8082/api/solicitations/queue/0/6')
-		.then(res => {
-			setSolicitationsQueue(res.data);
-		})
-		.catch(err => console.log(err));
-	}, []);
+	const [newSolicitationsTotal, setNewSolicitationsTotal] = useState(0);
+	const [solicitationsQueueTotal, setSolicitationsQueueTotal] = useState(0);
 
 	const [newSolicitations, setNewSolicitations] = useState([{
 		type: "Poda",
@@ -82,6 +71,26 @@ function HomeSistema() {
 		priority: "POUCO URGENTE"
 	},]);
 
+	useEffect(() => {
+		axios.get('http://localhost:8082/api/solicitations/new/0/6')
+		.then(res => {
+			console.log("aqui");
+			console.log(res);
+			setNewSolicitations(res.data.solicitationsList);
+			setNewSolicitationsTotal(res.data.total);
+		})
+		.catch(err => console.log(err));
+
+		axios.get('http://localhost:8082/api/solicitations/queue/0/6')
+		.then(res => {
+			console.log("aqui");
+			console.log(res);
+			setSolicitationsQueue(res.data.solicitationsList);
+			setSolicitationsQueueTotal(res.data.total);
+		})
+		.catch(err => console.log(err));
+	}, []);
+
 	return (
 		<div className="home-sistema">
 			<UserNav></UserNav>
@@ -89,7 +98,7 @@ function HomeSistema() {
 				<h1>Painel Administrativo</h1>
 				<div className="page-sections">
 					<section className="new-solicitations">
-						<h3>Novas solicitações (12)</h3>
+						<h3>Novas solicitações ({newSolicitationsTotal})</h3>
 						<div className="solicitations-list">
 							{newSolicitations.map(item => 
 								<ListItem data={item}></ListItem>)}
@@ -97,7 +106,7 @@ function HomeSistema() {
 						<button>Acessar solicitações</button>
 					</section>
 					<section className="solicitations-queue">
-						<h3>Solicitações na fila (15)</h3>
+						<h3>Solicitações na fila ({solicitationsQueueTotal})</h3>
 						<div className="solicitations-list">
 							{solicitationsQueue.map(item =>
 								<ListItem data={item}></ListItem>)}

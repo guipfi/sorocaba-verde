@@ -4,6 +4,7 @@ import './App.css';
 
 import UserLogin from './pages/client/UserLogin';
 import HomeSistema from './pages/management/Home';
+import SolicitacoesSistema from './pages/management/Solicitations';
 
 class App extends Component {
   render() {
@@ -15,6 +16,8 @@ class App extends Component {
         <Route path='/show-book/:id' component={ShowBookDetails} /> */}
         <Route path='/login' component= {UserLogin} />
         <Route path='/sistema/home' component= {HomeSistema} />
+        <Route path='/sistema/novas-solicitacoes' component={() => <SolicitacoesSistema type={"new"} />} />
+        <Route path='/sistema/solicitacoes' component={() => <SolicitacoesSistema type={"queue"} />}/>
       </Router>
     );
   }

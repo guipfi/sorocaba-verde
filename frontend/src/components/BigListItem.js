@@ -1,7 +1,7 @@
 import React from 'react';
 
 import '../styles/global.css'
-import './styles/ListItem.css'
+import './styles/BigListItem.css'
 
 function ListItem({data}) {
     return(
