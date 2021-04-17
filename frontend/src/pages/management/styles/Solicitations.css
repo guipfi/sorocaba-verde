@@ -1,0 +1,37 @@
+#solicitations-sistema .solicitations-content {
+  margin: 0 2rem;
+}
+
+#solicitations-sistema header {
+  display: flex;
+  align-items: center;
+}
+
+#solicitations-sistema input[type="checkbox"] {
+  width: 2rem;
+}
+
+#solicitations-sistema .page-sections {
+  display: flex;
+  width: 100%;
+}
+
+#solicitations-sistema .page-sections .filters {
+  flex: 1;
+  margin-right: 2rem;
+}
+
+#solicitations-sistema .page-sections .filters > div:not(:first-child) {
+  margin-top: 1.5rem;
+}
+
+#solicitations-sistema .page-sections .solicitations {
+  flex: 4;
+}
+
+#solicitations-sistema .icone-voltar {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+  background-color: black;
+}

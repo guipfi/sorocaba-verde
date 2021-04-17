@@ -5,7 +5,7 @@ import './styles/ListItem.css'
 
 function ListItem({data}) {
     return(
-        <div className="list-item">
+        <div className="list-item" id="list-item">
             <div className="list-item-content">
                 <span className="subtitle">{data.type} | {data.adress}</span><br/>
                 <div className="infos">

@@ -3,23 +3,26 @@ import React from 'react';
 import '../styles/global.css'
 import './styles/BigListItem.css'
 
-function ListItem({data}) {
-    return(
-        <div className="list-item">
-            <div className="list-item-content">
-                <span className="subtitle">{data.type} | {data.adress}</span><br/>
-                <div className="infos">
-                    <span>Data: {data.date}</span>
-                    {data.priority && 
-                    <div className="priority">
-                        <span>Prioridade: </span>
-                        <span><b>{data.priority}</b></span>
-                    </div>
-                    }
-                </div>
-            </div>
-        </div>
-    );
+function BigListItem({ data }) {
+	return (
+		<div className="list-item" id="big-list-item">
+			<div className="imagem"></div>
+			<div className="list-item-content">
+				<h3>Solicitação de {data.type}</h3>
+				<div className="infos">
+					<p className="body">{data.description}</p>
+					<span className="subtitle">Endereço: {data.adress}</span>
+					<span className="subtitle">Data: {data.date}</span>
+					<a><u>Ver solicitação completa</u></a>
+					{data.priority &&
+						<div className="priority">
+							<span className="subtitle">{data.priority}</span>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	);
 }
 
-export default ListItem;
+export default BigListItem;
