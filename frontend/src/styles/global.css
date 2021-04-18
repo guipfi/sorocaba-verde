@@ -5,7 +5,7 @@
     --gray-light: #F2F2F2;
     --gray: #9F9F9F;
     --black: #131313;
-    --gren: #365B2A;
+    --green: #365B2A;
     --green-dark: #1A3215;
     --green-light: #DCF0D8;
     --green-light2: #E6EFE4;
@@ -60,6 +60,11 @@ body{
     margin:0;
     font-size: 16px;
     font-style: normal;
+}
+
+p {
+    font-size: 16px;
+    font-style: medium;
 }
 
 button {
