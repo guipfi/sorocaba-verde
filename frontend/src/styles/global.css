@@ -11,7 +11,9 @@
     --green-light2: #E6EFE4;
     --orange: #FFA654;
     --gradient: linear-gradient(90deg, #DEE6DC 0%, #ECF7EA 100%);
-
+    
+    font-size: 16px;
+    font-style: normal;
 }
 
 /* class */
@@ -56,10 +58,12 @@ h5{
     font-weight: 500;
 }
 
+span {
+    font-size: 1rem;
+}
+
 body{
     margin:0;
-    font-size: 16px;
-    font-style: normal;
 }
 
 p {
@@ -68,12 +72,15 @@ p {
 }
 
 button {
-    width: 20rem;
-    height: 5rem;
     border-radius: 8px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 500;
     background-color: var(--green-dark);
     color: var(--white);
     border: 0;
+}
+
+button:hover {
+    background-color:#10240c;
+    transition: background-color 0.2s;
 }

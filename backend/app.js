@@ -5,7 +5,9 @@ const connectDB = require('./config/db');
 var cors = require('cors');
 
 // routes
-const books = require('./routes/api/books');
+//const books = require('./routes/api/books');
+const users = require('./routes/api/users');
+const solicitations = require('./routes/api/solicitations');
 
 const app = express();
 
@@ -21,7 +23,9 @@ app.use(express.json({ extended: false }));
 app.get('/', (req, res) => res.send('Hello world!'));
 
 // use Routes
-app.use('/api/books', books);
+//app.use('/api/books', books);
+app.use('/api/users', users);
+app.use('/api/solicitations', solicitations);
 
 const port = process.env.PORT || 8082;
 

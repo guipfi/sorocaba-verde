@@ -1,4 +1,76 @@
+.home-sistema {
+    background-color: var(--gray-light);
+}
+
+.home-content {
+    margin: 0 4rem;
+}
+
+h1 {
+    margin: 4rem 0;
+}
+
 .page-sections {
     display: flex;
-    justify-content: space-around;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+}
+
+section > * {
+    margin-bottom: 0.5rem;
+}
+
+.solicitations-list > * {
+    margin-bottom: 0.5rem;
+}
+
+button {
+    margin-top: 1rem;
+}
+
+.new-solicitations {
+    margin-right: 4rem;
+}
+
+.solicitations-queue {
+    margin-right: 4rem;
+}
+
+.map img {
+    height: auto;
+    max-width: 100%;
+}
+
+@media screen and (max-width: 1760px) {
+    .page-sections {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    :root {
+      font-size: 14px;
+    }
+    .home-content {
+        margin: 0 2rem;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    :root {
+      font-size: 12px;
+    }
+    .home-content {
+        margin: 0 3rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .home-content {
+        margin: 0 1.5rem;
+    }
 }

@@ -1,0 +1,23 @@
+.pageAdmin-background{
+    background-image: url('../assets/login-bg.svg');
+    background-size: cover;
+    height: 130vh;
+    display: flex;
+}
+
+.pageAdmin-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    width: 100%;
+}
+
+.pageAdmin-container .card-login{
+    max-width: 35%;
+}
+
+.pageAdmin-container h2{
+    margin-bottom: 5%
+}
+
