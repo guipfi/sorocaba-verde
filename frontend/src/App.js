@@ -7,6 +7,7 @@ import AdminLogin from './pages/management/AdminLogin';
 import HomeSistema from './pages/management/Home';
 import SolicitacoesSistema from './pages/management/Solicitations';
 import UserPage from './pages/client/UserPage';
+import Solicitation from './pages/client/Solicitation';
 class App extends Component {
   render() {
     return (
@@ -22,6 +23,7 @@ class App extends Component {
         <Route path='/sistema/solicitacoes' component={() => <SolicitacoesSistema type={"queue"} />}/>
         <Route path='/sistema/login' component={AdminLogin}/>
         <Route path='/user' component={UserPage} />
+        <Route path='/solicitation' component={Solicitation} />
       </Router>
     );
   }

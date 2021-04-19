@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Mapa from '../../components/Mapa';
 import RequestItem from '../../components/RequestItem';
 import UserNav from '../../components/UserNav';
 
 import '../../styles/global.css';
 import "./styles/UserPage.css";
+import './styles/Solicitation.css';
 import back from './assets/chevron-left-solid.svg';
 import forw from './assets/forward_icon.png';
+import FormSolicitation from '../../components/FormSolicitation';
 
-function UserPage(){
+function Solicitation(){
 
     const [name, setName] = useState("José Augusto");
     const [sectionDisplay, setSectionDisplay] = useState("block");
@@ -60,10 +61,9 @@ function UserPage(){
                     <div className="button-max" style={{"display": buttonDisplay}}>
                         <img src={forw} onClick={showSection} alt="Mostrar"/>
                     </div>  
+                    
+                    <FormSolicitation />
 
-                    <div className='map'>
-                        <Mapa />
-                    </div>
                 </aside>
             </div>
             
@@ -71,4 +71,4 @@ function UserPage(){
     )
 }
 
-export default UserPage;
+export default Solicitation;
