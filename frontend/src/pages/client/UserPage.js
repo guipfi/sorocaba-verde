@@ -10,7 +10,6 @@ import '../../styles/global.css';
 import "./styles/UserPage.css";
 import back from './assets/chevron-left-solid.svg';
 import forw from './assets/forward_icon.png';
-import { Handler } from 'leaflet';
 
 class UserPage extends Component{
     constructor(){

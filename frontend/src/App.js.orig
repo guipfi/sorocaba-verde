@@ -45,6 +45,7 @@ class App extends Component {
   }
 
   render() {
+<<<<<<< HEAD
     { if(this.state.isLoading == false){
         return (
           <Router>
@@ -60,6 +61,24 @@ class App extends Component {
       }  
       else return(<ReactLoading className="loading" type={"spin"} color={"green"} height={'20%'} width={'20%'} />)
     }
+=======
+    return (
+      <Router>
+        {/* <Route exact path='/' component={ShowBookList} />
+        <Route path='/create-book' component={CreateBook} />
+        <Route path='/edit-book/:id' component={UpdateBookInfo} />
+        <Route path='/show-book/:id' component={ShowBookDetails} /> */}
+        <Route path='/login' component= {UserLogin} />
+        
+        <Route path='/sistema/home' component= {HomeSistema} />
+        <Route path='/sistema/novas-solicitacoes' component={() => <SolicitacoesSistema type={"new"} />} />
+        <Route path='/sistema/solicitacoes' component={() => <SolicitacoesSistema type={"queue"} />}/>
+        <Route path='/sistema/login' component={AdminLogin}/>
+        <Route path='/user' component={UserPage} />
+        <Route path='/solicitation' component={Solicitation} />
+      </Router>
+    );
+>>>>>>> 51f7ccb051fdaf6c091250cc0f254a80032f4aad
   }
 }
 
