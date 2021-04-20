@@ -8,11 +8,7 @@ import AdminLogin from './pages/management/AdminLogin';
 import HomeSistema from './pages/management/Home';
 import SolicitacoesSistema from './pages/management/Solicitations';
 import UserPage from './pages/client/UserPage';
-<<<<<<< HEAD
-
-=======
 import Solicitation from './pages/client/Solicitation';
->>>>>>> 51f7ccb051fdaf6c091250cc0f254a80032f4aad
 class App extends Component {
   constructor () {
     super()
