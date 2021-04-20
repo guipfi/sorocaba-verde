@@ -17,21 +17,41 @@ const Login = (props) =>{
     
     const onSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8082/api/users/login', data,{withCredentials: true, credentials: 'include'}).then(res => {
-            switch(res.data.code){
-                case 1:
-                    props.history.replace('/user')
-                    break;
-                case 2:
-                    setMessage("CPF ou senha estão incorretos.")
-                    break;
-                case 3:
-                    setMessage("Usuário não encontrado.")
-                    break;
-                default:
-                    setMessage("Algum erro aconteceu. Tente Novamente!")
-            }
-        }).catch(err => console.log(err))
+        if(props.isAdmin != true){
+            axios.post('http://localhost:8082/api/users/login', data,{withCredentials: true, credentials: 'include'}).then(res => {
+                switch(res.data.code){
+                    case 1:
+                        props.history.replace('/user')
+                        break;
+                    case 2:
+                        setMessage("CPF ou senha estão incorretos.")
+                        break;
+                    case 3:
+                        setMessage("Usuário não encontrado.")
+                        break;
+                    default:
+                        setMessage("Algum erro aconteceu. Tente Novamente!")
+                }
+                
+            }).catch(err => console.log(err))
+        } else{
+            axios.post('http://localhost:8082/api/admin/login', data,{withCredentials: true, credentials: 'include'}).then(res=>{
+                switch(res.data.code){
+                    case 1:
+                        props.history.replace('/sistema/home')
+                        break;
+                    case 2:
+                        setMessage("CPF ou senha estão incorretos.")
+                        break;
+                    case 3:
+                        setMessage("Administrador não encontrado.")
+                        break;
+                    default:
+                        setMessage("Algum erro aconteceu. Tente Novamente!")
+                }
+            })
+            
+        }
     }
     
     return(

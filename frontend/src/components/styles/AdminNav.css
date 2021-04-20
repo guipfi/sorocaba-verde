@@ -1,9 +1,9 @@
-.admin-nav{
+.admin-navLogin{
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
-.admin-nav .logo-container{
+.admin-navLogin .logo-container{
     width: 100%;
     justify-content: center;
 }

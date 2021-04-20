@@ -4,6 +4,7 @@ import ReactLoading from 'react-loading';
 import axios from 'axios';
 import './App.css';
 import UserLogin from './pages/client/UserLogin';
+import Sistema from './sistema';
 import AdminLogin from './pages/management/AdminLogin';
 import HomeSistema from './pages/management/Home';
 import SolicitacoesSistema from './pages/management/Solicitations';
@@ -46,6 +47,7 @@ class App extends Component {
         return (
           <Router>
             <Route exact path='/' render={this.initialPage} />
+            <Route exact path='/sistema' component={Sistema} />
             <Route path='/login' component= {UserLogin} />
             <Route path='/sistema/home' component= {HomeSistema} />
             <Route path='/sistema/novas-solicitacoes' component={() => <SolicitacoesSistema type={"new"} />} />

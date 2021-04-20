@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ListItem from '../../components/ListItem';
 import UserNav from '../../components/UserNav';
+import AdminNav from '../../components/AdminNav';
 
 import map from './assets/map-example.png';
 
@@ -8,8 +9,9 @@ import '../../styles/global.css'
 import './styles/Home.css'
 import axios from 'axios';
 
-function HomeSistema() {
+function HomeSistema(props) {
 
+	const [isLogged, setIsLogged] = useState(false)
 	const [newSolicitationsTotal, setNewSolicitationsTotal] = useState(0);
 	const [solicitationsQueueTotal, setSolicitationsQueueTotal] = useState(0);
 
@@ -72,6 +74,12 @@ function HomeSistema() {
 	},]);
 
 	useEffect(() => {
+		axios.get('http://localhost:8082/api/admin/isLogged',{withCredentials: true, credentials: 'include'})
+		.then(res =>{
+			if(res.data.code == 1){
+				setIsLogged(true)
+			} else props.history.replace('/sistema/login')
+		})
 		axios.get('http://localhost:8082/api/solicitations/new/0/6')
 		.then(res => {
 			console.log("aqui");
@@ -93,7 +101,7 @@ function HomeSistema() {
 
 	return (
 		<div className="home-sistema">
-			<UserNav></UserNav>
+			<AdminNav {...props} ></AdminNav>
 			<div className="home-content">
 				<h1>Painel Administrativo</h1>
 				<div className="page-sections">

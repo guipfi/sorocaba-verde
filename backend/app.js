@@ -7,6 +7,7 @@ var cors = require('cors');
 // routes
 //const books = require('./routes/api/books');
 const users = require('./routes/api/users');
+const admins = require('./routes/api/admins')
 const solicitations = require('./routes/api/solicitations');
 const cookieParser = require("cookie-parser");
 
@@ -27,6 +28,7 @@ app.get('/', (req, res) => res.send('Hello world!'));
 // use Routes
 //app.use('/api/books', books);
 app.use('/api/users', users);
+app.use('/api/admin', admins);
 app.use('/api/solicitations', solicitations);
 
 const port = process.env.PORT || 8082;
