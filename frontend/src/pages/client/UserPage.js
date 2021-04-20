@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {Component, useState} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios';
 import Mapa from '../../components/Mapa';
 import RequestItem from '../../components/RequestItem';
 import UserNav from '../../components/UserNav';
+import ReactLoading from 'react-loading';
 
 import '../../styles/global.css';
 import "./styles/UserPage.css";
@@ -10,66 +12,83 @@ import back from './assets/chevron-left-solid.svg';
 import forw from './assets/forward_icon.png';
 import { Handler } from 'leaflet';
 
-function UserPage(){
-
-    const [name, setName] = useState("José Augusto");
-    const [sectionDisplay, setSectionDisplay] = useState("block");
-    const [buttonDisplay, setButtonDisplay] = useState("none");
-
-    function hideSection() {
-        setSectionDisplay("none");
-        setButtonDisplay("flex");
+class UserPage extends Component{
+    constructor(){
+        super()
+        this.state = {
+            name:"",
+            sectionDisplay:"block",
+            buttonDisplay:"none",
+            isLoading: true,
+            
+        }
     }
 
-    function showSection(){
-        setSectionDisplay("block");
-        setButtonDisplay("none");
+    componentDidMount(){
+        axios.get('http://localhost:8082/api/users/isLogged',{withCredentials: true, credentials: 'include'})
+        .then(res =>{
+            console.log(res.data)
+            if(res.data.code === 1){
+                this.setState({...this.state, name:res.data.user.name, isLoading:false})
+            } else this.props.history.replace("/login")
+        })
     }
 
-    return(
-        <Router>
-            <Route path="/" component={UserNav} />
-            
-            <div className="page-container">
-                
-                <section style={{"display": sectionDisplay}}>
-                    <div className="icon">
-                        <img src={back} onClick={hideSection} alt="Voltar"/>
-                    </div>
-                    <h3>
-                        Olá, {name}!
-                    </h3>
-                    <p className="introduction">Aqui você poderá acompanhar a arborização de Sorocaba e solicitar cortes, podas ou substituições de árvores.</p>
-                    <h4>Suas solicitações</h4>
-                    <div className="item-header">
-                        <p>Detalhes</p>
-                        <p>Status</p>
-                    </div>
-                    <RequestItem />
-                    <RequestItem />
-                    <RequestItem />
-                    <div className="button-container">
-                        <button>
-                            Nova solicitação
-                        </button>
-                    </div>
+    hideSection = () =>{ 
+        this.setState({...this.state, sectionDisplay:"none",buttonDisplay:"flex"})
+    }
 
-                </section>
-                
-                <aside>
+    showSection = () =>{
+        this.setState({...this.state, sectionDisplay:"block",buttonDisplay:"none"})
+    }
 
-                    <div className="button-max" style={{"display": buttonDisplay}}>
-                        <img src={forw} onClick={showSection} alt="Mostrar"/>
-                    </div>  
+    render(){
+        if(this.state.isLoading == false){
+            return(
+                <div>
+                    <Route path="/" component={UserNav} />
+                    
+                    <div className="page-container">
+                        
+                        <section style={{"display": this.state.sectionDisplay}}>
+                            <div className="icon">
+                                <img src={back} onClick={this.hideSection} alt="Voltar"/>
+                            </div>
+                            <h3>
+                                Olá, {this.state.name}!
+                            </h3>
+                            <p className="introduction">Aqui você poderá acompanhar a arborização de Sorocaba e solicitar cortes, podas ou substituições de árvores.</p>
+                            <h4>Suas solicitações</h4>
+                            <div className="item-header">
+                                <p>Detalhes</p>
+                                <p>Status</p>
+                            </div>
+                            <RequestItem />
+                            <RequestItem />
+                            <RequestItem />
+                            <div className="button-container">
+                                <button>
+                                    Nova solicitação
+                                </button>
+                            </div>
 
-                    <div className='map'>
-                        <Mapa />
+                        </section>
+                        
+                        <aside>
+
+                            <div className="button-max" style={{"display": this.state.buttonDisplay}}>
+                                <img src={forw} onClick={this.showSection} alt="Mostrar"/>
+                            </div>  
+
+                            <div className='map'>
+                                <Mapa />
+                            </div>
+                        </aside>
                     </div>
-                </aside>
-            </div>
-            
-        </Router>
-    )
+                </div>
+            )
+        }  else return(<ReactLoading className="loading" type={"spin"} color={"green"} height={'20%'} width={'20%'} />)
+    }
 }
 
 export default UserPage;

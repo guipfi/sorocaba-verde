@@ -1,11 +1,46 @@
 import React, {Component} from 'react';
 import MenuItems from './MenuItems';
+import axios from 'axios';
 
 import "./styles/UserNav.css"
 import "../styles/global.css"
 import logo from './assets/logo.png'
 
 class UserNav extends Component{
+    constructor(){
+        super()
+        this.state = {
+            isLogged: false
+        }
+    }
+
+    logout = () =>{
+        axios.get('http://localhost:8082/api/users/logout',{withCredentials: true, credentials: 'include'}).then((res) =>{
+            if(res.data.code === 1){
+              this.setState({
+                isLogged: false
+              }, () =>{
+                this.props.history.replace("/login")
+              })    
+            }
+        })
+    }
+
+    componentDidMount(){
+        axios.get('http://localhost:8082/api/users/isLogged',{withCredentials: true, credentials: 'include'})
+        .then((res) =>{
+          if(res.data.code === 1){
+            this.setState({
+              isLogged: true,
+            })
+          } else{
+              this.setState({
+                isLogged: false,
+              })
+          }
+        })
+      }
+    
     render(){
         return(
             <nav>
@@ -19,7 +54,7 @@ class UserNav extends Component{
                     })
                   }
                 </ul>
-                <div className="login-nav"><a href="#">Login</a></div>
+                {this.state.isLogged ? <div className='login-nav' onClick={this.logout}>Logout</div>:<div className="login-nav">Login</div>}
             </nav>
         )
     }

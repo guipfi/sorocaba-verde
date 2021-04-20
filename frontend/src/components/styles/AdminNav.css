@@ -1,0 +1,9 @@
+.admin-nav{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.admin-nav .logo-container{
+    width: 100%;
+    justify-content: center;
+}

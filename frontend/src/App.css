@@ -100,3 +100,7 @@ html,body,.App{
   font-size: 1em;
   padding: 10px 0 10px 0;
 }
+
+.loading{
+  margin: 10% auto;
+}

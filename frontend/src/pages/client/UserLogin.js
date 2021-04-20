@@ -9,7 +9,7 @@ import UserNav from '../../components/UserNav';
 class UserLogin extends Component{
     render(){
         return(
-            <Router>
+            <div>
                 <Route path='/' component={UserNav} />
                 <div className="page-background">
                     <div className="page-container">
@@ -22,7 +22,7 @@ class UserLogin extends Component{
                         <Route path='/' component={Login} />
                     </div>
                 </div>
-            </Router>
+            </div>
         )
     }
 }

@@ -1,5 +1,6 @@
-const User = require('../models/User')
+const {User} = require('../models/User')
 const bcrypt = require('bcryptjs')
+const {JWT_KEY} = require('../config/jwt.json')
 const jwt = require('jsonwebtoken')
 
 const createNewUser = (req,res) => {
@@ -13,12 +14,12 @@ const createNewUser = (req,res) => {
             address: req.body.address,
             password: hashedPass      
         })
-    
+
         User.create(newUser)
-        .then( _ => res.json({msg:'User Registered with success'}))
-        .catch(err => res.status(400).json({error:err}))
+        .then( _ => res.json({code:1, message:'User Registered with success'}))
+        .catch(err => res.status(400).json({code:2, message:err}))
     })
-    .catch((err)=> res.status(400).json({error:err}))
+    .catch((err)=> res.status(400).json({code:3, message:err}))
 }
 
 const loginUser = (req,res) =>{
@@ -28,19 +29,39 @@ const loginUser = (req,res) =>{
         // check if the user exists
         if(user){
             bcrypt.compare(req.body.password, user.password, (err, result) =>{
-                if(err) res.json({error: err})
-
+                if(err) res.json({code:0, message: err})
+    
                 if(result){
-                    let token = jwt.sign({name:user.name},'verySecretValue',{expiresIn:'1h'})
+                    const token = jwt.sign({...user},JWT_KEY,{expiresIn:"1h"})
+                    
+                    res.cookie('auth',token, {
+                        secure:false, 
+                        httpOnly:false,
+                        maxAge:900000,
+                    })
+
                     res.json({
-                        message:"Login Sucessful!",
+                        code:1,
+                        message:"Login Successful!",
                         token
                     })
                 } 
-                else res.json({error:"Wrong Password!"})
+                else res.json({code:2, message:"Wrong Password!"})
             })
-        } else res.json({error: 'No user found!'})
+        } else res.json({code:3, message: 'No user found!'})
     })
 }
 
-module.exports ={createNewUser, loginUser}
+const isLogged = (req,res) =>{
+    if(typeof res.user != 'undefined'){
+        res.json({code:1, email:res.user.email})
+    }
+    else res.json({code:0, email:undefined})
+}
+
+const logoutUser = (req,res) =>{
+    res.clearCookie('auth')
+    res.json({code:1, message:"logout"})
+}
+
+module.exports ={createNewUser, loginUser, isLogged, logoutUser}

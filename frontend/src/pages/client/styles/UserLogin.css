@@ -5,7 +5,7 @@
   height: 130vh;
 }
 
-.page-container{
+.page-background .page-container{
     display: flex;
     margin-top: 8%;
     margin-right: 1%;

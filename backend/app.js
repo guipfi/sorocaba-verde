@@ -8,6 +8,7 @@ var cors = require('cors');
 //const books = require('./routes/api/books');
 const users = require('./routes/api/users');
 const solicitations = require('./routes/api/solicitations');
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -16,6 +17,7 @@ connectDB();
 
 // cors
 app.use(cors({ origin: true, credentials: true }));
+app.use(cookieParser())
 
 // Init Middleware
 app.use(express.json({ extended: false }));
