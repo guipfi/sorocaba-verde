@@ -8,7 +8,6 @@ module.exports = (req,res,next) =>{
                 res.json({code:0, message:err})
                 res.user = undefined
             } else{
-                console.log(decoded)
                 res.json({code:1, user:decoded._doc})
                 res.user = decoded;
             }

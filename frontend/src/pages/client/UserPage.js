@@ -26,7 +26,6 @@ class UserPage extends Component{
     componentDidMount(){
         axios.get('http://localhost:8082/api/users/isLogged',{withCredentials: true, credentials: 'include'})
         .then(res =>{
-            console.log(res.data)
             if(res.data.code === 1){
                 this.setState({...this.state, name:res.data.user.name, isLoading:false})
             } else this.props.history.replace("/login")
