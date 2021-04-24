@@ -49,9 +49,7 @@ function Solicitation(){
                     <RequestItem />
                     <RequestItem />
                     <div className="button-container">
-                        <button>
-                            Nova solicitação
-                        </button>
+                        <a href="/solicitation">Nova solicitação</a>
                     </div>
 
                 </section>

@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     height: 100vh;
+    display: flex;
 }
 
 section {
@@ -9,6 +10,7 @@ section {
     background: linear-gradient(90deg, #DEE6DC 0%, #ECF7EA 100%);
     height: 100%;
     padding: 20px;
+    margin: 0;
 }
 
 section .introduction{
@@ -37,13 +39,25 @@ section .button-container{
     margin-top: 2rem;
 }
 
-section button{
+section a{
     font-size: 1.25rem;
     height: 3.5rem;
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 8px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    background-color: var(--green-dark);
+    border: 0;
+    text-align: center;
+    align-self: center;
+    padding-top: .7rem;
 }
 
-section button:hover{
+section a:hover{
     cursor: pointer;
+    text-decoration: none;
+    color: var(--white);
 }
 
 section .icon{
@@ -90,4 +104,8 @@ section .icon img, .button-max img{
 .page-container aside .map{
     width: 100%;
     height: 100vh;
+}
+
+.page-container section .button-container > button{
+    width: 80% !important;
 }

@@ -1,10 +1,11 @@
 import React, {Component, useState} from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Mapa from '../../components/Mapa';
 import RequestItem from '../../components/RequestItem';
 import UserNav from '../../components/UserNav';
 import ReactLoading from 'react-loading';
+import Solicitation from './Solicitation.js';
 
 import '../../styles/global.css';
 import "./styles/UserPage.css";
@@ -43,6 +44,7 @@ class UserPage extends Component{
     render(){
         if(this.state.isLoading == false){
             return(
+                <Router>
                 <div>
                     <Route path="/" component={UserNav} />
                     
@@ -65,9 +67,7 @@ class UserPage extends Component{
                             <RequestItem />
                             <RequestItem />
                             <div className="button-container">
-                                <button>
-                                    Nova solicitação
-                                </button>
+                                <a href="/solicitation">Nova solicitação</a>
                             </div>
 
                         </section>
@@ -83,7 +83,14 @@ class UserPage extends Component{
                             </div>
                         </aside>
                     </div>
+
+                    <Switch>
+                        <Route path='/solicitation'>
+                            <Solicitation />
+                        </Route>
+                    </Switch>
                 </div>
+                </Router>
             )
         }  else return(<ReactLoading className="loading" type={"spin"} color={"green"} height={'20%'} width={'20%'} />)
     }
