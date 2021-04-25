@@ -1,20 +1,20 @@
-.logo-container{
+#user-nav .logo-container{
     display: flex;
     margin-left: 2%;
     width: 40%;
 }
 
-.title a{
+#user-nav .title a{
     color:#365B2A;
     text-decoration: none;
 }
 
-.menu-items{
+#user-nav .menu-items{
     display:flex;
     width:100%;
 }
 
-nav{
+#user-nav nav{
     display: flex;
     padding-top: 10px;
     padding-bottom: 5px;
@@ -22,31 +22,31 @@ nav{
     background-color: #E6EFE4;
 }
 
-ul li{
+#user-nav ul li{
     list-style: none;
     font-style: none;
     margin-right: 15%;
 }
 
-ul li .nav-links{
+#user-nav ul li .nav-links{
     font-size: 1em;
     color: black;
 }
 
-ul li .nav-links:hover{
+#user-nav ul li .nav-links:hover{
     color: #365B2A;
     text-decoration: none;
 }
 
-.login-nav{
+#user-nav .login-nav{
     margin-right: 5%;
 }
 
-.login-nav a{
+#user-nav .login-nav a{
     color:black;
     text-decoration: none;
 }
 
-.login-nav a:hover{
+#user-nav .login-nav a:hover{
     color: #365B2A;
 }

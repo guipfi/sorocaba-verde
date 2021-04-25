@@ -1,5 +1,5 @@
 /* Tag */
-input{
+#login-component input{
     border: 1px solid  #9F9F9F;
     border-radius: 7px;
     width: 100%;
@@ -10,7 +10,7 @@ input{
     padding-bottom: 8px;
 }
 
-button{
+#login-component button{
     background-color: #1A3215 !important; 
     color: #F4F4F4;
     text-align: center;
@@ -21,7 +21,7 @@ button{
 }
 
 /* Classes*/
-.card-login{
+#login-component .card-login{
     background-color: #DCF0D8;
     max-width: 30%;
     height:80%;
@@ -30,19 +30,19 @@ button{
     margin-bottom:10%
 }
 
-.link{
+#login-component .link{
     color: #060606;
     text-align: center;
     text-decoration-line: underline;
     font-size: 16px;
 }
 
-.register-area{
+#login-component .register-area{
     margin-top: 10%;
     border-top: 1px solid black;
 }
 
-.register-button{
+#login-component .register-button{
     margin:0 auto;
     background-color: #1A3215;
     color: #F4F4F4;
@@ -57,7 +57,7 @@ button{
 @media (max-width:635px){
  
     /* Tag */
-    input{
+    #login-component input{
         border: 1px solid  #9F9F9F;
         border-radius: 7px;
         width: 100%;
@@ -69,7 +69,7 @@ button{
     }
 
     /* Classes*/
-    .card-login{
+    #login-component .card-login{
         background-color: #DCF0D8;
         margin-left:5%;
         max-width: 100%;
@@ -79,7 +79,7 @@ button{
         padding:25px;
     }
 
-    .button{
+    #login-component .button{
         background-color: #1A3215;
         color: #F4F4F4;
         border-radius: 8px;
@@ -90,19 +90,19 @@ button{
         max-width: 100%;
     }
 
-    .link{
+    #login-component .link{
         color: #060606;
         text-align: center;
         text-decoration-line: underline;
         font-size: 16px;
     }
 
-    .register-area{
+    #login-component .register-area{
         margin-top: 10%;
         border-top: 1px solid black;
     }
 
-    .register-button{
+    #login-component .register-button{
         margin:0 auto;
         background-color: #1A3215;
         color: #F4F4F4;

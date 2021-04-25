@@ -1,17 +1,17 @@
-.page-background{
+#user-login .page-background{
   background-image: url("../assets/login-bg.svg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 130vh;
 }
 
-.page-background .page-container{
+#user-login .page-background .page-container{
     display: flex;
     margin-top: 8%;
     margin-right: 1%;
 }
 
-.page-content{
+#user-login .page-content{
   margin-left: 7%;
   margin-right: 10%;
   width: 45%;
@@ -19,19 +19,19 @@
 
 @media (max-width:675px){
 
-  .page-background{
+  #user-login .page-background{
     background-image: url("../assets/background.jpg");
     background-size: cover;
     max-height: 20%
   }
 
-  .page-container{
+  #user-login .page-container{
     display: flex;
     flex-wrap:wrap ;
     margin-top: 8%;
   }
 
-  .page-content{
+  #user-login .page-content{
     width: 100%;
   }
 }

@@ -55,7 +55,7 @@ const Login = (props) =>{
     }
     
     return(
-        <div className="card-login">
+        <div className="card-login" id="login-component">
             <h3>Faça o Login</h3>
             <form onSubmit={(e) => onSubmit(e)}>
                 <input type="text" placeholder="CPF" value={data.cpf} name="cpf" onChange={(e) => onCPFChange(e)}/>

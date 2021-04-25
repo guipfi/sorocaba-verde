@@ -125,7 +125,7 @@ function HomeSistema(props) {
 	return (
 		<div className="home-sistema">
 			<AdminNav {...props} ></AdminNav>
-			<div className="home-content">
+			<div className="home-content" id="home-sistema">
 				<h1>Painel Administrativo</h1>
 				<div className="page-sections">
 					<section className="new-solicitations">
