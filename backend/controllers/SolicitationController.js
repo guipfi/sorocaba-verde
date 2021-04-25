@@ -12,13 +12,20 @@ const getSolicitations = async (req, res) => {
 		search_param = {};
 	}
 
+	let limit = 10;
+
+	if(req.query.limit) {
+		limit = Number(req.query.limit);
+	}
+
 	try {	
 		const solicitationsNumber = await Solicitation
 			.countDocuments(search_param);
+
 		const solicitationsList = await Solicitation
 			.find(search_param)
-			.limit(Number(req.params.perPage))
-			.skip(Number(req.params.page * req.params.perPage));
+			.limit(limit)
+			.skip(Number(req.params.page * limit));
 
 		let response = {
 			total: solicitationsNumber,

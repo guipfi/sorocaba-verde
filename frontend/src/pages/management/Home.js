@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ReactLoading from 'react-loading';
+
 import ListItem from '../../components/ListItem';
-import UserNav from '../../components/UserNav';
 import AdminNav from '../../components/AdminNav';
 
 import map from './assets/map-example.png';
 
 import '../../styles/global.css'
 import './styles/Home.css'
-import axios from 'axios';
 
 function HomeSistema(props) {
 
-	const [isLogged, setIsLogged] = useState(false)
+	const [isLoading, setIsloading] = useState(true);
 	const [newSolicitationsTotal, setNewSolicitationsTotal] = useState(0);
 	const [solicitationsQueueTotal, setSolicitationsQueueTotal] = useState(0);
 
@@ -74,30 +75,52 @@ function HomeSistema(props) {
 	},]);
 
 	useEffect(() => {
-		axios.get('http://localhost:8082/api/admin/isLogged',{withCredentials: true, credentials: 'include'})
-		.then(res =>{
-			if(res.data.code == 1){
-				setIsLogged(true)
-			} else props.history.replace('/sistema/login')
-		})
-		axios.get('http://localhost:8082/api/solicitations/new/0/6')
-		.then(res => {
-			console.log("aqui");
-			console.log(res);
-			setNewSolicitations(res.data.solicitationsList);
-			setNewSolicitationsTotal(res.data.total);
-		})
-		.catch(err => console.log(err));
 
-		axios.get('http://localhost:8082/api/solicitations/queue/0/6')
-		.then(res => {
-			console.log("aqui");
-			console.log(res);
-			setSolicitationsQueue(res.data.solicitationsList);
-			setSolicitationsQueueTotal(res.data.total);
-		})
-		.catch(err => console.log(err));
-	}, []);
+		async function verifyLogin() {
+			axios.get('http://localhost:8082/api/admin/isLogged',{withCredentials: true, credentials: 'include'})
+			.then(res =>{
+				if(res.data.code !== 1){
+					props.history.replace('/sistema/login');
+				}
+			})
+		}
+
+		async function loadNewSolicitations() {
+			axios.get('http://localhost:8082/api/solicitations/new/0?limit=6')
+			.then(res => {
+				setNewSolicitations(res.data.solicitationsList);
+				setNewSolicitationsTotal(res.data.total);
+			})
+			.catch(err => console.log(err));
+		}
+
+		async function loadSolicitationsQueue() {
+			axios.get('http://localhost:8082/api/solicitations/queue/0?limit=6')
+			.then(res => {
+				setSolicitationsQueue(res.data.solicitationsList);
+				setSolicitationsQueueTotal(res.data.total);
+			})
+			.catch(err => console.log(err));
+		}
+
+		verifyLogin();
+		loadNewSolicitations();
+		loadSolicitationsQueue();
+		setIsloading(false);
+
+	}, [props.history]);
+
+	if(isLoading) {
+		return (
+			<ReactLoading 
+				className="loading" 
+				type={"spin"} 
+				color={"green"} 
+				height={'20%'} 
+				width={'20%'} 
+			/>
+		)
+	}
 
 	return (
 		<div className="home-sistema">

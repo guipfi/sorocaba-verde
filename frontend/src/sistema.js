@@ -2,9 +2,6 @@ import React, { Component} from 'react';
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import axios from 'axios';
-import AdminLogin from './pages/management/AdminLogin';
-import HomeSistema from './pages/management/Home';
-
 
 class Sistema extends Component{
     constructor () {
