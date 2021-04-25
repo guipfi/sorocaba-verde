@@ -2,8 +2,9 @@ import "./styles/FormSolicitation.css";
 
 function FormSolicitation() {
     
-    function handleSubmit(){
-        console.log("Formulário entregue")
+    const handleSubmit = (event) => {
+        console.log("AAAAAAAAAAa");
+        console.log(event);
     }
     
     return(
@@ -29,7 +30,7 @@ function FormSolicitation() {
 
                 <div id="button-container">
                     <button id="cancel-button">Cancelar</button>
-                    <button>Confirmar</button>
+                    <button type="submit">Confirmar</button>
                 </div>
             </form>
         </div>

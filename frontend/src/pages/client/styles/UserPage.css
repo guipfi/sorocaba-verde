@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     height: 100vh;
+    display: flex;
 }
 
 #user-page-container section {
@@ -9,6 +10,7 @@
     background: linear-gradient(90deg, #DEE6DC 0%, #ECF7EA 100%);
     height: 100%;
     padding: 20px;
+    margin: 0;
 }
 
 #user-page-container section .introduction{
@@ -37,13 +39,25 @@
     margin-top: 2rem;
 }
 
-#user-page-container section button{
+#user-page-container section a{
     font-size: 1.25rem;
     height: 3.5rem;
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 8px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    background-color: var(--green-dark);
+    border: 0;
+    text-align: center;
+    align-self: center;
+    padding-top: .7rem;
 }
 
-#user-page-container section button:hover{
+#user-page-container section a:hover{
     cursor: pointer;
+    text-decoration: none;
+    color: var(--white);
 }
 
 #user-page-container section .icon{
@@ -90,4 +104,8 @@
 #user-page-container .page-container aside .map{
     width: 100%;
     height: 100vh;
+}
+
+.page-container section .button-container > button{
+    width: 80% !important;
 }
