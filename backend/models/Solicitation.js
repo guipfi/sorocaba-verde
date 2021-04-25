@@ -10,7 +10,10 @@ const SolicitationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    adress: {
+    type: {
+        type: String
+    },
+    address: {
         type: String,
         required: true
     },
@@ -27,6 +30,12 @@ const SolicitationSchema = new mongoose.Schema({
     },
     status: {
         type: String
+    }, 
+    lat: {
+        type: Double
+    },
+    long: {
+        type: Double
     }
 });
 
