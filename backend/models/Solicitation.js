@@ -30,12 +30,6 @@ const SolicitationSchema = new mongoose.Schema({
     },
     status: {
         type: String
-    }, 
-    lat: {
-        type: Double
-    },
-    long: {
-        type: Double
     }
 });
 
