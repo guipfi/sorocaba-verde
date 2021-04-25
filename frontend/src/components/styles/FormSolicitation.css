@@ -1,67 +1,67 @@
-.form-container{
+#form-solicitation .form-container{
     background-color: var(--gray-light);
 }
 
-.form-container form label, .form-container form input, .form-container form textarea, .form-container form select{
+#form-solicitation .form-container form label, .form-container form input, .form-container form textarea, .form-container form select{
     display: block;
     margin: 1rem 2rem 0;
 }
 
-.form-container form input, .form-container form textarea{
+#form-solicitation .form-container form input, .form-container form textarea{
     width: 90%;
 }
 
-.form-container form label{
+#form-solicitation .form-container form label{
     font-size: 1.25rem;
     margin-bottom: 1rem;
     font-weight: 500;
     color: var(--black);
 }
 
-.form-container form textarea{
+#form-solicitation .form-container form textarea{
     padding: .5rem;
 }
 
-.form-container form #button-container{
+#form-solicitation .form-container form #button-container{
     display: flex;
     flex-direction: row;
 }
 
-.form-container form #button-container button{
+#form-solicitation .form-container form #button-container button{
     max-width: 30%;
 }
 
-.form-container form #button-container button:hover, .form-container form input:last-child:hover{
+#form-solicitation .form-container form #button-container button:hover, .form-container form input:last-child:hover{
     cursor: pointer;
 }
 
-.form-container form select {
+#form-solicitation .form-container form select {
     height: 2.5rem;
     border-radius: 5px;
     width: 20%;
     padding: 4px;
 }
 
-.photo-input{
+#form-solicitation .photo-input{
     padding: 0;
     background-color: transparent;
     border: none;
 }
 
-#button-container{
+#form-solicitation #button-container{
     display: flex !important;
     flex-direction: row;
     align-items: flex-end;
 }
 
-#button-container button{
+#form-solicitation #button-container button{
     padding: 0;
     margin: 3% !important;
     max-height: 100px;
     max-width: 30% !important;
 }
 
-#cancel-button{
+#form-solicitation #cancel-button{
     background-color: transparent !important;
     border: 1px solid var(--green);
     color: var(--green-dark);

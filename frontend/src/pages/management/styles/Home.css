@@ -1,52 +1,52 @@
-.home-sistema {
+#home-sistema {
     background-color: var(--gray-light);
 }
 
-.home-content {
+#home-sistema .home-content {
     margin: 0 4rem;
 }
 
-h1 {
+#home-sistema h1 {
     margin: 4rem 0;
 }
 
-.page-sections {
+#home-sistema .page-sections {
     display: flex;
 }
 
-section {
+#home-sistema section {
     display: flex;
     flex-direction: column;
     margin-bottom: 4rem;
 }
 
-section > * {
+#home-sistema section > * {
     margin-bottom: 0.5rem;
 }
 
-.solicitations-list > * {
+#home-sistema .solicitations-list > * {
     margin-bottom: 0.5rem;
 }
 
-button {
+#home-sistema button {
     margin-top: 1rem;
 }
 
-.new-solicitations {
+#home-sistema .new-solicitations {
     margin-right: 4rem;
 }
 
-.solicitations-queue {
+#home-sistema .solicitations-queue {
     margin-right: 4rem;
 }
 
-.map img {
+#home-sistema .map img {
     height: auto;
     max-width: 100%;
 }
 
 @media screen and (max-width: 1760px) {
-    .page-sections {
+    #home-sistema .page-sections {
         flex-wrap: wrap;
     }
 }
@@ -55,7 +55,7 @@ button {
     :root {
       font-size: 14px;
     }
-    .home-content {
+    #home-sistema .home-content {
         margin: 0 2rem;
     }
 }
@@ -64,13 +64,13 @@ button {
     :root {
       font-size: 12px;
     }
-    .home-content {
+    #home-sistema .home-content {
         margin: 0 3rem;
     }
 }
 
 @media screen and (max-width: 400px) {
-    .home-content {
+    #home-sistema .home-content {
         margin: 0 1.5rem;
     }
 }

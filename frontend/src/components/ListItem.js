@@ -7,7 +7,7 @@ function ListItem({data}) {
     return(
         <div className="list-item" id="list-item">
             <div className="list-item-content">
-                <span className="subtitle">{data.type} | {data.adress}</span><br/>
+                <span className="subtitle">{data.type} | {data.address}</span><br/>
                 <div className="infos">
                     <span>Data: {data.date}</span>
                     {data.priority && 

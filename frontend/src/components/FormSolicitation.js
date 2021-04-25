@@ -8,7 +8,7 @@ function FormSolicitation() {
     }
     
     return(
-        <div className="form-container">
+        <div className="form-container" id="form-solicitation">
             <h2>Nova solicitação</h2>
 
             <form onSubmit={handleSubmit}>

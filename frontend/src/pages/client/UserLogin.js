@@ -39,7 +39,7 @@ class UserLogin extends Component{
             return(
                 <div>
                     <Route path='/' component={UserNav} />
-                    <div className="page-background">
+                    <div className="page-background" id="user-login">
                         <div className="page-container">
                             <div className="page-content">
                                 <h2>Bem vindo ao Portal de Gestão de Aborização de Sorocaba,</h2>

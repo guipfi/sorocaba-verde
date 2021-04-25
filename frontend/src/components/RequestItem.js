@@ -10,7 +10,7 @@ function RequestItem(){
     const [status, setStatus] = useState("Na fila de espera");
     
     return(
-        <div className="item-container">
+        <div className="item-container" id="request-item">
             <div className="details">
                 <p className="item-title">{type} | {street}</p>
                 <p>Data de solicitação: {date}</p>

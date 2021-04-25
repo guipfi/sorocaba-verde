@@ -30,7 +30,7 @@ function Solicitation(){
         <Router>
             <Route path="/" component={UserNav} />
             
-            <div className="page-container">
+            <div className="page-container" id="client-solicitations">
                 
                 <section style={{"display": sectionDisplay}}>
                     <div className="icon">

@@ -10,9 +10,12 @@ const SolicitationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+<<<<<<< HEAD
     type: {
         type: String
     },
+=======
+>>>>>>> 74b5caf0bf8a51e65f862c74a8019cdf05c035a0
     address: {
         type: String,
         required: true

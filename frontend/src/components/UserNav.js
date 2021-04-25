@@ -43,7 +43,7 @@ class UserNav extends Component{
     
     render(){
         return(
-            <nav>
+            <nav id="user-nav">
                 <div className="logo-container">
                     <img src={logo} width={25} height={25} alt="" style={{marginRight:10}} />
                     <div className="title"><a href="#">Sorocaba Verde</a></div>

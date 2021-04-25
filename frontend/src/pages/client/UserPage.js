@@ -48,7 +48,7 @@ class UserPage extends Component{
                 <div>
                     <Route path="/" component={UserNav} />
                     
-                    <div className="page-container">
+                    <div className="page-container" id="user-page-container">
                         
                         <section style={{"display": this.state.sectionDisplay}}>
                             <div className="icon">
