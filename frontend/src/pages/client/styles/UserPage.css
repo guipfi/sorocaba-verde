@@ -1,52 +1,52 @@
-.page-container{
+#user-page-container .page-container{
     padding: 0;
     margin: 0;
     height: 100vh;
 }
 
-section {
+#user-page-container section {
     max-width: 40%;
     background: linear-gradient(90deg, #DEE6DC 0%, #ECF7EA 100%);
     height: 100%;
     padding: 20px;
 }
 
-section .introduction{
+#user-page-container section .introduction{
     margin-bottom: 40px;
 }
 
-section .item-header{
+#user-page-container section .item-header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 5px 20px 0;
 }
 
-section .item-header p:last-child{
+#user-page-container section .item-header p:last-child{
     padding-right: 15px;
 }
 
-section .item-header p{
+#user-page-container section .item-header p{
     color: var(--gray);
 }
 
-section .button-container{
+#user-page-container section .button-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 2rem;
 }
 
-section button{
+#user-page-container section button{
     font-size: 1.25rem;
     height: 3.5rem;
 }
 
-section button:hover{
+#user-page-container section button:hover{
     cursor: pointer;
 }
 
-section .icon{
+#user-page-container section .icon{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -54,11 +54,11 @@ section .icon{
     margin-bottom: 20px;
 }
 
-section .icon img:hover, .button-max:hover{
+#user-page-container section .icon img:hover, .button-max:hover{
     cursor: pointer;
 }
 
-.button-max {
+#user-page-container .button-max {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,24 +70,24 @@ section .icon img:hover, .button-max:hover{
     margin-left: 10px;
 }
 
-section .icon img, .button-max img{
+#user-page-container section .icon img, .button-max img{
     width: 1.5rem;
     height: 1.5rem;
 }
 
-.button-max img{
+#user-page-container .button-max img{
     width: 2rem;
     height: 2rem;
 }
 
-.page-container aside{
+#user-page-container .page-container aside{
 
     display: flex;
     width: 100%;
     height: 100vh;
 }
 
-.page-container aside .map{
+#user-page-container .page-container aside .map{
     width: 100%;
     height: 100vh;
 }
