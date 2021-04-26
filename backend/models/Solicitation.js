@@ -29,10 +29,11 @@ const SolicitationSchema = new mongoose.Schema({
         type: String
     },
     status: {
-        type: String
+        type: String,
+        default: 'Na fila de espera'
     }
 });
 
-const Solicitation = mongoose.model('solicitation',SolicitationSchema,'solicitations');
+const Solicitation = mongoose.model('solicitation', SolicitationSchema, 'solicitations');
 
 module.exports = Solicitation

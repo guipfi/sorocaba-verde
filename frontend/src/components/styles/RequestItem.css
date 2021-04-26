@@ -1,29 +1,29 @@
-#request-item .item-container{
+#request-item{
     background-color: var(--green-light);
     border-radius: 10px;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-#request-item .item-container:hover{
+#request-item:hover{
     cursor: pointer;
 }
 
-#request-item .item-container .details{
+#request-item .details{
     max-width: 50%;
     font-size: 16px;
     margin: 0 0.5rem 0.5rem;
 }
 
-#request-item .item-container .details .item-title{
+#request-item .details .item-title{
     font-weight: 500;
     margin: 0.5rem 0 0;
 }
 
-#request-item .item-container .status{
+#request-item .status{
     max-width: 20%;
     display: flex;
     flex-direction: row;
@@ -31,7 +31,7 @@
     justify-content: center;
 }
 
-#request-item .item-container .status p{
+#request-item .status p{
     max-width: 70%;
     text-align: center;
     font-size: 0.8rem;

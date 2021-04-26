@@ -17,7 +17,7 @@ class UserPage extends Component{
         super()
         this.state = {
             name:"",
-            sectionDisplay:"block",
+            sectionDisplay:"flex",
             buttonDisplay:"none",
             isLoading: true,
             
@@ -38,14 +38,14 @@ class UserPage extends Component{
     }
 
     showSection = () =>{
-        this.setState({...this.state, sectionDisplay:"block",buttonDisplay:"none"})
+        this.setState({...this.state, sectionDisplay:"flex",buttonDisplay:"none"})
     }
 
     render(){
         if(this.state.isLoading == false){
             return(
                 <Router>
-                <div>
+                <div id="user-page-content">
                     <Route path="/" component={UserNav} />
                     
                     <div className="page-container" id="user-page-container">

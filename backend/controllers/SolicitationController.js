@@ -39,4 +39,18 @@ const getSolicitations = async (req, res) => {
 	}
 }
 
-module.exports = { getSolicitations }
+const postSolicitation = async (req, res) => {
+	try{
+		const type = req.body.type;
+		const description = req.body.description;
+		const address = req.body.address;
+		const date = req.body.date;
+		const status = req.body.status;
+
+		console.log(req.body);
+	} catch(err) {
+		res.status(400).json({ error: err });
+	}
+}
+
+module.exports = { getSolicitations, postSolicitation }
