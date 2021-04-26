@@ -44,10 +44,19 @@ const postSolicitation = async (req, res) => {
 		const type = req.body.type;
 		const description = req.body.description;
 		const address = req.body.address;
-		const date = req.body.date;
-		const status = req.body.status;
+		const solicitator = req.body.solicitator;
 
-		console.log(req.body);
+		const newSolicitation = new Solicitation({
+			solicitator,
+			type,
+			description,
+			address
+		});
+
+		newSolicitation.save()
+		.then(() => res.json("Solicitação adicionada!"))
+		.catch(err => res.status(400).json('Erro: ' + err));
+		
 	} catch(err) {
 		res.status(400).json({ error: err });
 	}
