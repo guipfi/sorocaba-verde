@@ -18,58 +18,58 @@ function HomeSistema(props) {
 
 	const [newSolicitations, setNewSolicitations] = useState([{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 	},]);
 	
 	const [solicitationsQueue, setSolicitationsQueue] = useState([{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},]);
@@ -85,27 +85,27 @@ function HomeSistema(props) {
 			})
 		}
 
-		async function loadNewSolicitations() {
-			axios.get('http://localhost:8082/api/solicitations/new/0?limit=6')
-			.then(res => {
-				setNewSolicitations(res.data.solicitationsList);
-				setNewSolicitationsTotal(res.data.total);
-			})
-			.catch(err => console.log(err));
-		}
+		// async function loadNewSolicitations() {
+		// 	axios.get('http://localhost:8082/api/solicitations/new/0?limit=6')
+		// 	.then(res => {
+		// 		setNewSolicitations(res.data.solicitationsList);
+		// 		setNewSolicitationsTotal(res.data.total);
+		// 	})
+		// 	.catch(err => console.log(err));
+		// }
 
-		async function loadSolicitationsQueue() {
-			axios.get('http://localhost:8082/api/solicitations/queue/0?limit=6')
-			.then(res => {
-				setSolicitationsQueue(res.data.solicitationsList);
-				setSolicitationsQueueTotal(res.data.total);
-			})
-			.catch(err => console.log(err));
-		}
+		// async function loadSolicitationsQueue() {
+		// 	axios.get('http://localhost:8082/api/solicitations/queue/0?limit=6')
+		// 	.then(res => {
+		// 		setSolicitationsQueue(res.data.solicitationsList);
+		// 		setSolicitationsQueueTotal(res.data.total);
+		// 	})
+		// 	.catch(err => console.log(err));
+		// }
 
 		verifyLogin();
-		loadNewSolicitations();
-		loadSolicitationsQueue();
+		// loadNewSolicitations();
+		// loadSolicitationsQueue();
 		setIsloading(false);
 
 	}, [props.history]);
@@ -123,9 +123,9 @@ function HomeSistema(props) {
 	}
 
 	return (
-		<div className="home-sistema">
+		<div className="home-sistema" id="home-sistema">
 			<AdminNav {...props} ></AdminNav>
-			<div className="home-content" id="home-sistema">
+			<div className="home-content">
 				<h1>Painel Administrativo</h1>
 				<div className="page-sections">
 					<section className="new-solicitations">

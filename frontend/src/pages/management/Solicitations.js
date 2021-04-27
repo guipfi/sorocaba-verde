@@ -12,32 +12,32 @@ function SolicitacoesSistema({ type }) {
 
 	const [solicitations, setSolicitations] = useState([{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},{
 		type: "Poda",
-		adress: "Rua Abraão Pereira, 530 - Parque Campolim",
+		address: "Rua Abraão Pereira, 530 - Parque Campolim",
 		date: "12/01/2021",
 		priority: "POUCO URGENTE"
 	},]);

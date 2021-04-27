@@ -8,8 +8,8 @@
     transition: filter 0.2s;
 }
 
-#list-item .list-item:hover {
-    filter: brightness(85%);
+#list-item:hover {
+    filter: brightness(95%);
 }
 
 #list-item .list-item-content {

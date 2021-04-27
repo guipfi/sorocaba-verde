@@ -11,7 +11,7 @@ function BigListItem({ data }) {
 				<h3>Solicitação de {data.type}</h3>
 				<div className="infos">
 					<p className="body">{data.description}</p>
-					<span className="subtitle">Endereço: {data.adress}</span>
+					<span className="subtitle">Endereço: {data.address}</span>
 					<span className="subtitle">Data: {data.date}</span>
 					<a><u>Ver solicitação completa</u></a>
 					{data.priority &&

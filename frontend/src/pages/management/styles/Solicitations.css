@@ -5,6 +5,11 @@
 #solicitations-sistema header {
   display: flex;
   align-items: center;
+  padding: 4rem 0;
+}
+
+#solicitations-sistema label {
+  font-weight: 200;
 }
 
 #solicitations-sistema input[type="checkbox"] {
@@ -34,4 +39,8 @@
   height: 2rem;
   margin-right: 0.5rem;
   background-color: black;
+}
+
+#solicitations-sistema .solicitations > * {
+  margin-bottom: 0.5rem;
 }
