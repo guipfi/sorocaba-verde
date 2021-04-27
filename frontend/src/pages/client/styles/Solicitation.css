@@ -1,24 +1,112 @@
-#client-solicitations .page-container{
+#client-solicitation{
     display: flex;
 }
 
-#client-solicitations .form-container{
+#client-solicitation .form-container{
     width: 100%;
     height: 100vh;
 }
 
-#client-solicitations h2 {
+#client-solicitation h2 {
     margin: 1rem 2rem 0;
 }
 
-#client-solicitations .page-container section .button-container a{
+#client-solicitation section .button-container a{
     width: 80%;
 }
 
-#client-solicitations .page-container aside .button-max{
+#client-solicitation aside .button-max{
     position: fixed;
 }
 
-#client-solicitations .page-container aside .form-container{
+#client-solicitation aside .form-container{
     padding-left: 2rem;
+}
+
+#client-solicitation section {
+    flex-direction: column;
+    max-width: 40%;
+    background: linear-gradient(90deg, #DEE6DC 0%, #ECF7EA 100%);
+    padding: 20px;
+    margin: 0;
+}
+
+#client-solicitation section .introduction{
+    margin-bottom: 40px;
+}
+
+#client-solicitation section .item-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 20px 0;
+}
+
+#client-solicitation section .item-header p:last-child{
+    padding-right: 15px;
+}
+
+#client-solicitation section .item-header p{
+    color: var(--gray);
+}
+
+#client-solicitation section .button-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+#client-solicitation section a{
+    font-size: 1.25rem;
+    height: 3.5rem;
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 8px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    background-color: var(--green-dark);
+    border: 0;
+    text-align: center;
+    align-self: center;
+    padding-top: .7rem;
+}
+
+#client-solicitation section a:hover{
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--white);
+}
+
+#client-solicitation section .icon{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#client-solicitation section .icon img:hover, .button-max:hover{
+    cursor: pointer;
+}
+
+#client-solicitation section .icon img, .button-max img{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+#client-solicitation .button-max img{
+    width: 2rem;
+    height: 2rem;
+}
+
+#client-solicitation aside{
+    display: flex;
+    width: 80%;
+    height: 100vh;
+}
+
+#client-solicitation section .button-container > a{
+    width: 50%;
+    height: 3.75rem;
 }

@@ -1,14 +1,28 @@
 const mongoose = require('mongoose');
 const { UserSchema } = require('./User');
+const ObjectId = mongoose.Schema.Types.ObjectId;
+
+function date_formated(){
+    var date = new Date;
+
+    day  = date.getDate().toString().padStart(2, '0'),
+    month  = (date.getMonth() + 1).toString().padStart(2, '0'), 
+    year  = date.getFullYear();
+    
+    return day + "/" + month + "/" +year;
+}
 
 const SolicitationSchema = new mongoose.Schema({
     solicitator: {
-        type: UserSchema,
+        type: ObjectId,
         required: true 
     },
     description: {
         type: String,
         required: true
+    },
+    type: {
+        type: String
     },
     address: {
         type: String,
@@ -19,17 +33,19 @@ const SolicitationSchema = new mongoose.Schema({
         default: []
     },
     date: {
-        type: Date,
-        default: Date.now()
+        type: String,
+        default: date_formated()
     },
     priority: {
-        type: String
+        type: String,
+        default: "Não definido"
     },
     status: {
-        type: String
+        type: String,
+        default: 'Na fila de espera'
     }
 });
 
-const Solicitation = mongoose.model('solicitation',SolicitationSchema,'solicitations');
+const Solicitation = mongoose.model('solicitation', SolicitationSchema, 'solicitations');
 
 module.exports = Solicitation

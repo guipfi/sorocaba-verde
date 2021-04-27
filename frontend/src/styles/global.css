@@ -87,3 +87,7 @@ button:hover {
     background-color:#10240c;
     transition: background-color 0.2s;
 }
+
+#root{
+    height: 100%;
+}

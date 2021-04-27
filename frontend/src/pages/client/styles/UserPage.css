@@ -1,11 +1,25 @@
-#user-page-container .page-container{
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#user-page-content{
+    height: 100%;
+    display: block;
+}
+
+#user-page-container {
     padding: 0;
     margin: 0;
-    height: 100vh;
+    height: 100%;
     display: flex;
 }
 
 #user-page-container section {
+    flex-direction: column;
     max-width: 40%;
     background: linear-gradient(90deg, #DEE6DC 0%, #ECF7EA 100%);
     height: 100%;
@@ -95,7 +109,6 @@
 }
 
 #user-page-container .page-container aside{
-
     display: flex;
     width: 100%;
     height: 100vh;
@@ -103,9 +116,10 @@
 
 #user-page-container .page-container aside .map{
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
-.page-container section .button-container > button{
-    width: 80% !important;
+#user-page-container section .button-container > a{
+    width: 50%;
+    height: 3.75rem;
 }

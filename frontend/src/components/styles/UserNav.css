@@ -1,10 +1,10 @@
-#user-nav .logo-container{
+#user-nav, .logo-container {
     display: flex;
     margin-left: 2%;
     width: 40%;
 }
 
-#user-nav .title a{
+#user-nav .logo-container .title a{
     color:#365B2A;
     text-decoration: none;
 }
@@ -49,4 +49,6 @@
 
 #user-nav .login-nav a:hover{
     color: #365B2A;
+    background-color: red;
+    cursor: pointer;
 }

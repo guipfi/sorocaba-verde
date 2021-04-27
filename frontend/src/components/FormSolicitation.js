@@ -1,10 +1,21 @@
 import "./styles/FormSolicitation.css";
+import axios from 'axios';
 
 function FormSolicitation() {
     
     const handleSubmit = (event) => {
-        console.log("AAAAAAAAAAa");
-        console.log(event);
+        event.preventDefault();
+        const response = {
+            "address": event.target[0].value,
+            "type": event.target[1].value,
+            "description": event.target[2].value,
+            "solicitator": "607f49a6a63ff5779ee24e53"
+        }
+
+        axios.post('http://localhost:8082/api/solicitations/new', response)
+
+        console.log(response);
+        window.location = '/solicitation';
     }
     
     return(

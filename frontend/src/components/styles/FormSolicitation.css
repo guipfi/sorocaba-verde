@@ -1,41 +1,46 @@
-#form-solicitation .form-container{
+#form-solicitation{
     background-color: var(--gray-light);
 }
 
-#form-solicitation .form-container form label, .form-container form input, .form-container form textarea, .form-container form select{
+#form-solicitation form label, #form-solicitation form input, #form-solicitation form textarea, #form-solicitation form select{
     display: block;
     margin: 1rem 2rem 0;
 }
 
-#form-solicitation .form-container form input, .form-container form textarea{
+#form-solicitation form input, #form-solicitation form textarea{
     width: 90%;
 }
 
-#form-solicitation .form-container form label{
+#form-solicitation form label{
     font-size: 1.25rem;
     margin-bottom: 1rem;
     font-weight: 500;
     color: var(--black);
 }
 
-#form-solicitation .form-container form textarea{
-    padding: .5rem;
+#form-solicitation form > input{
+    height: 2.5rem;
 }
 
-#form-solicitation .form-container form #button-container{
+#form-solicitation form textarea{
+    padding: .5rem;
+    height: 10rem;
+}
+
+#form-solicitation form #button-container{
     display: flex;
     flex-direction: row;
 }
 
-#form-solicitation .form-container form #button-container button{
+#form-solicitation form #button-container button{
     max-width: 30%;
 }
 
-#form-solicitation .form-container form #button-container button:hover, .form-container form input:last-child:hover{
+#form-solicitation form #button-container button:hover, form input:last-child:hover{
     cursor: pointer;
 }
 
-#form-solicitation .form-container form select {
+#form-solicitation form select {
     height: 2.5rem;
     border-radius: 5px;
     width: 20%;
@@ -59,6 +64,8 @@
     margin: 3% !important;
     max-height: 100px;
     max-width: 30% !important;
+    width: 25%;
+    height: 3.5rem;
 }
 
 #form-solicitation #cancel-button{
