@@ -5,16 +5,16 @@ function FormSolicitation() {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        const response = {
+        const solicitation = {
             "address": event.target[0].value,
             "type": event.target[1].value,
             "description": event.target[2].value,
             "solicitator": "607f49a6a63ff5779ee24e53"
         }
 
-        axios.post('http://localhost:8082/api/solicitations/new', response)
+        axios.post('http://localhost:8082/api/solicitations/new', solicitation)
 
-        console.log(response);
+        console.log(solicitation);
         window.location = '/solicitation';
     }
     
