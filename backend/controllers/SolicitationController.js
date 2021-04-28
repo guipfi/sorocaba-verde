@@ -2,12 +2,10 @@ const Solicitation = require('../models/Solicitation');
 
 const getSolicitations = async (req, res) => {
 
-	var totalSolicitations = 0;
-
-	if (req.params.type == "new") {
-		search_param = { priority: { "$ne": null } };
-	} else if (req.params.type == "queue") {
-		search_param = { priority: null };
+	if (req.params.type == "queue") {
+		search_param = { priority: { $ne: "Não definido" } };
+	} else if (req.params.type == "new") {
+		search_param = { priority: "Não definido" };
 	} else {
 		search_param = {};
 	}
@@ -24,6 +22,7 @@ const getSolicitations = async (req, res) => {
 
 		const solicitationsList = await Solicitation
 			.find(search_param)
+			.sort({date: "desc"})
 			.limit(limit)
 			.skip(Number(req.params.page * limit));
 

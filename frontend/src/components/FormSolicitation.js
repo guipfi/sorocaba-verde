@@ -28,9 +28,9 @@ function FormSolicitation() {
                 
                 <label htmlFor="type">Tipo de solicitação</label>
                 <select name="type" className="type">
-                    <option value="corte">Corte</option>
-                    <option value="poda">Poda</option>
-                    <option value="substituicao">Substituição</option>
+                    <option value="Corte">Corte</option>
+                    <option value="Poda">Poda</option>
+                    <option value="Substituição">Substituição</option>
                 </select>
                 
                 <label htmlFor="description">Descrição</label>

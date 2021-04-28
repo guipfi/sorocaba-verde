@@ -50,8 +50,8 @@ class App extends Component {
             <Route exact path='/sistema' component={Sistema} />
             <Route path='/login' component= {UserLogin} />
             <Route path='/sistema/home' component= {HomeSistema} />
-            <Route path='/sistema/novas-solicitacoes' component={() => <SolicitacoesSistema type={"new"} />} />
-            <Route path='/sistema/solicitacoes' component={() => <SolicitacoesSistema type={"queue"} />}/>
+            <Route path='/sistema/novas-solicitacoes' component={(props) => <SolicitacoesSistema {...props} type={"new"} />} />
+            <Route path='/sistema/solicitacoes' component={(props) => <SolicitacoesSistema {...props} type={"queue"} />}/>
             <Route path='/sistema/login' component={AdminLogin}/>
             <Route path='/user' component={UserPage} />
             <Route path='/solicitation' component={Solicitation} />

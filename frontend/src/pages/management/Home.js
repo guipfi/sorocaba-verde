@@ -13,66 +13,12 @@ import './styles/Home.css'
 function HomeSistema(props) {
 
 	const [isLoading, setIsloading] = useState(true);
+
 	const [newSolicitationsTotal, setNewSolicitationsTotal] = useState(0);
 	const [solicitationsQueueTotal, setSolicitationsQueueTotal] = useState(0);
 
-	const [newSolicitations, setNewSolicitations] = useState([{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-	},{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-	},{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-	},{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-	},{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-	},{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-	},]);
-	
-	const [solicitationsQueue, setSolicitationsQueue] = useState([{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-		priority: "POUCO URGENTE"
-	},{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-		priority: "POUCO URGENTE"
-	},{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-		priority: "POUCO URGENTE"
-	},{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-		priority: "POUCO URGENTE"
-	},{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-		priority: "POUCO URGENTE"
-	},{
-		type: "Poda",
-		address: "Rua Abraão Pereira, 530 - Parque Campolim",
-		date: "12/01/2021",
-		priority: "POUCO URGENTE"
-	},]);
+	const [newSolicitations, setNewSolicitations] = useState([]);
+	const [solicitationsQueue, setSolicitationsQueue] = useState([]);
 
 	useEffect(() => {
 
@@ -84,30 +30,35 @@ function HomeSistema(props) {
 				}
 			})
 		}
+	
+		async function loadNewSolicitations() {
+			try {
+				const response = await axios.get('http://localhost:8082/api/solicitations/new/0?limit=6');
+				setNewSolicitations(response.data.solicitationsList);
+				setNewSolicitationsTotal(response.data.total);
+			} catch(err) {
+				throw new Error(err);
+			}
+		}
+	
+		async function loadSolicitationsQueue() {
+			try {
+				const response = await axios.get('http://localhost:8082/api/solicitations/queue/0?limit=6');
+				setSolicitationsQueue(response.data.solicitationsList);
+				setSolicitationsQueueTotal(response.data.total);
+			} catch(err) {
+				throw new Error(err);
+			}
+		}
 
-		// async function loadNewSolicitations() {
-		// 	axios.get('http://localhost:8082/api/solicitations/new/0?limit=6')
-		// 	.then(res => {
-		// 		setNewSolicitations(res.data.solicitationsList);
-		// 		setNewSolicitationsTotal(res.data.total);
-		// 	})
-		// 	.catch(err => console.log(err));
-		// }
+		async function loadAll() {
+			await verifyLogin();
+			await loadNewSolicitations();
+			await loadSolicitationsQueue();
+			setIsloading(false);
+		}
 
-		// async function loadSolicitationsQueue() {
-		// 	axios.get('http://localhost:8082/api/solicitations/queue/0?limit=6')
-		// 	.then(res => {
-		// 		setSolicitationsQueue(res.data.solicitationsList);
-		// 		setSolicitationsQueueTotal(res.data.total);
-		// 	})
-		// 	.catch(err => console.log(err));
-		// }
-
-		verifyLogin();
-		// loadNewSolicitations();
-		// loadSolicitationsQueue();
-		setIsloading(false);
-
+		loadAll();
 	}, [props.history]);
 
 	if(isLoading) {
@@ -132,7 +83,7 @@ function HomeSistema(props) {
 						<h3>Novas solicitações ({newSolicitationsTotal})</h3>
 						<div className="solicitations-list">
 							{newSolicitations.map(item => 
-								<ListItem data={item}></ListItem>)}
+								<ListItem key={item._id} data={item}></ListItem>)}
 						</div>
 						<button>Acessar solicitações</button>
 					</section>
@@ -140,7 +91,7 @@ function HomeSistema(props) {
 						<h3>Solicitações na fila ({solicitationsQueueTotal})</h3>
 						<div className="solicitations-list">
 							{solicitationsQueue.map(item =>
-								<ListItem data={item}></ListItem>)}
+								<ListItem key={item._id} data={item}></ListItem>)}
 						</div>
 						<button>Acessar solicitações</button>
 					</section>

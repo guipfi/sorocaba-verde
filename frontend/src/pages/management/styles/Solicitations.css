@@ -44,3 +44,17 @@
 #solicitations-sistema .solicitations > * {
   margin-bottom: 0.5rem;
 }
+
+#solicitations-sistema .solicitations h6 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#solicitations-sistema .solicitations button {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+#solicitations-sistema .solicitations button:disabled {
+  visibility: hidden;
+}
