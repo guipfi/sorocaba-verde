@@ -20,7 +20,7 @@ class UserPage extends Component{
             sectionDisplay:"flex",
             buttonDisplay:"none",
             isLoading: true,
-            
+            solicitations: []
         }
     }
 
@@ -28,7 +28,13 @@ class UserPage extends Component{
         axios.get('http://localhost:8082/api/users/isLogged',{withCredentials: true, credentials: 'include'})
         .then(res =>{
             if(res.data.code === 1){
-                this.setState({...this.state, name:res.data.user.name, isLoading:false})
+                let name = res.data.user.name
+                axios.get('http://localhost:8082/api/solicitations/userSolicitations',
+                {withCredentials: true, credentials: 'include'}).then(
+                    res =>{
+                        this.setState({...this.state, name, isLoading:false, solicitations: res.data.solicitations})
+                    }
+                )
             } else this.props.history.replace("/login")
         })
     }
@@ -62,9 +68,13 @@ class UserPage extends Component{
                                 <p>Detalhes</p>
                                 <p>Status</p>
                             </div>
-                            <RequestItem />
-                            <RequestItem />
-                            <RequestItem />
+                            {   this.state.solicitations.map((solicitation) =>{
+                                    return(<RequestItem status={solicitation.status} date={solicitation.date}
+                                         type={solicitation.type} address ={solicitation.address} />)
+                                }) 
+                            }
+                            {(this.state.solicitations.length == 0) ? <h4>Você não possui solicitações</h4> :<div></div>}
+                          
                             <div className="button-container">
                                 <a href="/solicitation">Nova solicitação</a>
                             </div>
@@ -72,7 +82,6 @@ class UserPage extends Component{
                         </section>
                         
                         <aside>
-
                             <div className="button-max" style={{"display": this.state.buttonDisplay}}>
                                 <img src={forw} onClick={this.showSection} alt="Mostrar"/>
                             </div>  

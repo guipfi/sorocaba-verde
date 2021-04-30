@@ -37,3 +37,11 @@
     font-size: 0.8rem;
     font-weight: 500;
 }
+
+#solicitation-option{
+    display: flex;
+    width: 100%;
+}
+#solicitation-option p{
+    margin-left: 2%;
+}
