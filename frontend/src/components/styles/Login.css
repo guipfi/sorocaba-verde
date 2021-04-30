@@ -21,7 +21,7 @@
 }
 
 /* Classes*/
-#login-component .card-login{
+.card-login{
     background-color: #DCF0D8;
     max-width: 30%;
     height:80%;

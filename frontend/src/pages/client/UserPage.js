@@ -44,7 +44,6 @@ class UserPage extends Component{
     render(){
         if(this.state.isLoading == false){
             return(
-                <Router>
                 <div id="user-page-content">
                     <Route path="/" component={UserNav} />
                     
@@ -90,7 +89,6 @@ class UserPage extends Component{
                         </Route>
                     </Switch>
                 </div>
-                </Router>
             )
         }  else return(<ReactLoading className="loading" type={"spin"} color={"green"} height={'20%'} width={'20%'} />)
     }

@@ -41,7 +41,7 @@ class UserLogin extends Component{
                     <Route path='/' component={UserNav} />
                     <div className="page-background" id="user-login">
                         <div className="page-container">
-                            <div className="page-content">
+                            <div className="page-content" id="user-login-content">
                                 <h2>Bem vindo ao Portal de Gestão de Aborização de Sorocaba,</h2>
                                 <h5>Aqui você poderá requisitar cortes, podas e substituições de árvores, além de acompanhar o progresso de arborização da cidade de Sorocaba.</h5>
                                 <br/>
