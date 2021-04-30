@@ -52,9 +52,9 @@ const loginAdmin = (req,res) =>{
 
 const isAdminLogged = (req,res) =>{
     if(typeof res.admin != 'undefined'){
-        res.json({code:1, email:res.admin.email})
+        res.json({code:1, admin:res.admin})
     }
-    else res.json({code:0, email:undefined})
+    else res.json({code:0, admin:undefined})
 }
 
 const logoutAdmin = (req,res) =>{

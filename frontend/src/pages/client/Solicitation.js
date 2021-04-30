@@ -27,7 +27,7 @@ function Solicitation(){
     }
 
     return(
-        <Router>
+        <div>
             <Route path="/" component={UserNav} />
             
             <div className="page-container" id="client-solicitation">
@@ -64,8 +64,7 @@ function Solicitation(){
 
                 </aside>
             </div>
-            
-        </Router>
+        </div>
     )
 }
 
