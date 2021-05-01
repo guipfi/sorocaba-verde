@@ -54,9 +54,9 @@ const loginUser = (req,res) =>{
 
 const isLogged = (req,res) =>{
     if(typeof res.user != 'undefined'){
-        res.json({code:1, email:res.user.email})
+        res.json({code:1, user:res.user})
     }
-    else res.json({code:0, email:undefined})
+    else res.json({code:0, user:undefined})
 }
 
 const logoutUser = (req,res) =>{

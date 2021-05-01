@@ -1,11 +1,3 @@
-body {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 #user-page-content{
     height: 100%;
     display: block;
@@ -14,15 +6,16 @@ body {
 #user-page-container {
     padding: 0;
     margin: 0;
-    height: 100%;
+    max-height: 100%;
     display: flex;
 }
 
 #user-page-container section {
     flex-direction: column;
+    overflow-y: scroll;
+    max-height: 10%;
     max-width: 40%;
     background: linear-gradient(90deg, #DEE6DC 0%, #ECF7EA 100%);
-    height: 100%;
     padding: 20px;
     margin: 0;
 }
@@ -122,4 +115,5 @@ body {
 #user-page-container section .button-container > a{
     width: 50%;
     height: 3.75rem;
+    margin-bottom: 10%;
 }

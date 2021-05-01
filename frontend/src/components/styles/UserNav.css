@@ -1,4 +1,4 @@
-#user-nav, .logo-container {
+.logo-container {
     display: flex;
     margin-left: 2%;
     width: 40%;
@@ -14,7 +14,7 @@
     width:100%;
 }
 
-#user-nav nav{
+#user-nav{
     display: flex;
     padding-top: 10px;
     padding-bottom: 5px;

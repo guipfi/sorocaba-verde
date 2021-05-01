@@ -1,17 +1,17 @@
-#user-login .page-background{
+#user-login{
   background-image: url("../assets/login-bg.svg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 130vh;
 }
 
-#user-login .page-background .page-container{
+#user-login .page-container {
     display: flex;
     margin-top: 8%;
     margin-right: 1%;
 }
 
-#user-login .page-content{
+#user-login-content{
   margin-left: 7%;
   margin-right: 10%;
   width: 45%;

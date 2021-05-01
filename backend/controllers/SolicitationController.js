@@ -1,4 +1,5 @@
 const Solicitation = require('../models/Solicitation');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 const getSolicitations = async (req, res) => {
 
@@ -45,6 +46,23 @@ const getSolicitations = async (req, res) => {
 	}
 }
 
+const getUserSolicitations = async (req,res) =>{
+	if(typeof res.user != 'undefined'){
+		Solicitation.find({solicitator: ObjectId(res.user._id)})
+		.sort({date: "desc"})
+		.then((solicitations) =>{
+			if(solicitations){
+				res.json({
+					code:1,
+					solicitations:solicitations
+				})
+			} else res.json({code:2, solicitations:[]})
+		})
+	} else{
+		res.json({code:0, solicitation:[]})
+	}
+}
+
 const postSolicitation = async (req, res) => {
 	try{
 		const type = req.body.type;
@@ -68,4 +86,4 @@ const postSolicitation = async (req, res) => {
 	}
 }
 
-module.exports = { getSolicitations, postSolicitation }
+module.exports = { getSolicitations, postSolicitation, getUserSolicitations }

@@ -1,6 +1,11 @@
 .admin-navLogin {
     padding-top: 15px;
     padding-bottom: 15px;
+    background-color: #E6EFE4;
+}
+
+.admin-navLogin .title a{
+    color: #365B2A;
 }
 
 .admin-navLogin .logo-container{
@@ -8,4 +13,31 @@
     justify-content: center;
 }
 
+.admin-nav .title a{
+    color: #365B2A;
+    text-decoration: none;
+}
+
+.admin-nav{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    background-color: #E6EFE4;
+}
+
+.admin-nav .menu-items{
+    display:flex;
+    width:50%;
+}
+
+.admin-nav ul li{
+    list-style: none;
+    font-style: none;
+    margin-right: 15%;
+}
+
+.admin-nav ul li .nav-links{
+    font-size: 1em;
+    color: black;
+}
 
