@@ -10,7 +10,6 @@ const getSolicitations = async (req, res) => {
 			type: { $in: filters.type }
 		};
 	} else {
-		console.log("b");
 		hasFilters = false;
 		search_param = {};
 	}
@@ -44,12 +43,39 @@ const getSolicitations = async (req, res) => {
 		const solicitationsNumber = await Solicitation
 			.countDocuments(search_param);
 
-		const solicitationsList = await Solicitation
+		var solicitationsList = await Solicitation
 			.find(search_param)
 			.sort({date: "desc"})
 			.limit(limit)
 			.skip(Number(req.params.page * limit));
 
+		if(req.params.type == "queue") {
+			var emergencia = [];
+			var urgente = [];
+			var poucoUrgente = [];
+			var naoUrgente = [];
+
+			solicitationsList.forEach(solicitation => {
+				switch(solicitation.priority) {
+					case "Emergência":
+						emergencia.push(solicitation);
+						break;
+					case "Urgente":
+						urgente.push(solicitation);
+						break;
+					case "Pouco urgente":
+						poucoUrgente.push(solicitation);
+						break;
+					case "Não urgente":
+						naoUrgente.push(solicitation);
+						break;
+					default:
+				}
+			});
+
+			solicitationsList = [...emergencia, ...urgente, ...poucoUrgente, ...naoUrgente];
+		}
+		
 		let response = {
 			total: solicitationsNumber,
 			solicitationsList
