@@ -8,6 +8,8 @@ import BigListItem from '../../components/BigListItem';
 import '../../styles/global.css'
 import './styles/Solicitations.css'
 
+import back_icon from './assets/back_icon.webp';
+
 function SolicitacoesSistema(props) {
 
 	const [isLoading, setIsloading] = useState(true);
@@ -52,11 +54,8 @@ function SolicitacoesSistema(props) {
 		if(!isFirstRun.current) {
 			async function loadSolicitations() {
 				try {
-					console.log("Carregando 1");
 					const response = await axios.get(`http://localhost:8082/api/solicitations/${props.type}/${page}?filters=${JSON.stringify(filters)}&limit=6`);
 					let newSolicitations = response.data.solicitationsList;
-					console.log(newSolicitations);
-					console.log(filters);
 					setSolicitations(newSolicitations);
 					setSolicitationsTotal(response.data.total);
 				} catch(err) {
@@ -81,9 +80,7 @@ function SolicitacoesSistema(props) {
 		async function loadSolicitations() {
 
 			try {
-				console.log("Carregando 2");
 				const response = await axios.get(`http://localhost:8082/api/solicitations/${props.type}/${page}?filters=${JSON.stringify(filters)}&limit=6`);
-				console.log(`http://localhost:8082/api/solicitations/${props.type}/${page}?filters=${JSON.stringify(filters)}&limit=6`);
 				let newSolicitations = [...solicitations, ...response.data.solicitationsList];
 				setSolicitations(newSolicitations);
 				setSolicitationsTotal(response.data.total);
@@ -98,15 +95,12 @@ function SolicitacoesSistema(props) {
 		}
 
 		if(isFirstRun.current) {
-			console.log("entrou2");
 			verifyLogin();
 			loadAll();
 			isFirstRun.current = false;
 		} else if(page > 0) {
-			console.log("entrou1");
 			loadSolicitations();
 		}
-		console.log("entrou3");
 
 	}, [props.history, props.type, page]);
 
@@ -127,7 +121,7 @@ function SolicitacoesSistema(props) {
 			<UserNav></UserNav>
 			<div className="solicitations-content">
 				<header>
-					<div className="icone-voltar"></div>
+					<img className="icone-voltar" src={back_icon} onClick={() => props.history.replace('/sistema/home')}></img>
 					{props.type === "new" ? <h1>Novas Solicitações</h1> : <h1>Solicitações na fila</h1>}
 				</header>
 				<div className="page-sections">
