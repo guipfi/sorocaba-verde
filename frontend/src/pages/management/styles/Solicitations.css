@@ -38,7 +38,7 @@
   width: 2rem;
   height: 2rem;
   margin-right: 0.5rem;
-  background-color: black;
+  cursor: pointer;
 }
 
 #solicitations-sistema .solicitations > * {
