@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactLoading from 'react-loading';
 import axios from 'axios';
 
@@ -14,6 +14,8 @@ function SolicitacoesSistema(props) {
 	const [solicitationsTotal, setSolicitationsTotal] = useState(0);
 	const [solicitations, setSolicitations] = useState([]);
 	const [page, setPage] = useState(0);
+
+	const isFirstRun = useRef(true);
 
 	const [filters, setFilters] = useState({
 		type: ["Corte", "Poda", "Substituição"],
@@ -38,12 +40,32 @@ function SolicitacoesSistema(props) {
 			...filters,
 			[category]: filterChanged
 		}
+		setPage(0);
 		setFilters(newFilters);
 	}
 
 	function loadMore() {
 		setPage(page+1);
 	}
+
+	useEffect(() => {
+		if(!isFirstRun.current) {
+			async function loadSolicitations() {
+				try {
+					console.log("Carregando 1");
+					const response = await axios.get(`http://localhost:8082/api/solicitations/${props.type}/${page}?filters=${JSON.stringify(filters)}&limit=6`);
+					let newSolicitations = response.data.solicitationsList;
+					console.log(newSolicitations);
+					console.log(filters);
+					setSolicitations(newSolicitations);
+					setSolicitationsTotal(response.data.total);
+				} catch(err) {
+					throw new Error(err);
+				}
+			}
+			loadSolicitations();
+		}
+	}, [filters]);
 
 	useEffect(() => {
 
@@ -59,8 +81,9 @@ function SolicitacoesSistema(props) {
 		async function loadSolicitations() {
 
 			try {
-				const response = await axios.get(`http://localhost:8082/api/solicitations/${props.type}/${page}?${JSON.stringify(filters)}&limit=6`);
-				console.log(`http://localhost:8082/api/solicitations/${props.type}/${page}?${JSON.stringify(filters)}&limit=6`);
+				console.log("Carregando 2");
+				const response = await axios.get(`http://localhost:8082/api/solicitations/${props.type}/${page}?filters=${JSON.stringify(filters)}&limit=6`);
+				console.log(`http://localhost:8082/api/solicitations/${props.type}/${page}?filters=${JSON.stringify(filters)}&limit=6`);
 				let newSolicitations = [...solicitations, ...response.data.solicitationsList];
 				setSolicitations(newSolicitations);
 				setSolicitationsTotal(response.data.total);
@@ -74,10 +97,18 @@ function SolicitacoesSistema(props) {
 			setIsloading(false);
 		}
 
-		verifyLogin();
-		loadAll();
+		if(isFirstRun.current) {
+			console.log("entrou2");
+			verifyLogin();
+			loadAll();
+			isFirstRun.current = false;
+		} else if(page > 0) {
+			console.log("entrou1");
+			loadSolicitations();
+		}
+		console.log("entrou3");
 
-	}, [props.history, props.type, filters, page]);
+	}, [props.history, props.type, page]);
 
 	if(isLoading) {
 		return (

@@ -3,20 +3,36 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 const getSolicitations = async (req, res) => {
 
-	if (req.params.type == "queue") {
-		search_param = { 
-			priority: { $in: req.params.filters.priority },
-	};
-	} else if (req.params.type == "new") {
-		search_param = { priority: "Não definido" };
+	if(req.query.filters) {
+		filters = JSON.parse(req.query.filters);
+		hasFilters = true;
+		search_param = {
+			type: { $in: filters.type }
+		};
 	} else {
+		console.log("b");
+		hasFilters = false;
 		search_param = {};
 	}
 
-	search_param = {
-		...search_param,
-		type: { $in: req.params.filters.type }
-	}
+	if (req.params.type == "queue") {
+		if(hasFilters) {
+			search_param = { 
+				...search_param,
+				priority: { $in: filters.priority },
+			};
+		} else {
+			search_param = { 
+				...search_param,
+				priority: { $ne: "Não definido" },
+			};
+		}		
+	} else if (req.params.type == "new") {
+		search_param = {
+			...search_param,
+			priority: "Não definido" 
+		};
+	} 
 
 	let limit = 10;
 
