@@ -116,25 +116,27 @@ function SolicitacoesSistema(props) {
 								<label htmlFor="substituicao">Substituição</label>
 							</div>
 						</div>
-						<div className="priority">
-							<h4>Grau de prioridade</h4>
-							<div className="option">
-								<input type="checkbox" id="emergencia" name="emergencia" value="Emergência" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
-								<label htmlFor="emergencia">Emergência</label>
+						{props.type === "queue" &&
+							<div className="priority">
+								<h4>Grau de prioridade</h4>
+								<div className="option">
+									<input type="checkbox" id="emergencia" name="emergencia" value="Emergência" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
+									<label htmlFor="emergencia">Emergência</label>
+								</div>
+								<div className="option">
+									<input type="checkbox" id="urgente" name="urgente" value="Urgente" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
+									<label htmlFor="urgente">Urgente</label>
+								</div>
+								<div className="option">
+									<input type="checkbox" id="pouco-urgente" name="pouco-urgente" value="Pouco urgente" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
+									<label htmlFor="pouco-urgente">Pouco urgente</label>
+								</div>
+								<div className="option">
+									<input type="checkbox" id="nao-urgente" name="nao-urgente" value="Não urgente" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
+									<label htmlFor="nao-urgente">Não urgente</label>
+								</div>
 							</div>
-							<div className="option">
-								<input type="checkbox" id="urgente" name="urgente" value="Urgente" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
-								<label htmlFor="urgente">Urgente</label>
-							</div>
-							<div className="option">
-								<input type="checkbox" id="pouco-urgente" name="pouco-urgente" value="Pouco urgente" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
-								<label htmlFor="pouco-urgente">Pouco urgente</label>
-							</div>
-							<div className="option">
-								<input type="checkbox" id="nao-urgente" name="nao-urgente" value="Não urgente" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
-								<label htmlFor="nao-urgente">Não urgente</label>
-							</div>
-						</div>
+						}
 						<div className="location">
 							<h4>Localização</h4>
 							<input type="text" id="location" name="location" placeholder="Digite a localidade..." />

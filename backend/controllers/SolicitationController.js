@@ -3,11 +3,18 @@ const Solicitation = require('../models/Solicitation');
 const getSolicitations = async (req, res) => {
 
 	if (req.params.type == "queue") {
-		search_param = { priority: { $ne: "Não definido" } };
+		search_param = { 
+			priority: { $in: req.params.filters.priority },
+	};
 	} else if (req.params.type == "new") {
 		search_param = { priority: "Não definido" };
 	} else {
 		search_param = {};
+	}
+
+	search_param = {
+		...search_param,
+		type: { $in: req.params.filters.type }
 	}
 
 	let limit = 10;
