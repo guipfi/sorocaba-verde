@@ -1,26 +1,52 @@
-import { MapContainer, TileLayer, Marker, Popup, useMapEvent } from 'react-leaflet';
-import { Icon, Control} from 'leaflet';
+import React, { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
+import { SearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+import { Icon } from 'leaflet';
 
 import mapPin from './assets/map-pin.svg';
+
+import './styles/geosearch.css';
 
 // Latitude: -23.5062, Longitude: -47.4559
 
 function Mapa(props){
 
-  if(!props.solicitations) {
-    props.solicitations = [];
-  }
-
   const centerPos = [-23.5062, -47.4559];
 
-  function SetViewOnClick() {
-    const map = useMapEvent('click', (e) => {
-      map.setView(e.latlng, map.getZoom(), {
-        animate: true,
-      })
-    })
-    return null
-  }
+  const [markedPosition, setMarkedPosition] = useState(null);
+
+  const AddMarker = () => {
+  
+    useMapEvents({
+      click: (e) => {
+        setMarkedPosition(e.latlng);
+      },
+    });
+  
+    return markedPosition === null ? null : (
+      <Marker position={markedPosition}></Marker>
+    );
+  };
+  
+  const MapSearchControl = () => {
+
+    const map = useMap();
+
+    useEffect(() => {
+
+      const searchControl = new SearchControl({
+        provider: new OpenStreetMapProvider(),
+        style: 'bar',
+        autoComplete: false
+      });
+
+      map.addControl(searchControl);
+
+      return () => map.removeControl(searchControl);
+    }, []);
+
+    return null;
+  }  
 
   const mapMarker = new Icon({
     iconUrl: mapPin,
@@ -30,11 +56,12 @@ function Mapa(props){
   
   return(
       <MapContainer className="map" style={{width: "100%", height: "100%"}} center={centerPos} zoom={13} scrollWheelZoom={false}>
+      {}
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {props.solicitations.map(solicitation => {
+      {props.solicitations?.map(solicitation => {
         if(solicitation.lat && solicitation.long) {
           const position = [solicitation.lat, solicitation.long];
         
@@ -49,7 +76,8 @@ function Mapa(props){
 
         return;
       })}
-      <SetViewOnClick />
+      <AddMarker />
+      <MapSearchControl />
     </MapContainer>
   )  
 }
