@@ -94,7 +94,7 @@ function HomeSistema(props) {
 						<h3>Solicitações na fila ({solicitationsQueueTotal})</h3>
 						<div className="solicitations-list">
 							{solicitationsQueue.map(item =>
-								<Link style={{color:'black'}}  to={"/sistema/edit/"+item._id}>
+								<Link style={{color:'black'}} to={"/sistema/edit/"+item._id}>
 									<ListItem key={item._id} data={item} />
 								</Link>)
 							}
