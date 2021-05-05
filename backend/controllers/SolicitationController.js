@@ -3,13 +3,35 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 const getSolicitations = async (req, res) => {
 
-	if (req.params.type == "queue") {
-		search_param = { priority: { $ne: "Não definido" } };
-	} else if (req.params.type == "new") {
-		search_param = { priority: "Não definido" };
+	if(req.query.filters) {
+		filters = JSON.parse(req.query.filters);
+		hasFilters = true;
+		search_param = {
+			type: { $in: filters.type }
+		};
 	} else {
+		hasFilters = false;
 		search_param = {};
 	}
+
+	if (req.params.type == "queue") {
+		if(hasFilters) {
+			search_param = { 
+				...search_param,
+				priority: { $in: filters.priority },
+			};
+		} else {
+			search_param = { 
+				...search_param,
+				priority: { $ne: "Não definido" },
+			};
+		}		
+	} else if (req.params.type == "new") {
+		search_param = {
+			...search_param,
+			priority: "Não definido" 
+		};
+	} 
 
 	let limit = 10;
 
@@ -21,12 +43,39 @@ const getSolicitations = async (req, res) => {
 		const solicitationsNumber = await Solicitation
 			.countDocuments(search_param);
 
-		const solicitationsList = await Solicitation
+		var solicitationsList = await Solicitation
 			.find(search_param)
 			.sort({date: "desc"})
 			.limit(limit)
 			.skip(Number(req.params.page * limit));
 
+		if(req.params.type == "queue") {
+			var emergencia = [];
+			var urgente = [];
+			var poucoUrgente = [];
+			var naoUrgente = [];
+
+			solicitationsList.forEach(solicitation => {
+				switch(solicitation.priority) {
+					case "Emergência":
+						emergencia.push(solicitation);
+						break;
+					case "Urgente":
+						urgente.push(solicitation);
+						break;
+					case "Pouco urgente":
+						poucoUrgente.push(solicitation);
+						break;
+					case "Não urgente":
+						naoUrgente.push(solicitation);
+						break;
+					default:
+				}
+			});
+
+			solicitationsList = [...emergencia, ...urgente, ...poucoUrgente, ...naoUrgente];
+		}
+		
 		let response = {
 			total: solicitationsNumber,
 			solicitationsList

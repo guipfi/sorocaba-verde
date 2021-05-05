@@ -1,9 +1,10 @@
 #home-sistema {
     background-color: var(--gray-light);
+    width: 100vw;
 }
 
 #home-sistema .home-content {
-    margin: 0 4rem;
+    padding: 0 4rem;
 }
 
 #home-sistema h1 {
@@ -40,9 +41,10 @@
     margin-right: 4rem;
 }
 
-#home-sistema .map img {
-    height: auto;
-    max-width: 100%;
+#home-sistema .map-container {
+    min-width: 40rem;
+    min-height: 42rem;
+    flex-grow: 1;
 }
 
 @media screen and (max-width: 1760px) {
@@ -56,7 +58,7 @@
       font-size: 14px;
     }
     #home-sistema .home-content {
-        margin: 0 2rem;
+        padding: 0 2rem;
     }
 }
 
@@ -65,12 +67,15 @@
       font-size: 12px;
     }
     #home-sistema .home-content {
-        margin: 0 3rem;
+        padding: 0 3rem;
+    }
+    #home-sistema .map-container {
+        min-width: 20rem;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 420px) {
     #home-sistema .home-content {
-        margin: 0 1.5rem;
+        padding: 0 1.5rem;
     }
 }

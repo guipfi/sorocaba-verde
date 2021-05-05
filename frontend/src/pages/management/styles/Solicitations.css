@@ -38,11 +38,11 @@
   width: 2rem;
   height: 2rem;
   margin-right: 0.5rem;
-  background-color: black;
+  cursor: pointer;
 }
 
 #solicitations-sistema .solicitations > * {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 #solicitations-sistema .solicitations h6 {

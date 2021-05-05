@@ -5,8 +5,7 @@ import ReactLoading from 'react-loading';
 import {Link} from 'react-router-dom';
 import ListItem from '../../components/ListItem';
 import AdminNav from '../../components/AdminNav';
-
-import map from './assets/map-example.png';
+import Mapa from '../../components/Mapa';
 
 import '../../styles/global.css'
 import './styles/Home.css'
@@ -89,7 +88,7 @@ function HomeSistema(props) {
 								</Link>)
 							}
 						</div>
-						<button>Acessar solicitações</button>
+						<button onClick={() => props.history.replace('/sistema/novas-solicitacoes')}>Acessar solicitações</button>
 					</section>
 					<section className="solicitations-queue">
 						<h3>Solicitações na fila ({solicitationsQueueTotal})</h3>
@@ -100,10 +99,10 @@ function HomeSistema(props) {
 								</Link>)
 							}
 						</div>
-						<button>Acessar solicitações</button>
+						<button onClick={() => props.history.replace('/sistema/solicitacoes')}>Acessar solicitações</button>
 					</section>
-					<section className="map">
-						<img src={map}></img>
+					<section className="map-container">
+						<Mapa solicitations={[...newSolicitations, ...solicitationsQueue]}/>
 					</section>
 				</div>
 			</div>
