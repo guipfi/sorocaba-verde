@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
 import { SearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import { Icon } from 'leaflet';
+import L from 'leaflet';
 
 import mapPin from './assets/map-pin.svg';
 
@@ -11,22 +12,65 @@ import './styles/geosearch.css';
 
 function Mapa(props){
 
+  useEffect(() => {
+
+    const script = document.createElement('script');
+    const sheet = document.createElement('link');
+
+    script.src = "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js";
+    script.async = true;
+
+    sheet.rel = 'stylesheet';
+    sheet.href = "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css";
+    sheet.type = 'text/css';
+  
+    document.head.appendChild(script);
+    document.head.appendChild(sheet);
+  
+    return () => {
+      document.head.removeChild(script);
+      document.head.removeChild(sheet);
+    }
+  }, []);
+
   const centerPos = [-23.5062, -47.4559];
 
   const [markedPosition, setMarkedPosition] = useState(null);
 
   const AddMarker = () => {
-  
+
+    const map = useMap();
+
     useMapEvents({
       click: (e) => {
-        setMarkedPosition(e.latlng);
-      },
+        const geocoder = L.Control.Geocoder.nominatim();
+        geocoder.reverse(
+          e.latlng,
+          map.options.crs.scale(map.getZoom()),
+          results => {
+            var r = results[0];
+            if (r) {
+              let marker = markedPosition;
+              if (marker) {
+                marker
+                  .setLatLng(r.center)
+                  .setPopupContent(r.html || r.name)
+                  .openPopup();
+              } else {
+                marker = L.marker(r.center)
+                  .bindPopup(r.name)
+                  .addTo(map)
+                  .openPopup();
+              }
+              setMarkedPosition(marker);
+            }
+          }    
+        );
+      }
     });
-  
-    return markedPosition === null ? null : (
-      <Marker position={markedPosition}></Marker>
-    );
-  };
+
+    return null;
+  }
   
   const MapSearchControl = () => {
 
@@ -37,7 +81,7 @@ function Mapa(props){
       const searchControl = new SearchControl({
         provider: new OpenStreetMapProvider(),
         style: 'bar',
-        autoComplete: false
+        autoComplete: false,
       });
 
       map.addControl(searchControl);
