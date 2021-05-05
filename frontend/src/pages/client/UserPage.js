@@ -1,5 +1,5 @@
-import React, {Component, useState} from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import React, {Component} from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Mapa from '../../components/Mapa';
 import RequestItem from '../../components/RequestItem';

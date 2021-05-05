@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 
+import {Link} from 'react-router-dom';
 import ListItem from '../../components/ListItem';
 import AdminNav from '../../components/AdminNav';
 
@@ -82,8 +83,11 @@ function HomeSistema(props) {
 					<section className="new-solicitations">
 						<h3>Novas solicitações ({newSolicitationsTotal})</h3>
 						<div className="solicitations-list">
-							{newSolicitations.map(item => 
-								<ListItem key={item._id} data={item}></ListItem>)}
+							{newSolicitations.map(item =>
+								<Link style={{color:'black'}} to={"/sistema/edit/"+item._id}>
+									<ListItem key={item._id} data={item} />
+								</Link>)
+							}
 						</div>
 						<button>Acessar solicitações</button>
 					</section>
@@ -91,7 +95,10 @@ function HomeSistema(props) {
 						<h3>Solicitações na fila ({solicitationsQueueTotal})</h3>
 						<div className="solicitations-list">
 							{solicitationsQueue.map(item =>
-								<ListItem key={item._id} data={item}></ListItem>)}
+								<Link style={{color:'black'}}  to={"/sistema/edit/"+item._id}>
+									<ListItem key={item._id} data={item} />
+								</Link>)
+							}
 						</div>
 						<button>Acessar solicitações</button>
 					</section>
