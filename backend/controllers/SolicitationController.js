@@ -63,10 +63,10 @@ const getSolicitations = async (req, res) => {
 					case "Urgente":
 						urgente.push(solicitation);
 						break;
-					case "Pouco urgente":
+					case "Pouco Urgente":
 						poucoUrgente.push(solicitation);
 						break;
-					case "Não urgente":
+					case "Não Urgente":
 						naoUrgente.push(solicitation);
 						break;
 					default:

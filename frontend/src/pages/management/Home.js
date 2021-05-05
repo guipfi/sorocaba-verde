@@ -83,10 +83,13 @@ function HomeSistema(props) {
 					<section className="new-solicitations">
 						<h3>Novas solicitações ({newSolicitationsTotal})</h3>
 						<div className="solicitations-list">
-							{newSolicitations.map(item =>
-								<Link style={{color:'black'}} to={"/sistema/edit/"+item._id}>
-									<ListItem key={item._id} data={item} />
-								</Link>)
+							{newSolicitations.map(item => 
+								<div className="solicitation">
+									<Link style={{color:'black'}} to={"/sistema/edit/"+item._id}>
+										<ListItem key={item._id} data={item} />
+									</Link>
+								</div>
+								)
 							}
 						</div>
 						<button onClick={() => props.history.replace('/sistema/novas-solicitacoes')}>Acessar solicitações</button>
@@ -96,9 +99,12 @@ function HomeSistema(props) {
 						<div className="solicitations-list">
 							{ 
 							solicitationsQueue.map(item =>
+								<div className="solicitation">
 								<Link style={{color:'black'}} to={"/sistema/edit/"+item._id}>
 									<ListItem key={item._id} data={item} />
-								</Link>)
+								</Link>
+								</div>
+								)
 							}
 						</div>
 						<button onClick={() => props.history.replace('/sistema/solicitacoes')}>Acessar solicitações</button>
