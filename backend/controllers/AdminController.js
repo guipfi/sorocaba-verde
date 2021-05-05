@@ -15,9 +15,9 @@ const createNewAdmin = (req,res) => {
 
         Admin.create(newAdmin)
         .then( _ => res.json({code:1, message:'Admin Registered with success'}))
-        .catch(err => res.status(400).json({code:2, message:err}))
+        .catch(err => res.json({code:2, message:err}))
     })
-    .catch((err)=> res.status(400).json({code:3, message:err}))
+    .catch((err)=> res.json({code:3, message:err}))
 }
 
 const loginAdmin = (req,res) =>{

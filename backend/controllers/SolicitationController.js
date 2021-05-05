@@ -88,6 +88,20 @@ const getSolicitations = async (req, res) => {
 	}
 }
 
+const getSolicitationById = async (req,res) =>{
+	try{
+		Solicitation.findOne({_id:ObjectId(req.params.id)})
+		.then((solicitation) => {
+			res.json({
+				code:1,
+				solicitation
+			})
+		})
+	} catch(err){
+		res.status(400).json({code:0, error:err});
+	}
+}
+
 const getUserSolicitations = async (req,res) =>{
 	if(typeof res.user != 'undefined'){
 		Solicitation.find({solicitator: ObjectId(res.user._id)})
@@ -102,6 +116,17 @@ const getUserSolicitations = async (req,res) =>{
 		})
 	} else{
 		res.json({code:0, solicitation:[]})
+	}
+}
+
+const editSolicitation = async (req,res) => {
+	try{
+		const filter = { _id: req.params.id};
+		const update = {priority: req.body.priority};
+		const doc = await Solicitation.findOneAndUpdate(filter,update);
+		res.status(200).json({code:1, update:doc})
+	} catch(err){
+		res.status(400).json({code:0, error: err });
 	}
 }
 
@@ -128,4 +153,4 @@ const postSolicitation = async (req, res) => {
 	}
 }
 
-module.exports = { getSolicitations, postSolicitation, getUserSolicitations }
+module.exports = { getSolicitations, postSolicitation, getUserSolicitations, getSolicitationById, editSolicitation}

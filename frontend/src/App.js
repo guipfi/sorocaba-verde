@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import axios from 'axios';
 import './App.css';
+
 import UserLogin from './pages/client/UserLogin';
 import Sistema from './sistema';
 import AdminLogin from './pages/management/AdminLogin';
@@ -10,6 +11,7 @@ import HomeSistema from './pages/management/Home';
 import SolicitacoesSistema from './pages/management/Solicitations';
 import UserPage from './pages/client/UserPage';
 import Solicitation from './pages/client/Solicitation';
+import EditSolicitation from './pages/management/editSolicitation';
 
 class App extends Component {
   constructor () {
@@ -53,6 +55,7 @@ class App extends Component {
             <Route path='/sistema/novas-solicitacoes' component={(props) => <SolicitacoesSistema {...props} type={"new"} />} />
             <Route path='/sistema/solicitacoes' component={(props) => <SolicitacoesSistema {...props} type={"queue"} />}/>
             <Route path='/sistema/login' component={AdminLogin}/>
+            <Route path='/sistema/edit/:id' component={EditSolicitation}/>
             <Route path='/user' component={UserPage} />
             <Route path='/solicitation' component={Solicitation} />
           </Router>

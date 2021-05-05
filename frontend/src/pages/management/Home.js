@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 
+import {Link} from 'react-router-dom';
 import ListItem from '../../components/ListItem';
 import AdminNav from '../../components/AdminNav';
 import Mapa from '../../components/Mapa';
@@ -45,6 +46,7 @@ function HomeSistema(props) {
 				const response = await axios.get('http://localhost:8082/api/solicitations/queue/0?limit=6');
 				setSolicitationsQueue(response.data.solicitationsList);
 				setSolicitationsQueueTotal(response.data.total);
+				console.log(solicitationsQueue)
 			} catch(err) {
 				throw new Error(err);
 			}
@@ -81,16 +83,23 @@ function HomeSistema(props) {
 					<section className="new-solicitations">
 						<h3>Novas solicitações ({newSolicitationsTotal})</h3>
 						<div className="solicitations-list">
-							{newSolicitations.map(item => 
-								<ListItem key={item._id} data={item}></ListItem>)}
+							{newSolicitations.map(item =>
+								<Link style={{color:'black'}} to={"/sistema/edit/"+item._id}>
+									<ListItem key={item._id} data={item} />
+								</Link>)
+							}
 						</div>
 						<button onClick={() => props.history.replace('/sistema/novas-solicitacoes')}>Acessar solicitações</button>
 					</section>
 					<section className="solicitations-queue">
 						<h3>Solicitações na fila ({solicitationsQueueTotal})</h3>
 						<div className="solicitations-list">
-							{solicitationsQueue.map(item =>
-								<ListItem key={item._id} data={item}></ListItem>)}
+							{ 
+							solicitationsQueue.map(item =>
+								<Link style={{color:'black'}} to={"/sistema/edit/"+item._id}>
+									<ListItem key={item._id} data={item} />
+								</Link>)
+							}
 						</div>
 						<button onClick={() => props.history.replace('/sistema/solicitacoes')}>Acessar solicitações</button>
 					</section>

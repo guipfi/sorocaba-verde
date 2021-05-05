@@ -9,6 +9,7 @@ const connectDB = async () => {
     await mongoose.connect(
       db,
       {
+        useFindAndModify: false,
         useNewUrlParser: true
       }
     );
