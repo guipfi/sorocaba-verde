@@ -46,6 +46,7 @@ function HomeSistema(props) {
 				const response = await axios.get('http://localhost:8082/api/solicitations/queue/0?limit=6');
 				setSolicitationsQueue(response.data.solicitationsList);
 				setSolicitationsQueueTotal(response.data.total);
+				console.log(solicitationsQueue)
 			} catch(err) {
 				throw new Error(err);
 			}
@@ -93,7 +94,8 @@ function HomeSistema(props) {
 					<section className="solicitations-queue">
 						<h3>Solicitações na fila ({solicitationsQueueTotal})</h3>
 						<div className="solicitations-list">
-							{solicitationsQueue.map(item =>
+							{ 
+							solicitationsQueue.map(item =>
 								<Link style={{color:'black'}} to={"/sistema/edit/"+item._id}>
 									<ListItem key={item._id} data={item} />
 								</Link>)

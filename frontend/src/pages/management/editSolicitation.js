@@ -71,7 +71,7 @@ class EditSolicitation extends Component{
         axios.post('http://localhost:8082/api/solicitations/solicitation/content/'+this.props.match.params.id, {priority:this.state.priority})
         .then(res =>{
             if(res.data.code == 1){
-                alert("Upado");
+                this.props.history.goBack()
             }
         })
     }
@@ -133,7 +133,7 @@ class EditSolicitation extends Component{
                             </div>
                         </div>
                         <div id="editSolicitation-options">
-                            <div id = "cancel-edit">Cancelar</div>
+                            <div id = "cancel-edit" onClick={this.confirmEdit.bind(this)}>Cancelar</div>
                             <div id = "confirm-edit" onClick={this.confirmEdit.bind(this)} >Confirmar</div>
                         </div>
                     </div>
