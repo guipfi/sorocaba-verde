@@ -20,7 +20,7 @@ function FormSolicitation() {
     
     return(
         <div className="form-container" id="form-solicitation">
-            <h2>Nova solicitação</h2>
+            <h3>Nova solicitação</h3>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="address">Endereço</label>

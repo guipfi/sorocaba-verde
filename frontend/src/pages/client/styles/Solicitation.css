@@ -110,3 +110,18 @@
     width: 50%;
     height: 3.75rem;
 }
+
+@media (max-width: 675px) {
+    #client-solicitation section {
+        display: none !important;
+    }
+
+    #client-solicitation aside{
+        width: 100%;
+    }
+
+    #client-solicitation .form-container{
+        padding-left: 0;
+        padding: .5rem;
+    }
+}
