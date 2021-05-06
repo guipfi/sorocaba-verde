@@ -123,9 +123,9 @@ class EditSolicitation extends Component{
                             <h5>Definir grau de prioridade</h5>
                             <div id="priority-buttons">
                                 {
-                                    ["Emergência","Urgente","Pouco Urgente","Não Urgente"].map((element) => {
-                                        if(element != this.state.priority)
-                                            return(<div onClick={() => this.handlePriority(element)} class="priority-button">{element}</div>)
+                                    ["Emergência","Urgente","Pouco Urgente","Não Urgente"].map((element,index) => {
+                                        if(index+1 != this.state.priority)
+                                            return(<div onClick={() => this.handlePriority(index+1)} class="priority-button">{element}</div>)
                                         else
                                         return(<div class="priority-button-select">{element}</div>)
                                     })
