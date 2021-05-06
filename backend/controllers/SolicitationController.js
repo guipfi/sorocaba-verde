@@ -110,13 +110,17 @@ const postSolicitation = async (req, res) => {
 		const type = req.body.type;
 		const description = req.body.description;
 		const address = req.body.address;
+		const lat = req.body.lat;
+		const lng = req.body.lng;
 		const solicitator = req.body.solicitator;
 
 		const newSolicitation = new Solicitation({
 			solicitator,
 			type,
 			description,
-			address
+			address,
+			lat,
+			lng
 		});
 
 		newSolicitation.save()

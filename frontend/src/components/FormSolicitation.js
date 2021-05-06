@@ -1,12 +1,14 @@
 import "./styles/FormSolicitation.css";
 import axios from 'axios';
 
-function FormSolicitation() {
+function FormSolicitation(props) {
     
     const handleSubmit = (event) => {
         event.preventDefault();
         const solicitation = {
             "address": event.target[0].value,
+            "lat": props.lat,
+            "lng": props.lng,
             "type": event.target[1].value,
             "description": event.target[2].value,
             "solicitator": "607f49a6a63ff5779ee24e53"
@@ -24,7 +26,7 @@ function FormSolicitation() {
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="address">Endereço</label>
-                <input type="address" placeholder="Digite seu endereço..."></input>
+                <input type="address" placeholder="Digite seu endereço..." value={props.address} disabled></input>
                 
                 <label htmlFor="type">Tipo de solicitação</label>
                 <select name="type" className="type">

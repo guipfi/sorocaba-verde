@@ -57,7 +57,7 @@ class App extends Component {
             <Route path='/sistema/login' component={AdminLogin}/>
             <Route path='/sistema/edit/:id' component={EditSolicitation}/>
             <Route path='/user' component={UserPage} />
-            <Route path='/solicitation' component={Solicitation} />
+            <Route path='/solicitation' component={(props) => <Solicitation {...props} />} />
           </Router>
         );
       }  

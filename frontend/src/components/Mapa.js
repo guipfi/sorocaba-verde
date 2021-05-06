@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap, useMapEvent } from 'react-leaflet';
 import { SearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+import {Link} from 'react-router-dom';
 import { Icon, popup } from 'leaflet';
 import 'leaflet-easybutton';
 import * as L from 'leaflet';
@@ -17,6 +18,7 @@ function Mapa(props){
   const centerPos = [-23.5062, -47.4559];
 
   const [markedPosition, setMarkedPosition] = useState(null);
+
   const [popUpText, setPopUpText] = useState();
 
   async function geocodeReverse(map, latlng) {
@@ -28,12 +30,30 @@ function Mapa(props){
     });
   }
 
+  const CreateSolicitationBTN = () => {
+
+    console.log(markedPosition);
+
+    const base = "/solicitation?"
+    const coords = `lat=${markedPosition.lat}&lng=${markedPosition.lng}&`;
+    const address = `address=${popUpText}`;
+
+    const createNewSolicitation = base+coords+address;
+
+    return (
+      <div className="button-container">
+        <Link to={createNewSolicitation}>Nova solicitação</Link>
+      </div>
+    );
+
+  }
+
+
   function userLocationMarker(map) {
 
     map.locate()
       .on('locationfound', function(e) {
         setMarkedPosition(e.latlng);
-        console.log(markedPosition);
         geocodeReverse(map, e.latlng);
         map.flyTo(e.latlng, map.getZoom())
       });
@@ -45,12 +65,8 @@ function Mapa(props){
   
     useMapEvents({
       click: (e) => {    
-
-        console.log(e);
-
         setMarkedPosition(e.latlng);
         geocodeReverse(map, e.latlng);
-
       }
     });
   
@@ -87,8 +103,8 @@ function Mapa(props){
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {props.solicitations?.map(solicitation => {
-        if(solicitation.lat && solicitation.long) {
-          const position = [solicitation.lat, solicitation.long];
+        if(solicitation.lat && solicitation.lng) {
+          const position = [solicitation.lat, solicitation.lng];
         
           return (
             <Marker position={position} icon={mapMarker}>
@@ -103,7 +119,9 @@ function Mapa(props){
       })}
       {markedPosition && 
         <Marker position={markedPosition}>
-          <Popup>{popUpText}</Popup>
+          <Popup>{popUpText}<br /><br />
+            <CreateSolicitationBTN />
+          </Popup>
         </Marker>
       }
       <AddMarker />
