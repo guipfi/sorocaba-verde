@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactLoading from 'react-loading';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 import UserNav from '../../components/UserNav';
 import BigListItem from '../../components/BigListItem';
@@ -21,7 +22,7 @@ function SolicitacoesSistema(props) {
 
 	const [filters, setFilters] = useState({
 		type: ["Corte", "Poda", "Substituição"],
-		priority: ["Emergência", "Urgente", "Pouco urgente", "Não urgente"],
+		priority: [1,2,3,4],
 		location: []
 	});
 
@@ -44,6 +45,7 @@ function SolicitacoesSistema(props) {
 		}
 		setPage(0);
 		setFilters(newFilters);
+		console.log(filters);
 	}
 
 	function loadMore() {
@@ -145,19 +147,19 @@ function SolicitacoesSistema(props) {
 							<div className="priority">
 								<h4>Grau de prioridade</h4>
 								<div className="option">
-									<input type="checkbox" id="emergencia" name="emergencia" value="Emergência" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
+									<input type="checkbox" id="emergencia" name="emergencia" value="1" defaultChecked onChange={(e) => updateFilters("priority", Number(e.target.value))} />
 									<label htmlFor="emergencia">Emergência</label>
 								</div>
 								<div className="option">
-									<input type="checkbox" id="urgente" name="urgente" value="Urgente" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
+									<input type="checkbox" id="urgente" name="urgente" value="2" defaultChecked onChange={(e) => updateFilters("priority", Number(e.target.value))} />
 									<label htmlFor="urgente">Urgente</label>
 								</div>
 								<div className="option">
-									<input type="checkbox" id="pouco-urgente" name="pouco-urgente" value="Pouco urgente" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
+									<input type="checkbox" id="pouco-urgente" name="pouco-urgente" value="3" defaultChecked onChange={(e) => updateFilters("priority", Number(e.target.value))} />
 									<label htmlFor="pouco-urgente">Pouco urgente</label>
 								</div>
 								<div className="option">
-									<input type="checkbox" id="nao-urgente" name="nao-urgente" value="Não urgente" defaultChecked onChange={(e) => updateFilters("priority", e.target.value)} />
+									<input type="checkbox" id="nao-urgente" name="nao-urgente" value="4" defaultChecked onChange={(e) => updateFilters("priority", Number(e.target.value))} />
 									<label htmlFor="nao-urgente">Não urgente</label>
 								</div>
 							</div>
@@ -170,7 +172,13 @@ function SolicitacoesSistema(props) {
 					</section>
 					<section className="solicitations">
 						<h6>Exibindo {solicitations.length} de {solicitationsTotal} resultados.</h6>
-						{solicitations.map(item => <BigListItem key={item._id} data={item}></BigListItem>)}
+						{solicitations.map(item =>
+							<div className="solicitation">
+								<Link to={"/sistema/edit/"+item._id}>
+									<BigListItem key={item._id} data={item} />
+								</Link>
+							</div>
+						)}
 						<button disabled={solicitationsTotal === solicitations.length} onClick={loadMore}>Carregar mais</button>
 					</section>
 				</div>

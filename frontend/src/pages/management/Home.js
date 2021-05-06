@@ -100,9 +100,9 @@ function HomeSistema(props) {
 							{ 
 							solicitationsQueue.map(item =>
 								<div className="solicitation">
-								<Link style={{color:'black'}} to={"/sistema/edit/"+item._id}>
-									<ListItem key={item._id} data={item} />
-								</Link>
+									<Link style={{color:'black'}} to={"/sistema/edit/"+item._id}>
+										<ListItem key={item._id} data={item} />
+									</Link>
 								</div>
 								)
 							}

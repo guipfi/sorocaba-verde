@@ -37,8 +37,8 @@ const SolicitationSchema = new mongoose.Schema({
         default: date_formated()
     },
     priority: {
-        type: String,
-        default: "Não definido"
+        type: Number,
+        default: 0
     },
     status: {
         type: String,
