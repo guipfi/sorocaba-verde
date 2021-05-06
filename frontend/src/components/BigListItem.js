@@ -6,21 +6,28 @@ import './styles/BigListItem.css'
 function BigListItem({ data }) {
 
 	const [priorityColor, setPriorityColor] = useState('');
+	const [priorityName, setPriorityName] = useState('');
 
 	useEffect(() => {
 		if(data.priority !== "Não definido") {
 			switch(data.priority) {
-				case "Emergência":
+				case 1:
 					setPriorityColor('red');
+					setPriorityName('Emergência');
 					break;
-				case "Urgente":
+				case 2:
 					setPriorityColor('orange');
+					setPriorityName('Urgente');
 					break;
-				case "Pouco urgente":
+				case 3:
 					setPriorityColor('yellow');
+					setPriorityName('Pouco Urgente');
 					break;
-				case "Não urgente":
+				case 4:
 					setPriorityColor('blue');
+					setPriorityName('Não Urgente');
+					break;
+				default:
 					break;
 			}
 		}
@@ -38,7 +45,7 @@ function BigListItem({ data }) {
 					<a><u>Ver solicitação completa</u></a>
 					{data.priority != "Não definido" &&
 						<div className="priority" style={{border: `1px solid ${priorityColor}`}}>
-							<span className="subtitle">{data.priority}</span>
+							<span className="subtitle">{priorityName}</span>
 						</div>
 					}
 				</div>
