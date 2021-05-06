@@ -6,23 +6,28 @@ import './styles/BigListItem.css'
 function BigListItem({ data }) {
 
 	const [priorityColor, setPriorityColor] = useState('');
+	const [priorityName, setPriorityName] = useState('');
 
 	useEffect(() => {
-		if(data.priority !== "Não definido") {
-			switch(data.priority) {
-				case "Emergência":
-					setPriorityColor('red');
-					break;
-				case "Urgente":
-					setPriorityColor('orange');
-					break;
-				case "Pouco urgente":
-					setPriorityColor('yellow');
-					break;
-				case "Não urgente":
-					setPriorityColor('blue');
-					break;
-			}
+		switch(data.priority) {
+			case 1:
+				setPriorityColor('red');
+				setPriorityName('Emergência');
+				break;
+			case 2:
+				setPriorityColor('orange');
+				setPriorityName('Urgente');
+				break;
+			case 3:
+				setPriorityColor('yellow');
+				setPriorityName('Pouco Urgente');
+				break;
+			case 4:
+				setPriorityColor('blue');
+				setPriorityName('Não Urgente');
+				break;
+			default:
+				break;
 		}
 	}, [])
 
@@ -36,9 +41,9 @@ function BigListItem({ data }) {
 					<span className="subtitle">Endereço: {data.address}</span>
 					<span className="subtitle">Data: {data.date}</span>
 					<a><u>Ver solicitação completa</u></a>
-					{data.priority != "Não definido" &&
+					{data.priority &&
 						<div className="priority" style={{border: `1px solid ${priorityColor}`}}>
-							<span className="subtitle">{data.priority}</span>
+							<span className="subtitle">{priorityName}</span>
 						</div>
 					}
 				</div>

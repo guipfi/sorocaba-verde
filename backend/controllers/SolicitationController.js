@@ -23,14 +23,16 @@ const getSolicitations = async (req, res) => {
 		} else {
 			search_param = { 
 				...search_param,
-				priority: { $ne: "Não definido" },
+				priority: { $ne: 0 },
 			};
-		}		
+		}
+		sort_param = {priority: "asc", date: "desc"};
 	} else if (req.params.type == "new") {
 		search_param = {
 			...search_param,
-			priority: "Não definido" 
+			priority: 0
 		};
+		sort_param = {date: "desc"};
 	} 
 
 	let limit = 10;
@@ -45,37 +47,10 @@ const getSolicitations = async (req, res) => {
 
 		var solicitationsList = await Solicitation
 			.find(search_param)
-			.sort({date: "desc"})
+			.sort(sort_param)
 			.limit(limit)
-			.skip(Number(req.params.page * limit));
+			.skip(Number(req.params.page * limit))
 
-		if(req.params.type == "queue") {
-			var emergencia = [];
-			var urgente = [];
-			var poucoUrgente = [];
-			var naoUrgente = [];
-
-			solicitationsList.forEach(solicitation => {
-				switch(solicitation.priority) {
-					case "Emergência":
-						emergencia.push(solicitation);
-						break;
-					case "Urgente":
-						urgente.push(solicitation);
-						break;
-					case "Pouco Urgente":
-						poucoUrgente.push(solicitation);
-						break;
-					case "Não Urgente":
-						naoUrgente.push(solicitation);
-						break;
-					default:
-				}
-			});
-
-			solicitationsList = [...emergencia, ...urgente, ...poucoUrgente, ...naoUrgente];
-		}
-		
 		let response = {
 			total: solicitationsNumber,
 			solicitationsList
@@ -135,13 +110,17 @@ const postSolicitation = async (req, res) => {
 		const type = req.body.type;
 		const description = req.body.description;
 		const address = req.body.address;
+		const lat = req.body.lat;
+		const lng = req.body.lng;
 		const solicitator = req.body.solicitator;
 
 		const newSolicitation = new Solicitation({
 			solicitator,
 			type,
 			description,
-			address
+			address,
+			lat,
+			lng
 		});
 
 		newSolicitation.save()

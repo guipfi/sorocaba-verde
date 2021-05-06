@@ -1,7 +1,8 @@
 .pageAdmin-background{
     background-image: url('../assets/login-bg.svg');
     background-size: cover;
-    height: 130vh;
+    height: 100vh;
+    background-position-y: bottom;
     display: flex;
 }
 

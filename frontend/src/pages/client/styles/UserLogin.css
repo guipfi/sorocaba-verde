@@ -1,8 +1,8 @@
 #user-login{
   background-image: url("../assets/login-bg.svg");
   background-size: cover;
-  background-repeat: no-repeat;
-  height: 130vh;
+  height: 84vh;
+  background-position-y: bottom;
 }
 
 #user-login .page-container {

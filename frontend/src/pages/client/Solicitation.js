@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import RequestItem from '../../components/RequestItem';
 import UserNav from '../../components/UserNav';
@@ -10,11 +10,19 @@ import back from './assets/chevron-left-solid.svg';
 import forw from './assets/forward_icon.png';
 import FormSolicitation from '../../components/FormSolicitation';
 
-function Solicitation(){
+function Solicitation(props){
+
+    useEffect(() => {
+        const params = new URLSearchParams(props.location.search); 
+        setAddress(params.get('address'));
+        setCoords([params.get('lat'), params.get('lng')]);
+    }, [props.location.search]);
 
     const [name, setName] = useState("José Augusto");
     const [sectionDisplay, setSectionDisplay] = useState("block");
     const [buttonDisplay, setButtonDisplay] = useState("none");
+    const [address, setAddress] = useState('');
+    const [coords, setCoords] = useState([]);
 
     function hideSection() {
         setSectionDisplay("none");
@@ -60,7 +68,7 @@ function Solicitation(){
                         <img src={forw} onClick={showSection} alt="Mostrar"/>
                     </div>  
                     
-                    <FormSolicitation />
+                    <FormSolicitation address={address} lat={coords[0]} lng={coords[1]}/>
 
                 </aside>
             </div>

@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
+import React, { useEffect, useState, useCallback } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap, useMapEvent } from 'react-leaflet';
 import { SearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
-import { Icon } from 'leaflet';
-import L from 'leaflet';
+import {Link} from 'react-router-dom';
+import { Icon, popup } from 'leaflet';
+import 'leaflet-easybutton';
+import * as L from 'leaflet';
+import axios from 'axios';
 
 import mapPin from './assets/map-pin.svg';
 
@@ -12,85 +15,79 @@ import './styles/geosearch.css';
 
 function Mapa(props){
 
-  useEffect(() => {
-
-    const script = document.createElement('script');
-    const sheet = document.createElement('link');
-
-    script.src = "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js";
-    script.async = true;
-
-    sheet.rel = 'stylesheet';
-    sheet.href = "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css";
-    sheet.type = 'text/css';
-  
-    document.head.appendChild(script);
-    document.head.appendChild(sheet);
-  
-    return () => {
-      document.head.removeChild(script);
-      document.head.removeChild(sheet);
-    }
-  }, []);
-
   const centerPos = [-23.5062, -47.4559];
 
   const [markedPosition, setMarkedPosition] = useState(null);
 
+  const [popUpText, setPopUpText] = useState();
+
+  async function geocodeReverse(map, latlng) {
+    console.log(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latlng.lat}&lon=${latlng.lng}&zoom=${Math.floor(map.getZoom())}&addressdetails=1`);
+    axios.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latlng.lat}&lon=${latlng.lng}&zoom=${Math.floor(map.getZoom())}&addressdetails=1`)
+    .then(res =>{
+      console.log(res);
+      setPopUpText(res.data.address.road + ", " + res.data.address.suburb);
+    });
+  }
+
+  const CreateSolicitationBTN = () => {
+
+    console.log(markedPosition);
+
+    const base = "/solicitation?"
+    const coords = `lat=${markedPosition.lat}&lng=${markedPosition.lng}&`;
+    const address = `address=${popUpText}`;
+
+    const createNewSolicitation = base+coords+address;
+
+    return (
+      <div className="button-container">
+        <Link to={createNewSolicitation}>Nova solicitação</Link>
+      </div>
+    );
+
+  }
+
+
+  function userLocationMarker(map) {
+
+    map.locate()
+      .on('locationfound', function(e) {
+        setMarkedPosition(e.latlng);
+        geocodeReverse(map, e.latlng);
+        map.flyTo(e.latlng, map.getZoom())
+      });
+  }
+
   const AddMarker = () => {
 
     const map = useMap();
-
+  
     useMapEvents({
-      click: (e) => {
-        const geocoder = L.Control.Geocoder.nominatim();
-        geocoder.reverse(
-          e.latlng,
-          map.options.crs.scale(map.getZoom()),
-          results => {
-            var r = results[0];
-            if (r) {
-              let marker = markedPosition;
-              if (marker) {
-                marker
-                  .setLatLng(r.center)
-                  .setPopupContent(r.html || r.name)
-                  .openPopup();
-              } else {
-                marker = L.marker(r.center)
-                  .bindPopup(r.name)
-                  .addTo(map)
-                  .openPopup();
-              }
-              setMarkedPosition(marker);
-            }
-          }    
-        );
+      click: (e) => {    
+        setMarkedPosition(e.latlng);
+        geocodeReverse(map, e.latlng);
       }
     });
-
-    return null;
-  }
   
-  const MapSearchControl = () => {
+    return null;
+  };
+
+  const LocationControl = () => {
 
     const map = useMap();
 
     useEffect(() => {
+      const buttonLocation = L.easyButton('fa-crosshairs', function(btn, map){
+        userLocationMarker(map);
+      }).addTo(map);
 
-      const searchControl = new SearchControl({
-        provider: new OpenStreetMapProvider(),
-        style: 'bar',
-        autoComplete: false,
-      });
+      return () => buttonLocation.remove();
 
-      map.addControl(searchControl);
-
-      return () => map.removeControl(searchControl);
     }, []);
 
     return null;
-  }  
+  }
 
   const mapMarker = new Icon({
     iconUrl: mapPin,
@@ -106,8 +103,8 @@ function Mapa(props){
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {props.solicitations?.map(solicitation => {
-        if(solicitation.lat && solicitation.long) {
-          const position = [solicitation.lat, solicitation.long];
+        if(solicitation.lat && solicitation.lng) {
+          const position = [solicitation.lat, solicitation.lng];
         
           return (
             <Marker position={position} icon={mapMarker}>
@@ -120,8 +117,15 @@ function Mapa(props){
 
         return;
       })}
+      {markedPosition && 
+        <Marker position={markedPosition}>
+          <Popup>{popUpText}<br /><br />
+            <CreateSolicitationBTN />
+          </Popup>
+        </Marker>
+      }
       <AddMarker />
-      <MapSearchControl />
+      <LocationControl />
     </MapContainer>
   )  
 }

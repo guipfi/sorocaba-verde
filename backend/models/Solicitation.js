@@ -37,13 +37,22 @@ const SolicitationSchema = new mongoose.Schema({
         default: date_formated()
     },
     priority: {
-        type: String,
-        default: "Não definido"
+        type: Number,
+        default: 0
     },
     status: {
         type: String,
         default: 'Na fila de espera'
-    }
+    },
+    lat: {
+        type: Number,
+        required: true
+    }, 
+    lng: {
+        type: Number,
+        required: true
+    },
+
 });
 
 const Solicitation = mongoose.model('solicitation', SolicitationSchema, 'solicitations');
