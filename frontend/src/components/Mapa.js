@@ -37,7 +37,6 @@ function Mapa(props){
     const base = "/solicitation?"
     const coords = `lat=${markedPosition.lat}&lng=${markedPosition.lng}&`;
     const address = `address=${popUpText}`;
-
     const createNewSolicitation = base+coords+address;
 
     return (
