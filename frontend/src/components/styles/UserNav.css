@@ -4,8 +4,9 @@
     width: 40%;
 }
 
-#user-nav .logo-container .title a{
+#user-nav .logo-container .title {
     color:#365B2A;
+    cursor: pointer;
     text-decoration: none;
 }
 
@@ -25,6 +26,7 @@
 #user-nav ul li{
     list-style: none;
     font-style: none;
+    cursor: pointer;
     margin-right: 15%;
 }
 

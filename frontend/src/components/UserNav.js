@@ -14,6 +14,10 @@ class UserNav extends Component{
         }
     }
 
+    goToHome = () =>{
+      this.props.history.replace("/")
+    }
+
     logout = () =>{
         axios.get('http://localhost:8082/api/users/logout',{withCredentials: true, credentials: 'include'}).then((res) =>{
             if(res.data.code === 1){
@@ -46,11 +50,11 @@ class UserNav extends Component{
             <nav id="user-nav">
                 <div className="logo-container">
                     <img src={logo} width={25} height={25} alt="" style={{marginRight:10}} />
-                    <div className="title"><a href="#">Sorocaba Verde</a></div>
+                    <div onClick={this.goToHome} className="title">Sorocaba Verde</div>
                 </div>
                 <ul className="menu-items">
                   { MenuItems.map((item) =>{
-                      return(<li><a className={item.cName} href={item.url}>{item.title}</a></li>)
+                      return(<li onClick={this.goToHome}>{item.title}</li>)
                     })
                   }
                 </ul>
