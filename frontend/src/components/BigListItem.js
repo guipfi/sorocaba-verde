@@ -41,7 +41,7 @@ function BigListItem({ data }) {
 					<span className="subtitle">Endereço: {data.address}</span>
 					<span className="subtitle">Data: {data.date}</span>
 					<a><u>Ver solicitação completa</u></a>
-					{data.priority &&
+					{data.priority !=0 &&
 						<div className="priority" style={{border: `1px solid ${priorityColor}`}}>
 							<span className="subtitle">{priorityName}</span>
 						</div>

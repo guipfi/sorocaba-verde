@@ -16,8 +16,7 @@ function FormSolicitation(props) {
 
         axios.post('http://localhost:8082/api/solicitations/new', solicitation)
 
-        console.log(solicitation);
-        window.location = '/solicitation';
+        window.location = '/user';
     }
     
     return(
