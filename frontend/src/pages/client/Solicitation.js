@@ -56,9 +56,6 @@ function Solicitation(props){
                     <RequestItem />
                     <RequestItem />
                     <RequestItem />
-                    <div className="button-container">
-                        <a href="/solicitation">Nova solicitação</a>
-                    </div>
 
                 </section>
                 

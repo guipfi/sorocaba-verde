@@ -77,6 +77,7 @@ class UserPage extends Component{
                           
                             <div onClick={() => {this.props.history.replace("/solicitation")}} className="button-container">
                                 <a href="/solicitation">Nova solicitação</a>
+                                <p>Clique no mapa para criar uma nova solicitação no endereço desejado</p>
                             </div>
 
                         </section>

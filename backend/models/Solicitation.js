@@ -9,7 +9,7 @@ function date_formated(){
     month  = (date.getMonth() + 1).toString().padStart(2, '0'), 
     year  = date.getFullYear();
     
-    return day + "/" + month + "/" +year;
+    return year + "/" + month + "/" + day;
 }
 
 const SolicitationSchema = new mongoose.Schema({
