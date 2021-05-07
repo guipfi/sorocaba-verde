@@ -30,7 +30,7 @@ const SolicitationSchema = new mongoose.Schema({
     },
     photosURL: {
         type: [String],
-        default: []
+        default: ["tree.jpg"]
     },
     date: {
         type: String,

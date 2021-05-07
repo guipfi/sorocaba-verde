@@ -3,21 +3,21 @@ const path = require('path')
 
 const storage = multer.diskStorage({
     destination: function (req, res, cb){
-        cb(null, '../uploads/')
+        cb(null, './uploads/')
     },
     filename: function (req, file, cb){
-        console.log(file)
-        cb(nullm, Date.now() + path.extname(file.originalname))
+        let new_name = file.originalname.replace(path.extname(file.originalname), "");
+        cb(null, new_name+ Date.now() + path.extname(file.originalname))
     }
 })
 
-const filter = (req, file, cb) => {
+const fileFilter = (req, file, cb) => {
     cb(null, true);
 }
 
 let upload = multer({
     storage: storage,
-    fileFilter: filter
+    fileFilter: fileFilter
 })
 
 module.exports = upload.array('photosURL')

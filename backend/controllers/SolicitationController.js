@@ -113,6 +113,13 @@ const postSolicitation = async (req, res) => {
 		const lat = req.body.lat;
 		const lng = req.body.lng;
 		const solicitator = req.body.solicitator;
+		
+		const photo_paths = []
+		req.files.forEach((file) => {
+			photo_paths.push(file.filename)
+		})
+
+		const photosURL = photo_paths;
 
 		const newSolicitation = new Solicitation({
 			solicitator,
@@ -120,7 +127,8 @@ const postSolicitation = async (req, res) => {
 			description,
 			address,
 			lat,
-			lng
+			lng,
+			photosURL
 		});
 
 		newSolicitation.save()
