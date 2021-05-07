@@ -59,6 +59,21 @@ class EditSolicitation extends Component{
         loadAll();
     }
 
+    renderSwitch = () =>{
+        switch(this.state.priority){
+            case 1:
+                return(<h6>Emergência</h6>)
+            case 2:
+                return(<h6>Urgente</h6>)
+            case 3:
+                return(<h6>Pouco Urgente</h6>)
+            case 4:
+                return(<h6>Não Urgente</h6>)
+            default:
+                return(<h6>Não Definido</h6>)
+        }
+    }
+
     back(){
         this.props.history.goBack()
     }
@@ -91,7 +106,7 @@ class EditSolicitation extends Component{
                         <div id="editSolicitation-infos">
                             <div class="editSolicitation-info">
                                 <h5>Grau de Prioridade</h5>
-                                <h6>{this.state.priority}</h6>
+                                {this.renderSwitch()}
                             </div>
 
                             <div class="editSolicitation-info">

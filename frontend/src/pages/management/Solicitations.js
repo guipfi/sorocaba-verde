@@ -3,7 +3,7 @@ import ReactLoading from 'react-loading';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
-import UserNav from '../../components/UserNav';
+import AdminNav from '../../components/AdminNav';
 import BigListItem from '../../components/BigListItem';
 
 import '../../styles/global.css'
@@ -120,7 +120,7 @@ function SolicitacoesSistema(props) {
 
 	return (
 		<div className="solicitations-sistema" id="solicitations-sistema">
-			<UserNav></UserNav>
+			<AdminNav />
 			<div className="solicitations-content">
 				<header>
 					<img className="icone-voltar" src={back_icon} onClick={() => props.history.replace('/sistema/home')}></img>
