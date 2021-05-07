@@ -148,7 +148,7 @@ class EditSolicitation extends Component{
                             </div>
                         </div>
                         <div id="editSolicitation-options">
-                            <div id = "cancel-edit" onClick={this.confirmEdit.bind(this)}>Cancelar</div>
+                            <div id = "cancel-edit" onClick={()=> this.props.history.goBack()}>Cancelar</div>
                             <div id = "confirm-edit" onClick={this.confirmEdit.bind(this)} >Confirmar</div>
                         </div>
                     </div>
