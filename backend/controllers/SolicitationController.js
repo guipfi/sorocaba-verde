@@ -1,6 +1,17 @@
 const Solicitation = require('../models/Solicitation');
 const ObjectId = require('mongoose').Types.ObjectId;
 
+function date_format(date) {
+
+	let day  = date.getDate().toString().padStart(2, '0');
+	let month  = (date.getMonth() +1).toString().padStart(2, '0');
+	let year  = date.getFullYear();
+
+	let formated_date = day + "/" + month + "/" + year;
+
+	return formated_date;
+}
+
 const getSolicitations = async (req, res) => {
 
 	if(req.query.filters) {
@@ -49,11 +60,20 @@ const getSolicitations = async (req, res) => {
 			.find(search_param)
 			.sort(sort_param)
 			.limit(limit)
-			.skip(Number(req.params.page * limit))
+			.skip(Number(req.params.page * limit));
 
+		let solicitations = solicitationsList.map(item => {
+			let formated_date = date_format(item.date);
+			let result = {
+				...item._doc,
+				date: formated_date
+			}
+			return result;
+		});
+			
 		let response = {
 			total: solicitationsNumber,
-			solicitationsList
+			solicitationsList: solicitations
 		}
 
 		res.status(200).json(response);
@@ -67,9 +87,17 @@ const getSolicitationById = async (req,res) =>{
 	try{
 		Solicitation.findOne({_id:ObjectId(req.params.id)})
 		.then((solicitation) => {
+			let solicitationsFormated = solicitations.map(item => {
+				let formated_date = date_format(item.date);
+				let result = {
+					...item._doc,
+					date: formated_date
+				}
+				return result;
+			});
 			res.json({
 				code:1,
-				solicitation
+				solicitation: solicitationsFormated
 			})
 		})
 	} catch(err){
@@ -83,9 +111,17 @@ const getUserSolicitations = async (req,res) =>{
 		.sort({date: "desc"})
 		.then((solicitations) =>{
 			if(solicitations){
+				let solicitationsFormated = solicitations.map(item => {
+					let formated_date = date_format(item.date);
+					let result = {
+						...item._doc,
+						date: formated_date
+					}
+					return result;
+				});
 				res.json({
 					code:1,
-					solicitations:solicitations
+					solicitations:solicitationsFormated
 				})
 			} else res.json({code:2, solicitations:[]})
 		})
@@ -113,6 +149,13 @@ const postSolicitation = async (req, res) => {
 		const lat = req.body.lat;
 		const lng = req.body.lng;
 		const solicitator = req.body.solicitator;
+		
+		const photo_paths = []
+		req.files.forEach((file) => {
+			photo_paths.push(file.filename)
+		})
+
+		const photosURL = photo_paths;
 
 		const newSolicitation = new Solicitation({
 			solicitator,
@@ -120,7 +163,8 @@ const postSolicitation = async (req, res) => {
 			description,
 			address,
 			lat,
-			lng
+			lng,
+			photosURL
 		});
 
 		newSolicitation.save()

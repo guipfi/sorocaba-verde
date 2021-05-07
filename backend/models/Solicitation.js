@@ -2,16 +2,6 @@ const mongoose = require('mongoose');
 const { UserSchema } = require('./User');
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-function date_formated(){
-    var date = new Date;
-
-    day  = date.getDate().toString().padStart(2, '0'),
-    month  = (date.getMonth() + 1).toString().padStart(2, '0'), 
-    year  = date.getFullYear();
-    
-    return year + "/" + month + "/" + day;
-}
-
 const SolicitationSchema = new mongoose.Schema({
     solicitator: {
         type: ObjectId,
@@ -30,11 +20,11 @@ const SolicitationSchema = new mongoose.Schema({
     },
     photosURL: {
         type: [String],
-        default: []
+        default: ["tree.jpg"]
     },
     date: {
-        type: String,
-        default: date_formated()
+        type: Date,
+        default: Date.now()
     },
     priority: {
         type: Number,

@@ -7,8 +7,19 @@ function FormSolicitation(props) {
     console.log("Faaal")
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        const imagesQtd = event.target[3].files.length;
+        let photosURL = [];
+
+        for(var i = 0; i < imagesQtd; i++)
+            photosURL.push(event.target[3].files[i].name)
+
+
+        console.log(photosURL);
+
         axios.get('http://localhost:8082/api/users/isLogged',{withCredentials: true, credentials: 'include'})
         .then(res=>{
+            console.log(res)
             if(res.data.code === 1){
                 const solicitation = {
                     "address": event.target[0].value,
@@ -25,6 +36,7 @@ function FormSolicitation(props) {
                     if(res.status === 200){
                         window.location.href = "/" 
                     }
+                    console.log(res);
                 })
                 
             }
@@ -33,7 +45,7 @@ function FormSolicitation(props) {
     
     return(
         <div className="form-container" id="form-solicitation">
-            <h2>Nova solicitação</h2>
+            <h3>Nova solicitação</h3>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="address">Endereço</label>
@@ -49,8 +61,8 @@ function FormSolicitation(props) {
                 <label htmlFor="description">Descrição</label>
                 <textarea placeholder="Digite uma descrição..."></textarea>
                 
-                <input className="photo-input" type="file" placeholder="Adicionar Imagem" multiple></input>
                 <label>Fotos</label>
+                <input className="photo-input" type="file" placeholder="Adicionar Imagem" multiple></input>
 
                 <div id="button-container">
                     <button onClick={() => window.location.href="/"} id="cancel-button">Cancelar</button>

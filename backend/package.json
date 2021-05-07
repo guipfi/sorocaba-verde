@@ -24,6 +24,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.3",
+    "multer": "^1.4.2",
     "universal-cookie": "^4.0.4",
     "validation": "0.0.1"
   },

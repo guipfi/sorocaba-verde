@@ -40,7 +40,7 @@ function Solicitation(props){
             
             <div className="page-container" id="client-solicitation">
                 
-                <section style={{"display": sectionDisplay}}>
+                {/* <section style={{"display": sectionDisplay}}>
                     <div className="icon">
                         <img src={back} onClick={hideSection} alt="Voltar"/>
                     </div>
@@ -58,13 +58,18 @@ function Solicitation(props){
                     <RequestItem />
 
                 </section>
-                
+                 */}
                 <aside>
 
-                    <div className="button-max" style={{"display": buttonDisplay}}>
+                    {/* <div className="button-max" style={{"display": buttonDisplay}}>
                         <img src={forw} onClick={showSection} alt="Mostrar"/>
-                    </div>  
+                    </div>   */}
                     
+                    
+                    <div className="button-back">
+                        <a href="/user"><img src={back} onClick={showSection} alt="Mostrar"/></a>
+                    </div>  
+
                     <FormSolicitation address={address} lat={coords[0]} lng={coords[1]}/>
 
                 </aside>
