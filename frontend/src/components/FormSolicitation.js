@@ -2,10 +2,9 @@ import "./styles/FormSolicitation.css";
 import axios from 'axios';
 
 function FormSolicitation(props) {
-    console.log("oi")
-    console.log(props)
-    console.log("Faaal")
+    
     const handleSubmit = (event) => {
+        
         event.preventDefault();
 
         const imagesQtd = event.target[3].files.length;
@@ -14,31 +13,35 @@ function FormSolicitation(props) {
         for(var i = 0; i < imagesQtd; i++)
             photosURL.push(event.target[3].files[i].name)
 
-
-        console.log(photosURL);
-
         axios.get('http://localhost:8082/api/users/isLogged',{withCredentials: true, credentials: 'include'})
         .then(res=>{
-            console.log(res)
             if(res.data.code === 1){
+                
+                var bodyFormData = new FormData();
+                bodyFormData.append('address', event.target[0].value);
+                bodyFormData.append('lat', props.lat);
+                bodyFormData.append('lng', props.lng);
+                bodyFormData.append('type', event.target[1].value)
+                bodyFormData.append('description', event.target[2].value);
+                bodyFormData.append('solicitator', res.data.user._id);
+                bodyFormData.append('photosURL', event.target[3].files);
+                                
                 const solicitation = {
                     "address": event.target[0].value,
                     "lat": props.lat,
                     "lng": props.lng,
                     "type": event.target[1].value,
                     "description": event.target[2].value,
-                    "solicitator": res.data.user._id
+                    "solicitator": res.data.user._id,
+                    "photosURL": event.target[3].files
                 }
     
-                console.log(solicitation);
-                axios.post('http://localhost:8082/api/solicitations/new', solicitation)
+                axios.post('http://localhost:8082/api/solicitations/new', bodyFormData)
                 .then(res =>{
                     if(res.status === 200){
                         window.location.href = "/" 
                     }
-                    console.log(res);
                 })
-                
             }
         })
     }

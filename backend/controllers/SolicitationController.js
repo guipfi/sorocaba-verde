@@ -142,6 +142,7 @@ const editSolicitation = async (req,res) => {
 }
 
 const postSolicitation = async (req, res) => {
+
 	try{
 		const type = req.body.type;
 		const description = req.body.description;
@@ -150,6 +151,7 @@ const postSolicitation = async (req, res) => {
 		const lng = req.body.lng;
 		const solicitator = req.body.solicitator;
 		
+
 		const photo_paths = []
 		req.files.forEach((file) => {
 			photo_paths.push(file.filename)
