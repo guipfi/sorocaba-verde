@@ -10,6 +10,8 @@ const users = require('./routes/api/users');
 const admins = require('./routes/api/admins')
 const solicitations = require('./routes/api/solicitations');
 const cookieParser = require("cookie-parser");
+require('dotenv').config();
+
 
 const app = express();
 
