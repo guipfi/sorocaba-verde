@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import '../styles/global.css'
-import './styles/BigListItem.css'
+import '../styles/global.css';
+import './styles/BigListItem.css';
+import tree_default from './assets/tree_default.jpeg';
 
 function BigListItem({ data }) {
 
@@ -33,7 +34,9 @@ function BigListItem({ data }) {
 
 	return (
 		<div className="list-item" id="big-list-item">
-			<div className="imagem"></div>
+			<div className="imagem">
+				<img src={tree_default} style={{width: "100%", height: "100%"}} />
+			</div>
 			<div className="list-item-content">
 				<h3>Solicitação de {data.type}</h3>
 				<div className="infos">
