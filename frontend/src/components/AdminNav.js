@@ -59,8 +59,21 @@ class AdminNav extends Component{
                     </div>
                     <ul className="menu-items">
                         { AdminMenuItems.map((item) =>{
-                            return(<li><a className={item.cName} href={item.url}>{item.title}</a></li>)
-                            })
+                            if(item.cName !== "dropdown-toggle"){
+                                return(<li><a className={item.cName} href={item.url}>{item.title}</a></li>)
+                            }
+                            else{
+                                return(
+                                <div class="subnav">
+                                     <div class="subnavbtn">{item.title}<i class="fa fa-caret-down"></i></div>
+                                        <div class="subnav-content">
+                                            <a href={item.items.novaSolicitacao.url}>{item.items.novaSolicitacao.title}</a>
+                                            <a href={item.items.filaSolicitacao.url}>{item.items.filaSolicitacao.title}</a>
+                                        </div>
+                                </div>
+                                )
+                            }
+                        })
                         }
                     </ul>
                     <div className='login-nav' onClick={this.logout}>Logout</div>       

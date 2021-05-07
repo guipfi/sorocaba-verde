@@ -41,3 +41,49 @@
     color: black;
 }
 
+.subnav .subnavbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: black;
+    background-color: inherit;
+    font-family: inherit;
+    width: 100%;
+}
+
+.subnav {
+    float: left;
+    overflow: hidden;
+    margin-right: 15%;
+}
+
+.subnav:hover .subnavbtn {
+    background-color: #E6EFE4;
+  }
+  
+  /* Style the subnav content - positioned absolute */
+.subnav-content {
+    display: none;
+    position: absolute;
+    left: 20;
+    background-color: #E6EFE4;
+    width: 20%;
+    z-index: 1;
+}
+  
+.subnav-content a {
+    float: none;
+    padding: 2%;
+    border-bottom: 2px solid white;
+    color: black;
+    display: flex;
+    text-decoration: none;
+}
+
+.subnav-content a:hover {
+    background-color: #eee;
+    color: black;
+}
+.subnav:hover .subnav-content {
+    display: block;
+}
