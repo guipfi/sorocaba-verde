@@ -15,8 +15,10 @@
     width: 80%;
 }
 
-#client-solicitation aside .button-max{
-    position: fixed;
+#client-solicitation aside .button-back{
+    position: absolute;
+    margin-top: 1rem;
+    margin-left: 3.5rem;
 }
 
 #client-solicitation aside .form-container{
@@ -86,23 +88,23 @@
     margin-bottom: 20px;
 }
 
-#client-solicitation section .icon img:hover, .button-max:hover{
+#client-solicitation section .icon img:hover, .button-back:hover{
     cursor: pointer;
 }
 
-#client-solicitation section .icon img, .button-max img{
+#client-solicitation section .icon img, .button-back img{
     width: 1.5rem;
     height: 1.5rem;
 }
 
-#client-solicitation .button-max img{
-    width: 2rem;
-    height: 2rem;
+#client-solicitation .button-back img{
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 #client-solicitation aside{
     display: flex;
-    width: 80%;
+    width: 100%;
     height: 100vh;
 }
 
