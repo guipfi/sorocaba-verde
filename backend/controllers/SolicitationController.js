@@ -132,7 +132,7 @@ const postSolicitation = async (req, res) => {
 		});
 
 		newSolicitation.save()
-		.then(() => res.json("Solicitação adicionada!"))
+		.then(() => res.status(200).json("Solicitação adicionada!"))
 		.catch(err => res.status(400).json('Erro: ' + err));
 		
 	} catch(err) {

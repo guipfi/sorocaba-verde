@@ -75,8 +75,9 @@ class UserPage extends Component{
                             }
                             {(this.state.solicitations.length == 0) ? <h4>Você não possui solicitações</h4> :<div></div>}
                           
-                            <div className="button-container">
+                            <div onClick={() => {this.props.history.replace("/solicitation")}} className="button-container">
                                 <a href="/solicitation">Nova solicitação</a>
+                                <p>Clique no mapa para criar uma nova solicitação no endereço desejado</p>
                             </div>
 
                         </section>
@@ -87,7 +88,7 @@ class UserPage extends Component{
                             </div>  
 
                             <div className='map'>
-                                <Mapa />
+                                <Mapa {...this.props} />
                             </div>
                         </aside>
                     </div>
