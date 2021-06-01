@@ -55,7 +55,7 @@ class AdminNav extends Component{
                 <nav className="admin-nav">
                     <div className="logo-container">
                         <img src={logo} width={25} height={25} alt="" style={{marginRight:10}} />
-                        <div className="title"><a href="#">Sorocaba Verde</a></div>
+                        <div className="title"><a href="/sistema">Sorocaba Verde</a></div>
                     </div>
                     <ul className="menu-items">
                         { AdminMenuItems.map((item) =>{

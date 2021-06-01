@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
-import Mapa from '../../components/Mapa';
+import Mapa from '../../components/Maps';
 import RequestItem from '../../components/RequestItem';
 import UserNav from '../../components/UserNav';
 import ReactLoading from 'react-loading';
@@ -90,7 +90,7 @@ class UserPage extends Component{
                             </div>  
 
                             <div className='map'>
-                                <Mapa {...this.props} />
+                                <Mapa />
                             </div>
                         </aside>
                     </div>
