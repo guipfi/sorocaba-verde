@@ -4,7 +4,7 @@ const crypto = require('crypto')
 const serviceAccount = require('../config/firebase-key.json')
 
 
-const BUCKET = "sorocaba-verde-8de57.appspot.com/"
+const BUCKET = "sorocaba-verde-8de57.appspot.com"
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -21,7 +21,8 @@ const uploadFile = (req,res,next) =>{
         if(err) console.error(err)
 
         const fileName = `${hash.toString('hex')}-${file.originalname}`;
-        const fileUpload = bucket.file(fileName)
+        const fileUpload = bucket.file(fileName);
+        
         const stream = fileUpload.createWriteStream(
             {
                 metadata:{
@@ -35,14 +36,14 @@ const uploadFile = (req,res,next) =>{
         })
     
         stream.on("finish", async () =>{
-          await fileUpload.makePublic()
+          await fileUpload.makePublic();
     
           req.file.firebaseURL = `https://storage.googleapis.com/${BUCKET}/${fileName}`
     
-          next()
+          next();
         })
-    
-        stream.end(file.buffer)
+        
+        stream.end(file.buffer);
     })
 }
 
