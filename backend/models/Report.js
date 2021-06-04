@@ -24,8 +24,14 @@ const ReportSchema = new mongoose.Schema({
         type: String,
         default: null
     },
-    tree: String,
-    solicitation: String,
+    tree:{
+        type: ObjectId,
+        default: null
+    },
+    solicitation:{
+        type: ObjectId,
+        default: null,
+    },
     key: String
 })
 
