@@ -1,0 +1,21 @@
+#insert-document{
+    margin-top: 5%;
+    background-color: var(--green);  
+    position: relative;  
+}
+
+#insert-document-input{
+    opacity: 0.0; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0; 
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#reportRegister{
+    height: 100%;
+}

@@ -1,34 +1,14 @@
-#editSolicitation{
-    background-color: var(--gray-light);
-    height:160vh;
-}
-
-#editSolicitation-content{
-    margin: 3% 12% 4% 2%;
-}
-
-.editSolicitation-info, #editSolicitation-photos,#editSolicitation-priority, #editSolicitation-options{
+#editSolicitation-photos, .report-list, #editSolicitation-priority{
     margin-top: 2%;
     margin-left: 5%;
 }
 
-#edit-back{
-    margin-right: 2%;
-}
-
-#edit-back img{
-    width:30px;
-    height: 25px;
-    cursor: pointer;
-}
-
-#editSolicitation-title{
-    display: flex;
-    align-items: center;
-}
-
 #priority-buttons{
     display: flex;
+}
+
+#report-edit h5{
+    margin-top: 5%;
 }
 
 .priority-button,.priority-button-select{
@@ -47,27 +27,8 @@
     color:  var(--white);
 }
 
-#editSolicitation-options{
-    display: flex;
-    margin-top: 10%;   
-}
-
-#cancel-edit, #confirm-edit{
-    border: 1px solid var(--green);
-    border-radius: 8px;
-    padding: 1%;
-    text-align: center;
-    width: 20%;
-    cursor: pointer;
-    margin-right: 1%;
-}
-
-#cancel-edit{
-    background-color: transparent;
-    color: var(--green-dark);
-}
-
-#confirm-edit{
-    background-color: var(--green-dark);
-    color: var(--white);
+#insert-report{
+    width: 40%;
+    margin-top: 5%;
+    font-weight: bold;
 }

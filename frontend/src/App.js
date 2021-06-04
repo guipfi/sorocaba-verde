@@ -12,6 +12,7 @@ import SolicitacoesSistema from './pages/management/Solicitations';
 import UserPage from './pages/client/UserPage';
 import Solicitation from './pages/client/Solicitation';
 import EditSolicitation from './pages/management/editSolicitation';
+import ReportRegister from './pages/management/reportRegister'
 
 class App extends Component {
   constructor () {
@@ -55,6 +56,7 @@ class App extends Component {
             <Route path='/sistema/novas-solicitacoes' component={(props) => <SolicitacoesSistema {...props} type={"new"} />} />
             <Route path='/sistema/solicitacoes' component={(props) => <SolicitacoesSistema {...props} type={"queue"} />}/>
             <Route path='/sistema/login' component={AdminLogin}/>
+            <Route path='/sistema/cadastrar-laudo/:id' component={ReportRegister} />
             <Route path='/sistema/edit/:id' component={EditSolicitation}/>
             <Route path='/user' component={UserPage} />
             <Route path='/solicitation' render={(props) => <Solicitation {...props} />} />

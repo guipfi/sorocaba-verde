@@ -91,3 +91,60 @@ button:hover {
 #root{
     height: 100%;
 }
+
+/* css that is used by editSolicitation and reportRegister */
+
+.edit-back{
+    margin-right: 2%;
+}
+
+.edit-back img{
+    width:30px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.editSolicitation{
+    background-color: var(--gray-light);
+    height: 100%;
+}
+
+.editSolicitation-content{
+    margin: 3% 12% 0% 2%;
+}
+
+.editSolicitation-title{
+    display: flex;
+    align-items: center;
+}
+
+.editSolicitation-info, .editSolicitation-options{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.editSolicitation-options{
+    display: flex;
+    margin-top: 5%;
+    padding-bottom: 5%;   
+}
+
+.cancel-edit, .confirm-edit{
+    border: 1px solid var(--green);
+    border-radius: 8px;
+    padding: 1%;
+    text-align: center;
+    width: 20%;
+    cursor: pointer;
+    margin-right: 1%;
+}
+
+.cancel-edit{
+    background-color: transparent;
+    color: var(--green-dark);
+}
+
+.confirm-edit{
+    background-color: var(--green-dark);
+    color: var(--white);
+}

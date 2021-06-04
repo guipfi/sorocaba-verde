@@ -3,7 +3,10 @@ import axios from 'axios';
 import AdminNav from '../../components/AdminNav';
 import ReactLoading from 'react-loading';
 
+
+import {Link} from 'react-router-dom';
 import './styles/EditSolicitation.css';
+import '../../styles/global.css'
 import back from './assets/chevron-left-solid.svg';
 
 class EditSolicitation extends Component{
@@ -17,10 +20,11 @@ class EditSolicitation extends Component{
             description:"",
             photos:"",
             status:"",
-            priority:""
+            priority:"",
+            laudos:[],
         }
     }
-
+    
     componentDidMount(){
         const verifyLogin = async () => {
 			axios.get('http://localhost:8082/api/admin/isLogged',{withCredentials: true, credentials: 'include'})
@@ -94,11 +98,11 @@ class EditSolicitation extends Component{
     render(){
         if(this.state.isLoading == false){
             return(
-                <div id="editSolicitation">
+                <div class="editSolicitation">
                     <AdminNav {...this.props} ></AdminNav>
-                    <div id="editSolicitation-content">
-                        <div id="editSolicitation-title">
-                            <div id="edit-back">
+                    <div class="editSolicitation-content">
+                        <div class="editSolicitation-title">
+                            <div class="edit-back">
                                 <img src={back} onClick={this.back.bind(this)} alt="Voltar"/>
                             </div>
                             <h2>{this.state.type} | {this.state.address}</h2>
@@ -133,7 +137,7 @@ class EditSolicitation extends Component{
                             <h5>Fotos</h5>
                             {this.state.photos.length === 0 ? 
                                 <h4>Não há fotos nessa solicitação</h4>:<h4>Tem fotos</h4>}
-                        </div>
+                        </div>                   
                         <div id="editSolicitation-priority">
                             <h5>Definir grau de prioridade</h5>
                             <div id="priority-buttons">
@@ -147,9 +151,21 @@ class EditSolicitation extends Component{
                                 }
                             </div>
                         </div>
-                        <div id="editSolicitation-options">
-                            <div id = "cancel-edit" onClick={()=> this.props.history.goBack()}>Cancelar</div>
-                            <div id = "confirm-edit" onClick={this.confirmEdit.bind(this)} >Confirmar</div>
+                        <div class="report-list" id="report-edit">
+                            <h5>Laudos</h5>
+                            {this.state.laudos.length === 0 ?
+                             <h4>Não há laudos inseridos solicitação</h4>:<h4>Há Laudos</h4>
+                            }
+                            <Link to={{pathname:"/sistema/cadastrar-laudo/"+this.props.match.params.id, address:this.state.address}}> 
+                                <div class = "confirm-edit" id="insert-report">
+                                    Inserir novo laudo
+                                </div>
+                            </Link>
+                        </div>
+
+                        <div class="editSolicitation-options">
+                            <div class = "cancel-edit" onClick={()=> this.props.history.goBack()}>Cancelar</div>
+                            <div class = "confirm-edit" onClick={this.confirmEdit.bind(this)} >Confirmar</div>
                         </div>
                     </div>
                 </div>
