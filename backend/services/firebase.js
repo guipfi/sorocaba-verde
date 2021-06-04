@@ -16,12 +16,12 @@ const bucket = admin.storage().bucket()
 const uploadFile = (req,res,next) =>{
     if(!req.file) return next();
     const file = req.file
-
     crypto.randomBytes(16,(err,hash) =>{
         if(err) console.error(err)
-
+        
         const fileName = `${hash.toString('hex')}-${file.originalname}`;
         const fileUpload = bucket.file(fileName);
+        req.file.filename = fileName
         
         const stream = fileUpload.createWriteStream(
             {
@@ -39,10 +39,10 @@ const uploadFile = (req,res,next) =>{
           await fileUpload.makePublic();
     
           req.file.firebaseURL = `https://storage.googleapis.com/${BUCKET}/${fileName}`
-    
+          
           next();
         })
-        
+
         stream.end(file.buffer);
     })
 }

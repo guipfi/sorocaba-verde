@@ -4,7 +4,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const createReport = async (req, res) =>{
     try{
         const {originalname: docName, size,filename: key,firebaseURL: url} = req.file
-        const {treeId, solicitation, adminName, adminId,adress} = req.params
+        const {treeId, solicitation, adminName, adminId,address} = req.body
         const newReport = await Report.create({
             docName,
             size,

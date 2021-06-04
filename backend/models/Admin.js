@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const crypto = require('crypto')
 
 const AdminSchema = new mongoose.Schema({
     name:{
@@ -11,6 +12,10 @@ const AdminSchema = new mongoose.Schema({
         required: true
     },
 
+    id:{
+      type: String,
+      default: crypto.randomBytes(8)
+    },
     cpf:{
         type: String,
         required: true

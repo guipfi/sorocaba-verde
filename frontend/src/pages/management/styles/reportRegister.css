@@ -17,5 +17,32 @@
 }
 
 #reportRegister{
-    height: 100%;
+    height: 160vh;
+}
+
+.fileAdd-container{
+    background-color: var(--green-light2);
+    max-width: 20%;
+    display: flex;
+    margin-top: 2%;
+    position: relative;
+}
+#deleteFile{
+   position: absolute;
+   left: 90%;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.fileAdd-content{
+    display: flex;
+    padding: 15%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fileAdd-content h6{
+    margin-top: 10%;
+    word-break: break-all;
 }

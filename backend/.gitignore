@@ -1,4 +1,7 @@
 /node_modules
 /config/default.json
 /config/jwt.json
-/uploads/*.jpg
+/config/config.json
+/tmp/uploads/*
+/config/firebase-key.json
+!tmp/uploads/.gitkeep

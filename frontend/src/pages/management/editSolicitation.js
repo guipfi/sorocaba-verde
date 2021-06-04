@@ -55,7 +55,6 @@ class EditSolicitation extends Component{
 
         const loadAll = async () => {
 			await verifyLogin();
-            console.log(this.props.match.params.id)
             await getSolicitationById(this.props.match.params.id)
 			this.setState({...this.state,isLoading:false});
 		}
@@ -96,7 +95,7 @@ class EditSolicitation extends Component{
     }
     
     render(){
-        if(this.state.isLoading == false){
+        if(this.state.isLoading === false){
             return(
                 <div class="editSolicitation">
                     <AdminNav {...this.props} ></AdminNav>
