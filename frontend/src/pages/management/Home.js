@@ -5,7 +5,7 @@ import ReactLoading from 'react-loading';
 import {Link} from 'react-router-dom';
 import ListItem from '../../components/ListItem';
 import AdminNav from '../../components/AdminNav';
-import Mapa from '../../components/Mapa';
+import Mapa from '../../components/Maps';
 
 import '../../styles/global.css'
 import './styles/Home.css'

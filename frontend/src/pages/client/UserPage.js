@@ -90,7 +90,7 @@ class UserPage extends Component{
                             </div>  
 
                             <div className='map'>
-                                <Mapa />
+                                <Mapa {...this.props} />
                             </div>
                         </aside>
                     </div>
