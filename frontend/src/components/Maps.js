@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { GoogleMap, useJsApiLoader ,StandaloneSearchBox, Marker, InfoWindow, useGoogleMap } from '@react-google-maps/api';
+import {Link} from 'react-router-dom';
 
-import mapPin from './assets/map-pin.svg';
+import treePin from './assets/tree-pin.svg';
+import solicitationPin from './assets/solicitation-pin.svg';
 
 const { API_KEY } = require('../config/mapsAPI.json');
 
@@ -56,6 +58,66 @@ function Mapa(props) {
       }
     }
   }, [currentMarker]);
+
+  const pinActionButton = (type) => {
+
+    // type: tree -- Sistema: Ver informações/ Usuário: Criar solicitação
+    // type: solicitation -- Sistema/Usuário: Ver informações
+    // type: newPin -- Sistema: Criar árvore / Usuário: Criar solicitação
+
+    let buttonTittle = "";
+    let base = "";
+
+    if(props.isSystem) {
+      switch(type) {
+        case "tree":
+          base = "/treeRegister?"
+          buttonTittle = "Ver informações"
+          break;
+        case "solicitation":
+          base = "/treeRegister?"
+          buttonTittle = "Ver informações"
+          break;
+        case "newPin":
+          break;
+      }
+    } else {
+      switch(type) {
+        case "tree":
+        case "newPin":
+          base = "/solicitation?"
+          buttonTittle = "Criar nova solicitação"
+          break;
+        case "solicitation":
+          //base = "/solicitation?"
+          buttonTittle = "Ver informações"
+          break;
+      }
+    }
+  
+    const coords = `lat=${currentMarker.lat}&lng=${currentMarker.lng}&`;
+    const address = `address=${currentAddress}`;
+    const location = base+coords+address;
+
+    return (
+      <div className="button-container">
+        <Link to={location}>{buttonTittle}</Link>
+      </div>
+    );
+
+  }
+
+  function getCurrentLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }; 
+        setCurrentMarker(pos);
+     });
+    }
+  }
 
   async function setAddressByCords(position) {
     const geocoder = new window.google.maps.Geocoder();
@@ -188,12 +250,13 @@ function Mapa(props) {
         let position = { lat: solicitation.lat, lng: solicitation.lng };
       
         return (
-          <Marker position={position} icon={mapPin} onClick={handleSolicitationsMarkerClick}></Marker>
+          <Marker position={position} icon={solicitationPin} onClick={handleSolicitationsMarkerClick}></Marker>
         );
       }
     })}
-    {currentMarker ? <Marker position={currentMarker} onClick={handleNewMarkerClick} icon={mapPin} style={{height: '10rem'}}></Marker> : null}
+    {currentMarker ? <Marker position={currentMarker} onClick={handleNewMarkerClick} style={{height: '10rem'}} draggable={true}></Marker> : null}
     {infoWindowVisible ? renderInfoWindow() : null}
+    <button onClick={getCurrentLocation} style={styles.buttonStyle}><i class="fas fa-crosshairs"></i></button>
   </GoogleMap>
     );}
   if (loadError) {
@@ -234,6 +297,16 @@ const styles = {
   infoWindowStyle: {
     background: `white`,
     padding: 15
+  },
+  buttonStyle: {
+    width: '3rem',
+    height: '3rem',
+    position: 'absolute',
+    top: '4.5rem',
+    right: '0.4rem',
+    backgroundColor: 'white',
+    color: 'gray',
+    cursor: 'pointer'
   }
 }
 
