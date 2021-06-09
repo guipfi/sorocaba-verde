@@ -12,6 +12,7 @@ import SolicitacoesSistema from './pages/management/Solicitations';
 import UserPage from './pages/client/UserPage';
 import Solicitation from './pages/client/Solicitation';
 import EditSolicitation from './pages/management/editSolicitation';
+import TreeRegister from './pages/management/TreeRegister';
 import ReportRegister from './pages/management/reportRegister'
 
 class App extends Component {
@@ -60,6 +61,7 @@ class App extends Component {
             <Route path='/sistema/edit/:id' component={EditSolicitation}/>
             <Route path='/user' component={UserPage} />
             <Route path='/solicitation' render={(props) => <Solicitation {...props} />} />
+            <Route path='/sistema/treeRegister' render={(props) => <TreeRegister {...props} />} />
           </Router>
         );
       }  

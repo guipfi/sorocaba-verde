@@ -2,10 +2,6 @@
     background-color: var(--gray-light);
 }
 
-#form-solicitation h3{
-    margin-left: 2rem;
-}
-
 #form-solicitation form label, #form-solicitation form input, #form-solicitation form textarea, #form-solicitation form select{
     display: block;
     margin: 1rem 2rem 0;
@@ -82,7 +78,6 @@
 #form-solicitation h3{
     margin-top: 1rem;
 }
-
 
 @media (max-width: 695px){
     #form-solicitation #button-container button{
