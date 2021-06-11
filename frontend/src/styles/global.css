@@ -92,6 +92,10 @@ button:hover {
     height: 100%;
 }
 
+.flex-container{
+    display: flex;
+}
+
 /* css that is used by editSolicitation and reportRegister */
 
 .edit-back{

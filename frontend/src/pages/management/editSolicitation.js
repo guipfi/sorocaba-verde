@@ -7,7 +7,9 @@ import ReactLoading from 'react-loading';
 import {Link} from 'react-router-dom';
 import './styles/EditSolicitation.css';
 import '../../styles/global.css'
+
 import back from './assets/chevron-left-solid.svg';
+import editSVG from './assets/edit.svg';
 
 class EditSolicitation extends Component{
     constructor(){
@@ -21,7 +23,9 @@ class EditSolicitation extends Component{
             photos:"",
             status:"",
             priority:"",
+            tree:"",
             laudos:[],
+            treeInput:false
         }
     }
     
@@ -48,7 +52,8 @@ class EditSolicitation extends Component{
                         date:res.data.solicitation.date,
                         description:res.data.solicitation.description,
                         priority: res.data.solicitation.priority,
-                        photo: res.data.solicitation.photosURL})
+                        photo: res.data.solicitation.photosURL,
+                        tree:res.data.solicitation.tree})
                 }
             })
         }
@@ -86,14 +91,38 @@ class EditSolicitation extends Component{
     }
 
     confirmEdit(){
-        axios.post('http://localhost:8082/api/solicitations/solicitation/content/'+this.props.match.params.id, {priority:this.state.priority})
+        axios.post('http://localhost:8082/api/solicitations/solicitation/content/'+this.props.match.params.id, {priority:this.state.priority, tree:this.state.tree})
         .then(res =>{
             if(res.data.code == 1){
                 this.props.history.goBack()
             }
         })
     }
+
+    salvarTree = () =>{
+        const input = document.getElementById('editTreeInput').value
+        this.setState({...this.state, tree:input, treeInput:false})
+    }
     
+    treeIdentification = () =>{
+        if(this.state.treeInput == false){
+            return(
+                <div onClick={() => this.setState({...this.state,treeInput:true})} class="flex-container">
+                    <h6> {this.state.tree!==null ? this.state.tree:"Não especificada"}</h6>
+                    <img id="editSVG" src={editSVG} height={15} width={15} alt="editar"/>
+                </div>
+            );
+        } else{
+            return(
+                <div class="flex-container">
+                    <input placeholder={this.state.tree} type="text" id="editTreeInput" />
+                        <div onClick={this.salvarTree} class="salvarButton">✓</div>
+                        <div onClick={() => this.setState({...this.state,treeInput:false})} class="cancelarButton">X</div>
+                </div>
+            )
+        }  
+    }
+
     render(){
         if(this.state.isLoading === false){
             return(
@@ -107,6 +136,12 @@ class EditSolicitation extends Component{
                             <h2>{this.state.type} | {this.state.address}</h2>
                         </div>
                         <div id="editSolicitation-infos">
+
+                            <div class="editSolicitation-info">
+                                <h5>Identificação da Árvore</h5>
+                                {this.treeIdentification()}
+                            </div>
+
                             <div class="editSolicitation-info">
                                 <h5>Grau de Prioridade</h5>
                                 {this.renderSwitch()}

@@ -126,7 +126,7 @@ const getUserSolicitations = async (req,res) =>{
 const editSolicitation = async (req,res) => {
 	try{
 		const filter = { _id: req.params.id};
-		const update = {priority: req.body.priority};
+		const update = {priority: req.body.priority, tree: ObjectId(req.body.tree)};
 		const doc = await Solicitation.findOneAndUpdate(filter,update);
 		res.status(200).json({code:1, update:doc})
 	} catch(err){

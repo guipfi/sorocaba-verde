@@ -32,3 +32,43 @@
     margin-top: 5%;
     font-weight: bold;
 }
+
+#editSVG{
+    margin-left: 2%;
+    cursor: pointer;
+}
+
+#editTree{
+    display: none;
+}
+
+#editTreeInput{
+    border: 1px solid var(--gray) ;
+    border-radius: 5%;
+    max-width: 20%;
+    background-color: transparent;
+
+}
+
+.salvarButton{
+    background-color: var(--green);
+    border: 1px solid var(--green);
+    color:  var(--white);
+    margin-left: 2%;
+}
+
+.cancelarButton{
+    background-color: transparent;
+    border: 1px solid var(--green);
+    color: var(--dark-green);
+}
+
+.salvarButton,.cancelarButton{
+    margin-top: 1%;
+    border-radius: 8px;
+    padding: 0.2%;
+    text-align: center;
+    width: 4%;
+    cursor: pointer;
+    margin-right: 1%;
+}

@@ -43,7 +43,8 @@ class ReportRegister extends Component{
                 } else{
                     this.setState({...this.state,
                      address:res.data.solicitation.address,
-                     solicitation: res.data.solicitation._id})
+                     solicitation: res.data.solicitation._id,
+                     tree: res.data.solicitation.tree})
                 }
             })
         }
@@ -84,11 +85,13 @@ class ReportRegister extends Component{
 
     submitFile = () =>{
         const data = new FormData();
+        this.setState({...this.state,isLoading:true})
         data.append("file", this.state.file);
         data.append("address", this.state.address)
         data.append("adminName", this.state.adminName)
         data.append("adminId", this.state.adminId)
         data.append("solicitation",this.state.solicitation)
+        if(this.state.tree !== null)  data.append("tree", this.state.tree)
         axios.post('http://localhost:8082/api/reports/upload', data)
         .then(res =>{
             this.back()
