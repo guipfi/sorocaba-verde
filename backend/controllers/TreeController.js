@@ -1,5 +1,4 @@
 const Tree = require('../models/Tree');
-const ObjectId = require('mongoose').Types.ObjectId;
 
 function date_format(date) {
 
@@ -15,14 +14,14 @@ function date_format(date) {
 const postTree = async (req, res) => {
 
 	try{
-		const type = req.body.type;
-		const description = req.body.description;
+
 		const address = req.body.address;
 		const lat = req.body.lat;
 		const lng = req.body.lng;
-		const solicitator = req.body.solicitator;
+		const quantity = req.body.quantity;
+		const name = req.body.name;
+		const description = req.body.description;
 		
-
 		const photo_paths = []
 		req.files.forEach((file) => {
 			photo_paths.push(file.filename)
@@ -30,18 +29,36 @@ const postTree = async (req, res) => {
 
 		const photosURL = photo_paths;
 
-		const newSolicitation = new Solicitation({
-			solicitator,
-			type,
-			description,
-			address,
-			lat,
-			lng,
-			photosURL
-		});
+		var newTree;
 
-		newSolicitation.save()
-		.then(() => res.status(200).json("Solicitação adicionada!"))
+		if(quantity > 1) {
+			newTree = new Tree({
+				name,
+				description,
+				quantity,
+				address,
+				lat,
+				lng,
+				photosURL
+			});
+		} else {
+			const height = req.body.height;
+			const age = req.body.age;
+			newTree = new Tree({
+				name,
+				description,
+				quantity,
+				address,
+				lat,
+				lng,
+				photosURL,
+				height,
+				age
+			});
+		}
+
+		newTree.save()
+		.then(() => res.status(200).json("Árvore adicionada' adicionada!"))
 		.catch(err => res.status(400).json('Erro: ' + err));
 		
 	} catch(err) {

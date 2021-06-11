@@ -20,6 +20,8 @@ function Mapa(props) {
   const [currentMarker, setCurrentMarker] = useState(null);
   const [currentAddress, setCurrentAddress] = useState(null);
 
+  const [markerType, setMarkerType] = useState(null);
+
   const [infoWindowVisible, setInfoWindowVisible] = useState(false);
   const [infoWindowPosition, setInfoWindowPosition] = useState(null);
 
@@ -59,7 +61,7 @@ function Mapa(props) {
     }
   }, [currentMarker]);
 
-  const pinActionButton = (type) => {
+  const PinActionButton = ({type}) => {
 
     // type: tree -- Sistema: Ver informações/ Usuário: Criar solicitação
     // type: solicitation -- Sistema/Usuário: Ver informações
@@ -68,17 +70,21 @@ function Mapa(props) {
     let buttonTittle = "";
     let base = "";
 
+    console.log(type);
+
     if(props.isSystem) {
       switch(type) {
         case "tree":
-          base = "/treeRegister?"
+          base = "sistema/treeRegister?"
           buttonTittle = "Ver informações"
           break;
         case "solicitation":
-          base = "/treeRegister?"
+          base = "sistema/treeRegister?"
           buttonTittle = "Ver informações"
           break;
         case "newPin":
+          base = "treeRegister?"
+          buttonTittle = "Cadastrar nova árvore"
           break;
       }
     } else {
@@ -100,9 +106,9 @@ function Mapa(props) {
     const location = base+coords+address;
 
     return (
-      <div className="button-container">
+      <button className="button-container">
         <Link to={location}>{buttonTittle}</Link>
-      </div>
+      </button>
     );
 
   }
@@ -169,6 +175,7 @@ function Mapa(props) {
       lng: e.latLng.lng()
     }
     setCurrentMarker(position);
+    setInfoWindowVisible(false);
   }
 
   async function handleInfoWindow(e) {
@@ -181,10 +188,12 @@ function Mapa(props) {
   }
 
   async function handleNewMarkerClick(e) {
+    setMarkerType("newPin");
     handleInfoWindow(e).then(() => setInfoWindowVisible(true));
   }
 
   async function handleSolicitationsMarkerClick(e) {
+    setMarkerType("solicitations");
     handleInfoWindow(e).then(() => setInfoWindowVisible(true));
   }
 
@@ -197,6 +206,7 @@ function Mapa(props) {
         <div style={styles.infoWindowStyle}>
           <h1>InfoWindow</h1>
           <p>{currentAddress}</p>
+          <PinActionButton type={markerType}></PinActionButton>
         </div>
       </InfoWindow>
     )
