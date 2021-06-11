@@ -1,6 +1,17 @@
 const Report = require('../models/Report')
 const ObjectId = require('mongoose').Types.ObjectId;
 
+function date_format(date) {
+
+	let day  = date.getDate().toString().padStart(2, '0');
+	let month  = (date.getMonth() +1).toString().padStart(2, '0');
+	let year  = date.getFullYear();
+
+	let formated_date = day + "/" + month + "/" + year;
+
+	return formated_date;
+}
+
 const createReport = async (req, res) =>{
     try{
         const {originalname: docName, size,filename: key,firebaseURL: url} = req.file
@@ -26,4 +37,50 @@ const createReport = async (req, res) =>{
     }
 }
 
-module.exports = {createReport}
+const getReportBySolicitation = async (req,res) =>{
+    try{
+        Report.find({solicitation: ObjectId(req.params.id)})
+        .then((reports) =>{
+            let reportsFormated = reports.map(item => {
+                let formated_date = date_format(item.date);
+                let result = {
+                    ...item._doc,
+                    date: formated_date
+                }
+                return result;
+            })
+            res.json({
+                code:1,
+                reports: reportsFormated
+            })
+        })
+    } catch(err){
+        res.status(400).json({error:err})
+    }
+
+}
+
+const getReportByTree = async (req,res) =>{
+    try{
+        Report.find({tree:req.params.tree})
+        .then((reports) =>{
+            let reportsFormated = reports.map(item => {
+                let formated_date = date_format(item.date);
+                let result = {
+                    ...item._doc,
+                    date: formated_date
+                }
+                return result;
+            })
+            res.json({
+                code:1,
+                reports: reportsFormated
+            })
+        })
+    } catch(err){
+        res.status(400).json({error:err})
+    }
+
+}
+
+module.exports = {createReport, getReportBySolicitation, getReportByTree}

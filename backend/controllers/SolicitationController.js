@@ -88,7 +88,6 @@ const getSolicitationById = async (req,res) =>{
 		Solicitation.findOne({_id:ObjectId(req.params.id)})
 		.then((solicitation) => {
 			let solicitationsFormated = {...solicitation._doc, date:date_format(solicitation.date)}
-			console.log(solicitationsFormated)
 			res.json({
 				code:1,
 				solicitation: solicitationsFormated
