@@ -1,5 +1,5 @@
 const express = require('express');
-const { postTree } = require('../../controllers/SolicitationController');
+const { postTree } = require('../../controllers/TreeController');
 const verifyLogin = require('../../middleware/login')
 const verifyAdminLogin = require('../../middleware/loginAdmin');
 

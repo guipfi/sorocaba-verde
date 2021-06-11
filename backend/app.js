@@ -7,6 +7,7 @@ var cors = require('cors');
 const users = require('./routes/api/users');
 const admins = require('./routes/api/admins')
 const solicitations = require('./routes/api/solicitations');
+const trees = require('./routes/api/trees');
 const reports = require('./routes/api/reports');
 const cookieParser = require("cookie-parser");
 require('dotenv').config();
@@ -31,6 +32,7 @@ app.get('/', (req, res) => res.send('Hello world!'));
 app.use('/api/users', users);
 app.use('/api/admin', admins);
 app.use('/api/solicitations', solicitations);
+app.use('/api/trees', trees);
 app.use('/api/reports/', reports);
 
 const port = process.env.PORT || 8082;
