@@ -79,6 +79,15 @@
     margin-top: 1rem;
 }
 
+#form-solicitation .tree-infos {
+    margin-left: 2rem;
+}
+
+#form-solicitation .tree-attributes {
+    display: flex;
+    gap: 1rem;
+}
+
 @media (max-width: 695px){
     #form-solicitation #button-container button{
         max-width: 80% !important;
