@@ -7,7 +7,7 @@ import logo from './assets/logo.png'
 
 class AdminNav extends Component{
     constructor(){
-        super()
+        super();
         this.state = {
             isLogged: false
         }

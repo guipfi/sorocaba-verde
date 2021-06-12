@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import axios from 'axios';
 import Login from '../../components/Login';
+import RegisterUser from '../../components/RegisterUser';
 import './styles/UserLogin.css';
 import '../../styles/global.css'
 import UserNav from '../../components/UserNav';
@@ -14,6 +15,7 @@ class UserLogin extends Component{
         this.state = {
             isLogged: false,
             isLoading: true,
+            renderLogin: true
         }
     }
 
@@ -34,6 +36,10 @@ class UserLogin extends Component{
         })
     }
 
+    setRenderLogin = (param) =>{
+        this.setState({...this.state,renderLogin:param});
+    }
+
     render(){
         if(this.state.isLoading === false && this.state.isLogged === false){
             return(
@@ -47,7 +53,7 @@ class UserLogin extends Component{
                                 <br/>
                                 <h5>#SorocabaVerde</h5>
                             </div>
-                            <Route path='/' component={Login} />
+                            {this.state.renderLogin === true ?  <Route  path='/' render={() => <Login {...this.props} setRenderLogin = {this.setRenderLogin} />}/>:<Route path='/' render={() => <RegisterUser {...this.props} setRenderLogin = {this.setRenderLogin} />} />}
                         </div>
                     </div>
                 </div>

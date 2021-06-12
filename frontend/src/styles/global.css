@@ -81,6 +81,7 @@ button {
     background-color: var(--green-dark);
     color: var(--white);
     border: 0;
+    cursor: pointer;
 }
 
 button:hover {
