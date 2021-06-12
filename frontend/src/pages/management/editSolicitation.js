@@ -3,7 +3,7 @@ import axios from 'axios';
 import AdminNav from '../../components/AdminNav';
 import ReactLoading from 'react-loading';
 
-
+import ReportList from '../../components/ReportList'
 import {Link} from 'react-router-dom';
 import './styles/EditSolicitation.css';
 import '../../styles/global.css'
@@ -24,7 +24,6 @@ class EditSolicitation extends Component{
             status:"",
             priority:"",
             tree:"",
-            laudos:[],
             treeInput:false
         }
     }
@@ -187,9 +186,8 @@ class EditSolicitation extends Component{
                         </div>
                         <div class="report-list" id="report-edit">
                             <h5>Laudos</h5>
-                            {this.state.laudos.length === 0 ?
-                             <h4>Não há laudos inseridos solicitação</h4>:<h4>Há Laudos</h4>
-                            }
+                            <ReportList id={this.props.match.params.id} isTree={false} />
+                            
                             <Link to={{pathname:"/sistema/cadastrar-laudo/"+this.props.match.params.id, address:this.state.address}}> 
                                 <div class = "confirm-edit" id="insert-report">
                                     Inserir novo laudo

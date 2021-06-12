@@ -104,10 +104,10 @@ class ReportRegister extends Component{
     render(){
         if(this.state.isLoading === false){
             return(
-                <div class="editSolicitation" id="reportRegister">
+                <div class="reportRegister">
                     <AdminNav {...this.props} ></AdminNav>
-                    <div class="editSolicitation-content" id="reportRegister-content">
-                        <div class="editSolicitation-title" id="reportRegister-title">
+                    <div class="reportRegister-content">
+                        <div class="reportRegister-title">
                             <div class="edit-back">
                                 <img src={back} onClick={this.back.bind(this)} alt="Voltar"/>
                             </div>
@@ -115,17 +115,17 @@ class ReportRegister extends Component{
                         </div>
 
                         <div id="reportRegister-infos">
-                            <div class="editSolicitation-info">
+                            <div class="reportRegister-info">
                                 <h5>Endereço</h5>
                                 <h6>{this.state.address}</h6>
                             </div>
-                            <div class="editSolicitation-info">
+                            <div class="reportRegister-info">
                                 <h5>Técnico responsável</h5>
                                 <h6>{this.state.adminName} (ID #{this.state.adminId})</h6>
                             </div>
                         </div>
 
-                        <div class="editSolicitation-info" id="reportDocuments">
+                        <div class="reportRegister-info">
                             <h5>Documentos</h5>
                             <div>
                                 {this.state.file.name !== undefined ? this.addFileRender():<h5>Nenhum documento foi adicionado.</h5>}
@@ -136,12 +136,12 @@ class ReportRegister extends Component{
                             </div>
                         </div>
                     
-                        <div class="editSolicitation-options">
+                        <div class="reportRegister-options">
                                 <div class = "cancel-edit" onClick={()=> this.props.history.goBack()}>Cancelar</div>
                                 <div class = "confirm-edit" onClick={this.submitFile} >Confirmar</div>
                         </div>
 
-                        <div class="editSolicitation-info">
+                        <div class="reporterRegister-info">
                             <h4>[!] Atenção: O laudo não poderá ser alterado após a  confirmação.</h4>
                         </div>
                     </div>

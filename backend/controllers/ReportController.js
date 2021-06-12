@@ -63,7 +63,7 @@ const getReportBySolicitation = async (req,res) =>{
 
 const getReportByTree = async (req,res) =>{
     try{
-        Report.find({tree:req.params.tree})
+        Report.find({tree:ObjectId(req.params.id)})
         .then((reports) =>{
             let reportsFormated = reports.map(item => {
                 let formated_date = date_format(item.date);
@@ -84,4 +84,19 @@ const getReportByTree = async (req,res) =>{
 
 }
 
-module.exports = {createReport, getReportBySolicitation, getReportByTree}
+const getReportById = async (req,res) =>{
+    try{
+        Report.findOne({_id:ObjectId(req.params.id)})
+        .then((report) =>{
+            let reportFormated = {...report._doc, date:date_format(report.date)}
+            res.json({
+                code:1,
+                report: reportFormated
+            })
+        })
+    } catch(err){
+        res.status(400).json({error:err})
+    }
+}
+
+module.exports = {createReport, getReportBySolicitation, getReportByTree, getReportById}
