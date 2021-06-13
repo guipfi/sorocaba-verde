@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import axios from 'axios';
 import Mapa from '../../components/Maps';
 import RequestItem from '../../components/RequestItem';
@@ -69,8 +69,11 @@ class UserPage extends Component{
                                 <p>Status</p>
                             </div>
                             {   this.state.solicitations.map((solicitation) =>{
-                                    return(<RequestItem status={solicitation.status} date={solicitation.date}
-                                         type={solicitation.type} address ={solicitation.address} />)
+                                    return(
+                                        <Link to={"/solicitation/"+solicitation._id}>
+                                            <RequestItem status={solicitation.status} date={solicitation.date} type={solicitation.type} address ={solicitation.address} />
+                                        </Link>
+                                    )
                                 }) 
                             }
                             {(this.state.solicitations.length == 0) ? <h4>Você não possui solicitações</h4> :<div></div>}

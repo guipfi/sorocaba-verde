@@ -14,6 +14,7 @@ import Solicitation from './pages/client/Solicitation';
 import EditSolicitation from './pages/management/editSolicitation';
 import TreeRegister from './pages/management/TreeRegister';
 import ReportRegister from './pages/management/reportRegister'
+import ViewSolicitation from './pages/client/viewSolicitation';
 
 class App extends Component {
   constructor () {
@@ -60,8 +61,9 @@ class App extends Component {
             <Route path='/sistema/cadastrar-laudo/:id' component={ReportRegister} />
             <Route path='/sistema/edit/:id' component={EditSolicitation}/>
             <Route path='/user' component={UserPage} />
-            <Route path='/solicitation' render={(props) => <Solicitation {...props} />} />
+            <Route path='/solicitationRegister' render={(props) => <Solicitation {...props} />} />
             <Route path='/sistema/treeRegister' render={(props) => <TreeRegister {...props} />} />
+            <Route path='/solicitation/:id' component={ViewSolicitation} />
           </Router>
         );
       }  

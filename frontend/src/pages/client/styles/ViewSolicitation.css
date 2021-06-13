@@ -1,0 +1,34 @@
+#editSolicitation-photos, .report-list, #editSolicitation-priority{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+#priority-buttons{
+    display: flex;
+}
+
+#report-edit h5{
+    margin-top: 5%;
+}
+
+.priority-button,.priority-button-select{
+    border: 1px solid var(--gray);
+    border-radius: 7px;
+    color:  var(--gray);
+    width: 20%;
+    padding: 0.5%;
+    padding-left: 1%;
+    margin-right: 2%;
+    cursor: pointer;
+}
+
+.priority-button-select{
+    background-color: var(--green);
+    color:  var(--white);
+}
+
+#insert-report{
+    width: 40%;
+    margin-top: 5%;
+    font-weight: bold;
+}

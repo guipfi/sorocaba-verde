@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { GoogleMap, useJsApiLoader ,StandaloneSearchBox, Marker, InfoWindow, useGoogleMap } from '@react-google-maps/api';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+import ReactLoading from 'react-loading';
 
 import treePin from './assets/tree-pin.svg';
 import solicitationPin from './assets/solicitation-pin.svg';
@@ -13,6 +15,8 @@ function Mapa(props) {
 
   const firstUpdate = useRef(true);
 
+  const [isLoading, setIsloading] = useState(true);
+
   const [mapRef, setMapRef] = useState(null);
 
   const [searchBox, setSearchBox] = useState(null);
@@ -24,6 +28,9 @@ function Mapa(props) {
 
   const [infoWindowVisible, setInfoWindowVisible] = useState(false);
   const [infoWindowPosition, setInfoWindowPosition] = useState(null);
+
+	const [newSolicitations, setNewSolicitations] = useState([]);
+	const [solicitationsQueue, setSolicitationsQueue] = useState([]);
 
   const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
@@ -57,9 +64,42 @@ function Mapa(props) {
     } else {
       if(currentMarker) {
         mapRef.panTo(currentMarker);
+      } else if(infoWindowVisible) {
+        mapRef.panTo(infoWindowPosition);
       }
     }
-  }, [currentMarker]);
+  }, [currentMarker, infoWindowVisible]);
+
+  useEffect(() => {
+    async function loadNewSolicitations() {
+      try {
+        const response = await axios.get('http://localhost:8082/api/solicitations/new/0');
+        setNewSolicitations(response.data.solicitationsList);
+      } catch(err) {
+        throw new Error(err);
+      }
+    }
+  
+    async function loadSolicitationsQueue() {
+      try {
+        const response = await axios.get('http://localhost:8082/api/solicitations/queue/0');
+        setSolicitationsQueue(response.data.solicitationsList);
+      } catch(err) {
+        throw new Error(err);
+      }
+    }
+  
+    async function loadAll() {
+      await loadNewSolicitations();
+      await loadSolicitationsQueue();
+      setIsloading(false);
+    }
+
+    if(isLoading) {
+      loadAll();
+    }
+
+  }, [isLoading]);
 
   const PinActionButton = ({type}) => {
 
@@ -69,42 +109,43 @@ function Mapa(props) {
 
     let buttonTittle = "";
     let base = "";
-
-    console.log(type);
+    let location = "";
 
     if(props.isSystem) {
       switch(type) {
         case "tree":
-          base = "sistema/treeRegister?"
-          buttonTittle = "Ver informações"
+          base = "sistema/treeRegister?";
+          buttonTittle = "Ver informações";
           break;
         case "solicitation":
-          base = "sistema/treeRegister?"
-          buttonTittle = "Ver informações"
+          base = "/sistema/home";
+          buttonTittle = "Ver informações";
           break;
         case "newPin":
-          base = "treeRegister?"
-          buttonTittle = "Cadastrar nova árvore"
+          base = "sistema/treeRegister?";
+          buttonTittle = "Cadastrar nova árvore";
+          const coords = `lat=${currentMarker.lat}&lng=${currentMarker.lng}&`;
+          const address = `address=${currentAddress}`;
+          location = base+coords+address;
           break;
       }
     } else {
       switch(type) {
         case "tree":
         case "newPin":
-          base = "/solicitation?"
-          buttonTittle = "Criar nova solicitação"
+          base = "/solicitationRegister?";
+          buttonTittle = "Criar nova solicitação";
+          const coords = `lat=${currentMarker.lat}&lng=${currentMarker.lng}&`;
+          const address = `address=${currentAddress}`;
+          location = base+coords+address;
           break;
         case "solicitation":
-          //base = "/solicitation?"
-          buttonTittle = "Ver informações"
+          base = "/home";
+          buttonTittle = "Ver informações";
           break;
       }
     }
   
-    const coords = `lat=${currentMarker.lat}&lng=${currentMarker.lng}&`;
-    const address = `address=${currentAddress}`;
-    const location = base+coords+address;
-
     return (
       <button className="button-container">
         <Link to={location}>{buttonTittle}</Link>
@@ -193,7 +234,7 @@ function Mapa(props) {
   }
 
   async function handleSolicitationsMarkerClick(e) {
-    setMarkerType("solicitations");
+    setMarkerType("solicitation");
     handleInfoWindow(e).then(() => setInfoWindowVisible(true));
   }
 
@@ -212,16 +253,18 @@ function Mapa(props) {
     )
   }
 
-  const renderMap = (props) => {
+  const renderMap = (solicitations) => {
 
     function onLoadMap(map) {
-      setMapRef(map);
-      console.log(props);
-      console.log(props.solicitations);
+      if(!mapRef)
+        setMapRef(map);
     }
-    function onLoadSearchBox(searchBox) {
-      setSearchBox(searchBox);
+
+    function onLoadSearchBox(searchbox) {
+      if(!searchBox)
+        setSearchBox(searchbox);
     } 
+
     return (
     <GoogleMap
       id="map"
@@ -255,7 +298,7 @@ function Mapa(props) {
         />
       </div>
     </StandaloneSearchBox>
-    {props.solicitations?.map(solicitation => {
+    {solicitations?.map(solicitation => {
       if(solicitation.lat && solicitation.lng) {
         let position = { lat: solicitation.lat, lng: solicitation.lng };
       
@@ -269,11 +312,24 @@ function Mapa(props) {
     <button onClick={getCurrentLocation} style={styles.buttonStyle}><i class="fas fa-crosshairs"></i></button>
   </GoogleMap>
     );}
+
   if (loadError) {
     return <div>Map cannot be loaded right now, sorry.</div>
   }
 
-  return isLoaded ? renderMap(props) : <div>Loading...</div>
+  if(isLoading) {
+    return (
+      <ReactLoading 
+        className="loading" 
+        type={"spin"} 
+        color={"green"} 
+        height={'20%'} 
+        width={'20%'} 
+      />
+    )
+  }
+
+  return isLoaded && !isLoading ? renderMap([...newSolicitations, ...solicitationsQueue]) : <div>Loading...</div>
 }
 
 const styles = {

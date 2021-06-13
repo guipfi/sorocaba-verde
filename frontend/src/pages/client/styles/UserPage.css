@@ -46,25 +46,9 @@
     margin-top: 2rem;
 }
 
-#user-page-container section a{
-    font-size: 1.25rem;
-    height: 3.5rem;
-    text-decoration: none;
-    color: var(--white);
-    border-radius: 8px;
-    font-size: 1.25rem;
-    font-weight: 500;
-    background-color: var(--green-dark);
-    border: 0;
-    text-align: center;
-    align-self: center;
-    padding-top: .7rem;
-}
-
 #user-page-container section a:hover{
     cursor: pointer;
     text-decoration: none;
-    color: var(--white);
 }
 
 #user-page-container section .icon{

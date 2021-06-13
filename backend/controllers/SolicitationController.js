@@ -46,7 +46,7 @@ const getSolicitations = async (req, res) => {
 		sort_param = {date: "desc"};
 	} 
 
-	let limit = 10;
+	let limit = 0;
 
 	if(req.query.limit) {
 		limit = Number(req.query.limit);
