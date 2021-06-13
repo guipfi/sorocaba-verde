@@ -1,3 +1,23 @@
+.reportRegister{
+    background-color: var(--gray-light);
+    height: 160vh
+}
+
+.reportRegister-content{
+    margin: 3% 10% 0% 2%;
+}
+
+.reportRegister-title{
+    display: flex;
+    align-items: center;
+}
+
+.reportRegister-info, .reportRegister-options{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+
 #insert-document{
     margin-top: 5%;
     background-color: var(--green);  
@@ -16,17 +36,15 @@
     cursor: pointer;
 }
 
-#reportRegister{
-    height: 160vh;
-}
-
 .fileAdd-container{
     background-color: var(--green-light2);
     max-width: 20%;
     display: flex;
     margin-top: 2%;
+    margin-bottom: 2%;
     position: relative;
 }
+
 #deleteFile{
    position: absolute;
    left: 90%;
@@ -36,7 +54,7 @@
 
 .fileAdd-content{
     display: flex;
-    padding: 15%;
+    padding: 20%;
     flex-direction: column;
     justify-content: center;
     align-items: center;

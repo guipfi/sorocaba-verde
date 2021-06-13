@@ -1,0 +1,22 @@
+.reportItem{
+    background-color: var(--green-light);
+    max-width: 40%;
+    display: flex;
+    border-radius: 10px;
+    margin-top: 1%;
+    padding: 1%;
+}
+
+.reportItem-info{
+    width: 85%;
+    word-break: break-all;
+}
+
+.reportItem-button{
+    justify-self: flex-end;
+    font-size: 0.8rem;
+    align-self: center;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}

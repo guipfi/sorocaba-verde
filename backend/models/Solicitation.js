@@ -42,6 +42,11 @@ const SolicitationSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    
+    tree: {
+        type:ObjectId,
+        default: null
+    }
 
 });
 

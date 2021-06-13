@@ -4,22 +4,38 @@ const {JWT_KEY} = require('../config/jwt.json')
 const jwt = require('jsonwebtoken')
 
 const createNewUser = (req,res) => {
-    bcrypt.hash(req.body.password, 10).then((hashedPass) =>{
-        
-        const newUser = new User({
-            name: req.body.name,
-            email: req.body.email,
-            cpf: req.body.cpf,
-            phone: req.body.phone,
-            address: req.body.address,
-            password: hashedPass      
-        })
-
-        User.create(newUser)
-        .then( _ => res.json({code:1, message:'User Registered with success'}))
-        .catch(err => res.status(400).json({code:2, message:err}))
+    if(req.body.password != req.body.passwordConfirm){
+        res.json({code:0, message:'Your password and confirmation password do not match.'})
+    } else{
+        User.findOne({cpf:req.body.cpf}).then((user) =>{
+            if(user){
+                res.json({code:2, message:'You already have an account with this cpf.'})
+            } else{
+                User.findOne({email:req.body.email}).then((user) =>{
+                    if(user){
+                        res.json({code:3, message:'You already have an account with this email.'})
+                    } else{
+                        bcrypt.hash(req.body.password, 10).then((hashedPass) =>{
+            
+                            const newUser = new User({
+                                name: req.body.name,
+                                email: req.body.email,
+                                cpf: req.body.cpf,
+                                phone: req.body.phone,
+                                address: req.body.address,
+                                password: hashedPass      
+                            })
+                    
+                            User.create(newUser)
+                            .then( _ => res.json({code:1, message:'User Registered with success'}))
+                            .catch(err => res.status(400).json({code:4, message:err}))
+                        })
+                        .catch((err)=> res.status(400).json({code:5, message:err}))
+                    }
+                })
+            }
     })
-    .catch((err)=> res.status(400).json({code:3, message:err}))
+    }
 }
 
 const loginUser = (req,res) =>{

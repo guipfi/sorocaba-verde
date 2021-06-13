@@ -88,7 +88,6 @@ const getSolicitationById = async (req,res) =>{
 		Solicitation.findOne({_id:ObjectId(req.params.id)})
 		.then((solicitation) => {
 			let solicitationsFormated = {...solicitation._doc, date:date_format(solicitation.date)}
-			console.log(solicitationsFormated)
 			res.json({
 				code:1,
 				solicitation: solicitationsFormated
@@ -127,7 +126,7 @@ const getUserSolicitations = async (req,res) =>{
 const editSolicitation = async (req,res) => {
 	try{
 		const filter = { _id: req.params.id};
-		const update = {priority: req.body.priority};
+		const update = {priority: req.body.priority, tree: ObjectId(req.body.tree)};
 		const doc = await Solicitation.findOneAndUpdate(filter,update);
 		res.status(200).json({code:1, update:doc})
 	} catch(err){

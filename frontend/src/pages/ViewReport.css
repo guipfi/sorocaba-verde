@@ -1,0 +1,40 @@
+.viewReport{
+    background-color: var(--gray-light);
+}
+
+.viewReport-content{
+    margin: 3% 10% 0% 2%;
+}
+
+.viewReport-title{
+    display: flex;
+    align-items: center;
+}
+
+.viewReport-info{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.file-container{
+    background-color: var(--green-light2);
+    max-width: 20%;
+    display: flex;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    position: relative;
+}
+
+.file-content{
+    display: flex;
+    width: 100%;
+    word-break: break-all;
+    padding: 15%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-content h6{
+    margin-top: 10%;
+}

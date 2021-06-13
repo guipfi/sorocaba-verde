@@ -17,7 +17,7 @@ const Login = (props) =>{
     
     const onSubmit = (e) => {
         e.preventDefault();
-        if(props.isAdmin != true){
+        if(props.isAdmin !== true){
             axios.post('http://localhost:8082/api/users/login', data,{withCredentials: true, credentials: 'include'}).then(res => {
                 switch(res.data.code){
                     case 1:
@@ -67,7 +67,7 @@ const Login = (props) =>{
                     <div>
                         <div className="link">Esqueci minha senha</div>
                         <div className="register-area">
-                            <div className="register-button">Fazer Cadastro</div>
+                            <div className="register-button" onClick={() => props.setRenderLogin(false)}>Fazer Cadastro</div>
                         </div>
                     </div>
                 }

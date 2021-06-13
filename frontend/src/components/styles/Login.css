@@ -52,6 +52,7 @@
     margin-bottom: 8%;
     padding: 15px;
     max-width: 65%;
+    cursor: pointer;
 }
 
 @media (max-width:635px){
