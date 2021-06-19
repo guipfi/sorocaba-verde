@@ -29,15 +29,19 @@ function SolicitacoesSistema(props) {
 	function updateFilters(category, value) {
 		let newFilters = {};
 		let filterChanged = [];
-		if(filters[category].includes(value)) {
-			filterChanged = filters[category].filter(function(e) {
-				if(e === value) {
-					return false;
-				} 
-				return true;
-			});
+		if(category == "location") {
+			filterChanged.push(value);
 		} else {
-			filterChanged = [...filters[category], value];
+			if(filters[category].includes(value)) {
+				filterChanged = filters[category].filter(function(e) {
+					if(e === value) {
+						return false;
+					} 
+					return true;
+				});
+			} else {
+				filterChanged = [...filters[category], value];
+			}
 		}
 		newFilters = {
 			...filters,
@@ -166,9 +170,13 @@ function SolicitacoesSistema(props) {
 						}
 						<div className="location">
 							<h4>Localização</h4>
-							<input type="text" id="location" name="location" placeholder="Digite a localidade..." />
+							<input type="text" id="location" name="location" placeholder="Digite a localidade..." onKeyPress={(e) => {
+								if(e.key == "Enter") {
+									console.log(e.target.value);
+									updateFilters("location", e.target.value)
+								}
+							}} />
 						</div>
-						<input type="button" id="redefinir" name="redefinir" value="Redefinir filtros" />
 					</section>
 					<section className="solicitations">
 						<h6>Exibindo {solicitations.length} de {solicitationsTotal} resultados.</h6>

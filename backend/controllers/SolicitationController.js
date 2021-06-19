@@ -14,15 +14,25 @@ function date_format(date) {
 
 const getSolicitations = async (req, res) => {
 
+	var search_param = {};
+
 	if(req.query.filters) {
 		filters = JSON.parse(req.query.filters);
 		hasFilters = true;
-		search_param = {
-			type: { $in: filters.type }
-		};
+		console.log(filters);
+		if(filters.type.length > 0) {
+			search_param = {
+				type: { $in: filters.type }
+			};
+		}
+		if(filters.location.length > 0) {
+			search_param = {
+				...search_param,
+				address: { $regex: filters.location[0] } 
+			};
+		}
 	} else {
 		hasFilters = false;
-		search_param = {};
 	}
 
 	if (req.params.type == "queue") {
