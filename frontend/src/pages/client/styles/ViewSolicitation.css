@@ -11,6 +11,10 @@
     margin-top: 5%;
 }
 
+#viewSolicitation {
+    height: 100vh;
+}
+
 .priority-button,.priority-button-select{
     border: 1px solid var(--gray);
     border-radius: 7px;

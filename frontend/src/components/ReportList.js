@@ -56,7 +56,7 @@ class ReportList extends Component{
                                 </Link>
                             </div>
                         )
-                    }): <h5>Não há laudos disponíveis.</h5>
+                    }): <h6>Não há laudos disponíveis.</h6>
                 
                 }
             </div>

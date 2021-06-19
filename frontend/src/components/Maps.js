@@ -23,6 +23,7 @@ function Mapa(props) {
 
   const [currentMarker, setCurrentMarker] = useState(null);
   const [currentAddress, setCurrentAddress] = useState(null);
+  const [currentID, setCurrentID] = useState(null);
 
   const [markerType, setMarkerType] = useState(null);
 
@@ -31,6 +32,7 @@ function Mapa(props) {
 
 	const [newSolicitations, setNewSolicitations] = useState([]);
 	const [solicitationsQueue, setSolicitationsQueue] = useState([]);
+  const [solicitations, setSolicitations] = useState([]);
 
   const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
@@ -44,6 +46,13 @@ function Mapa(props) {
     googleMapsApiKey: API_KEY,
     libraries
   });
+
+  useEffect(() => {
+    if(solicitationsQueue.length > 0 && newSolicitations.length > 0) {
+      setSolicitations([...solicitationsQueue, ...newSolicitations]);
+    }
+
+  }, [solicitationsQueue, newSolicitations]);
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -118,11 +127,11 @@ function Mapa(props) {
           buttonTittle = "Ver informações";
           break;
         case "solicitation":
-          base = "/sistema/home";
+          location = `edit/${currentID}`;
           buttonTittle = "Ver informações";
           break;
         case "newPin":
-          base = "sistema/treeRegister?";
+          base = "treeRegister?";
           buttonTittle = "Cadastrar nova árvore";
           const coords = `lat=${currentMarker.lat}&lng=${currentMarker.lng}&`;
           const address = `address=${currentAddress}`;
@@ -140,14 +149,14 @@ function Mapa(props) {
           location = base+coords+address;
           break;
         case "solicitation":
-          base = "/home";
+          location = `solicitation/${currentID}`;
           buttonTittle = "Ver informações";
           break;
       }
     }
   
     return (
-      <button className="button-container">
+      <button className="button-container" style={styles.buttonInfoWindowStyle}>
         <Link to={location}>{buttonTittle}</Link>
       </button>
     );
@@ -233,19 +242,40 @@ function Mapa(props) {
     handleInfoWindow(e).then(() => setInfoWindowVisible(true));
   }
 
-  async function handleSolicitationsMarkerClick(e) {
+  async function handleSolicitationsMarkerClick(index) {
     setMarkerType("solicitation");
-    handleInfoWindow(e).then(() => setInfoWindowVisible(true));
+    const position = {
+      lat: solicitations[index].lat,
+      lng: solicitations[index].lng
+    }
+    console.log(solicitations[index]);
+    setCurrentAddress(solicitations[index].address);
+    setCurrentID(solicitations[index]._id);
+    setInfoWindowPosition(position);
+    setInfoWindowVisible(true);
   }
 
   function renderInfoWindow() {
+
+    let title = "";
+    switch(markerType) {
+      case "newPin":
+        title = "Nova solicitação"
+        break;
+      case "solicitation":
+        title = "Solicitação pendente"
+        break;
+      default:
+        title = "Informações";
+    }
+
     return (
       <InfoWindow
         position={infoWindowPosition}
         onCloseClick={() => setInfoWindowVisible(false)}
       >
         <div style={styles.infoWindowStyle}>
-          <h1>InfoWindow</h1>
+          <h3>{title}</h3>
           <p>{currentAddress}</p>
           <PinActionButton type={markerType}></PinActionButton>
         </div>
@@ -298,12 +328,12 @@ function Mapa(props) {
         />
       </div>
     </StandaloneSearchBox>
-    {solicitations?.map(solicitation => {
+    {solicitations?.map((solicitation, index) => {
       if(solicitation.lat && solicitation.lng) {
         let position = { lat: solicitation.lat, lng: solicitation.lng };
       
         return (
-          <Marker position={position} icon={solicitationPin} onClick={handleSolicitationsMarkerClick}></Marker>
+          <Marker position={position} icon={solicitationPin} onClick={() => handleSolicitationsMarkerClick(index)}></Marker>
         );
       }
     })}
@@ -329,7 +359,7 @@ function Mapa(props) {
     )
   }
 
-  return isLoaded && !isLoading ? renderMap([...newSolicitations, ...solicitationsQueue]) : <div>Loading...</div>
+  return isLoaded && !isLoading ? renderMap(solicitations) : <div>Loading...</div>
 }
 
 const styles = {
@@ -373,6 +403,10 @@ const styles = {
     backgroundColor: 'white',
     color: 'gray',
     cursor: 'pointer'
+  },
+  buttonInfoWindowStyle: {
+    width: '100%',
+    height: '3rem',
   }
 }
 

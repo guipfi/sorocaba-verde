@@ -64,13 +64,8 @@ function Solicitation(props){
                     {/* <div className="button-max" style={{"display": buttonDisplay}}>
                         <img src={forw} onClick={showSection} alt="Mostrar"/>
                     </div>   */}
-                    
-                    
-                    <div className="button-back">
-                        <a href="/user"><img src={back} onClick={showSection} alt="Mostrar"/></a>
-                    </div>  
 
-                    <FormSolicitation address={address} lat={coords[0]} lng={coords[1]}/>
+                    <FormSolicitation {...props} address={address} lat={coords[0]} lng={coords[1]}/>
 
                 </aside>
             </div>

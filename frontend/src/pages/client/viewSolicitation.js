@@ -3,6 +3,8 @@ import axios from 'axios';
 import UserNav from '../../components/UserNav';
 import ReactLoading from 'react-loading';
 
+import ReportList from '../../components/ReportList';
+
 import {Link} from 'react-router-dom';
 import './styles/ViewSolicitation.css';
 import '../../styles/global.css'
@@ -10,7 +12,7 @@ import backBtn from './assets/chevron-left-solid.svg';
 
 const ViewSolicitation = (props) => {
     
-    const [infos, setInfos] = useState({});
+    const [infos, setInfos] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -25,10 +27,12 @@ const ViewSolicitation = (props) => {
         const getSolicitationById = async (id) => {
             axios.get('http://localhost:8082/api/solicitations/solicitation/content/'+id)
             .then(res =>{
+                console.log(res);
                 if(res.data.code !==1){
                     props.history.goBack();
                 } else{
                     setInfos({
+                        id: res.data.solicitation._id,
                         type:res.data.solicitation.type,
                         address: res.data.solicitation.address,
                         status: res.data.solicitation.status,
@@ -44,13 +48,19 @@ const ViewSolicitation = (props) => {
         const loadAll = async () => {
             await verifyLogin();
             await getSolicitationById(props.match.params.id)
-            setIsLoading(false);
         }
     
         if(isLoading) {
             loadAll();
         }
+
     },[]);
+
+    useEffect(() => {
+        if(infos) {
+            setIsLoading(false);
+        }
+    }, [infos]);
 
     const renderSwitch = () => {
         switch(infos.priority){
@@ -68,12 +78,12 @@ const ViewSolicitation = (props) => {
     }
 
     const back = () => {
-        this.props.history.goBack()
+        props.history.goBack()
     }
 
     if(isLoading === false){
         return(
-            <div class="editSolicitation">
+            <div id="viewSolicitation">
                 <UserNav {...props} ></UserNav>
                 <div class="editSolicitation-content">
                     <div class="editSolicitation-title">
@@ -115,9 +125,8 @@ const ViewSolicitation = (props) => {
                     </div>                   
                     <div class="report-list" id="report-edit">
                         <h5>Laudos</h5>
-                        {!infos.laudos ?
-                         <h6>Não há laudos inseridos solicitação</h6>:<h6>Há Laudos</h6>
-                        }
+                        {console.log(infos.id)}
+                        <ReportList id={infos.id} isTree={false} />
                     </div>
                 </div>
             </div>
