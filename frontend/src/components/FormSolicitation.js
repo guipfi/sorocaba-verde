@@ -1,6 +1,8 @@
 import "./styles/FormSolicitation.css";
 import axios from 'axios';
 
+import backBtn from './assets/chevron-left-solid.svg';
+
 function FormSolicitation(props) {
     
     const handleSubmit = (event) => {
@@ -45,10 +47,19 @@ function FormSolicitation(props) {
             }
         })
     }
+
+    const back = () => {
+        props.history.goBack()
+    }
     
     return(
         <div className="form-container" id="form-solicitation">
-            <h3>Nova solicitação</h3>
+            <div class="form-solicitation-title">
+                <div class="form-back">
+                    <img src={backBtn} onClick={() => back()} alt="Voltar"/>
+                </div>
+                <h3>Nova solicitação</h3>
+            </div>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="address">Endereço</label>
