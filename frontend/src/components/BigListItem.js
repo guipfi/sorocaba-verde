@@ -35,7 +35,7 @@ function BigListItem({ data }) {
 	return (
 		<div className="list-item" id="big-list-item">
 			<div className="imagem">
-				<img src={tree_default} style={{width: "100%", height: "100%"}} />
+				{data.photosURL.length === 0 ?<img src={tree_default} style={{width: "100%", height: "100%"}} />:<img src={data.photosURL[0]} style={{width: "100%", height: "100%"}} /> }
 			</div>
 			<div className="list-item-content">
 				<h3>Solicitação de {data.type}</h3>

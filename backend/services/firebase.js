@@ -51,11 +51,8 @@ const uploadPhotos = async (req,res,next) =>{
     if(!req.files) return next();
     const files = req.files
     let photosArray = []
-    console.log(files)
     files.forEach(file =>{
-        console.log("sim, estou aqui")
         let fileName = `${crypto.randomBytes(16).toString('hex')}-${file.originalname}`; 
-        console.log(fileName)
         let fileUpload = bucket.file(fileName);
 
         let stream = fileUpload.createWriteStream(
@@ -80,7 +77,6 @@ const uploadPhotos = async (req,res,next) =>{
     
     )
     req.files.photoURL = photosArray;
-    console.log(photosArray)
     next();
 }
 

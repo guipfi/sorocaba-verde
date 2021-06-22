@@ -19,7 +19,6 @@ const getSolicitations = async (req, res) => {
 	if(req.query.filters) {
 		filters = JSON.parse(req.query.filters);
 		hasFilters = true;
-		console.log(filters);
 		if(filters.type.length > 0) {
 			search_param = {
 				type: { $in: filters.type }
@@ -146,7 +145,6 @@ const editSolicitation = async (req,res) => {
 
 const postSolicitation = async (req, res) => {
 	try{
-		console.log(req.files)
 		const type = req.body.type;
 		const description = req.body.description;
 		const address = req.body.address;
@@ -155,7 +153,6 @@ const postSolicitation = async (req, res) => {
 		const solicitator = req.body.solicitator;
 		const photosURL = req.files.photoURL
 
-		console.log(photosURL)
 		const newSolicitation = new Solicitation({
 			solicitator,
 			type,
