@@ -10,6 +10,7 @@ import back from './assets/chevron-left-solid.svg';
 import forw from './assets/forward_icon.png';
 import FormSolicitation from '../../components/FormSolicitation';
 
+
 function Solicitation(props){
 
     useEffect(() => {
@@ -18,21 +19,10 @@ function Solicitation(props){
         setCoords([params.get('lat'), params.get('lng')]);
     }, [props.location.search]);
 
-    const [name, setName] = useState("José Augusto");
-    const [sectionDisplay, setSectionDisplay] = useState("block");
-    const [buttonDisplay, setButtonDisplay] = useState("none");
+
     const [address, setAddress] = useState('');
     const [coords, setCoords] = useState([]);
 
-    function hideSection() {
-        setSectionDisplay("none");
-        setButtonDisplay("flex");
-    }
-
-    function showSection(){
-        setSectionDisplay("block");
-        setButtonDisplay("none");
-    }
 
     return(
         <div>
@@ -60,7 +50,7 @@ function Solicitation(props){
                 </section>
                  */}
                 <aside>
-
+        
                     {/* <div className="button-max" style={{"display": buttonDisplay}}>
                         <img src={forw} onClick={showSection} alt="Mostrar"/>
                     </div>   */}

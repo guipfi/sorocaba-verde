@@ -2,6 +2,12 @@
     background-color: var(--gray-light);
 }
 
+#alert-newSolicitation{
+    margin-left: 3%;
+    margin-top: 1%;
+    color: red;
+}
+
 #form-solicitation .form-solicitation-title {
     display: flex;
     align-items: center;
@@ -92,6 +98,15 @@
 
 #form-solicitation h3{
     margin-top: 1rem;
+}
+
+.img-preview{
+    margin-right: 2%;
+}
+
+.img-preview-container{
+    display: flex;
+    margin-left: 2%;
 }
 
 

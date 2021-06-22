@@ -47,4 +47,41 @@ const uploadFile = (req,res,next) =>{
     })
 }
 
-module.exports = {uploadFile}
+const uploadPhotos = async (req,res,next) =>{
+    if(!req.files) return next();
+    const files = req.files
+    let photosArray = []
+    console.log(files)
+    files.forEach(file =>{
+        console.log("sim, estou aqui")
+        let fileName = `${crypto.randomBytes(16).toString('hex')}-${file.originalname}`; 
+        console.log(fileName)
+        let fileUpload = bucket.file(fileName);
+
+        let stream = fileUpload.createWriteStream(
+            {
+                metadata:{
+                    contentType: file.mimetype,
+                }
+            }
+        );
+
+        stream.on("error", (e) =>{
+            console.error(e)
+        })
+        stream.on("finish", async () =>{
+            await fileUpload.makePublic();
+        })
+        
+        stream.end(file.buffer);
+
+        photosArray.push(`https://storage.googleapis.com/${BUCKET}/${fileName}`);
+    }
+    
+    )
+    req.files.photoURL = photosArray;
+    console.log(photosArray)
+    next();
+}
+
+module.exports = {uploadFile, uploadPhotos}

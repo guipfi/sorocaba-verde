@@ -145,23 +145,17 @@ const editSolicitation = async (req,res) => {
 }
 
 const postSolicitation = async (req, res) => {
-
 	try{
+		console.log(req.files)
 		const type = req.body.type;
 		const description = req.body.description;
 		const address = req.body.address;
 		const lat = req.body.lat;
 		const lng = req.body.lng;
 		const solicitator = req.body.solicitator;
-		
+		const photosURL = req.files.photoURL
 
-		const photo_paths = []
-		req.files.forEach((file) => {
-			photo_paths.push(file.filename)
-		})
-
-		const photosURL = photo_paths;
-
+		console.log(photosURL)
 		const newSolicitation = new Solicitation({
 			solicitator,
 			type,

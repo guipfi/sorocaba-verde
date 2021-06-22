@@ -9,7 +9,8 @@ const SolicitationSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
+        default:'',
+        required: false
     },
     type: {
         type: String
