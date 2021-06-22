@@ -100,16 +100,6 @@
     margin-top: 1rem;
 }
 
-.img-preview{
-    margin-right: 2%;
-}
-
-.img-preview-container{
-    display: flex;
-    margin-left: 2%;
-}
-
-
 @media (max-width: 695px){
     #form-solicitation #button-container button{
         max-width: 80% !important;

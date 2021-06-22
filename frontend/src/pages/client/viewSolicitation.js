@@ -39,12 +39,12 @@ const ViewSolicitation = (props) => {
                         date:res.data.solicitation.date,
                         description:res.data.solicitation.description,
                         priority: res.data.solicitation.priority,
-                        photo: res.data.solicitation.photosURL
+                        photos: res.data.solicitation.photosURL
                     });
                 }
             })
         }
-    
+        
         const loadAll = async () => {
             await verifyLogin();
             await getSolicitationById(props.match.params.id)
@@ -118,14 +118,16 @@ const ViewSolicitation = (props) => {
                             <h6>{infos.description}</h6>
                         </div>
                     </div>
-                    <div id="editSolicitation-photos">
+                    <div class="editSolicitation-photos">
                         <h5>Fotos</h5>
-                        {!infos.photos ? 
-                            <h6>Não há fotos nessa solicitação</h6>:<h6>Tem fotos</h6>}
+                        <div class="photos-list">
+                            {!infos.photos ? <h6>Não há fotos nessa solicitação</h6> : infos.photos.map((value) =>{
+                                return (<div class="img-view-container"><div class="img-view"><img src={value} height={300} width={300} /></div></div>)
+                            })}
+                        </div>
                     </div>                   
                     <div class="report-list" id="report-edit">
                         <h5>Laudos</h5>
-                        {console.log(infos.id)}
                         <ReportList id={infos.id} isTree={false} />
                     </div>
                 </div>

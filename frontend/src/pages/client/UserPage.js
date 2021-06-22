@@ -71,7 +71,7 @@ class UserPage extends Component{
                             {   this.state.solicitations.map((solicitation) =>{
                                     return(
                                         <Link to={"/solicitation/"+solicitation._id}>
-                                            <RequestItem status={solicitation.status} date={solicitation.date} type={solicitation.type} address ={solicitation.address} />
+                                            <RequestItem status={solicitation.status} date={solicitation.date} type={solicitation.type} address ={solicitation.address} report={solicitation.report} />
                                         </Link>
                                     )
                                 }) 
@@ -79,11 +79,6 @@ class UserPage extends Component{
                             {(this.state.solicitations.length == 0) ? <h4>Você não possui solicitações</h4> :<div></div>}
                           
                             <p>Clique no mapa para criar uma nova solicitação no endereço desejado</p>
-
-                            {/* <div onClick={() => {this.props.history.replace("/solicitation")}} className="button-container">
-                                <a href="/solicitation">Nova solicitação</a>
-                                <p>Clique no mapa para criar uma nova solicitação no endereço desejado</p>
-                            </div> */}
 
                         </section>
                         

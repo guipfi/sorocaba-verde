@@ -1,6 +1,7 @@
-#editSolicitation-photos, .report-list, #editSolicitation-priority{
+.editSolicitation-photos, .report-list, #editSolicitation-priority{
     margin-top: 2%;
     margin-left: 5%;
+    margin-bottom: 5%;
 }
 
 #priority-buttons{
@@ -13,6 +14,7 @@
 
 #viewSolicitation {
     height: 100vh;
+    width: 100%;
 }
 
 .priority-button,.priority-button-select{

@@ -126,3 +126,15 @@ button:hover {
     background-color: var(--green-dark);
     color: var(--white);
 }
+.img-view{
+    margin-right: 2%;
+}
+
+.img-view-container{
+    display: flex;
+    margin-left: 2%;
+}
+
+.photos-list{
+    display: flex;
+}

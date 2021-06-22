@@ -20,7 +20,7 @@ class EditSolicitation extends Component{
             address:"",
             date:"",
             description:"",
-            photos:"",
+            photos:[],
             status:"",
             priority:"",
             tree:"",
@@ -51,7 +51,7 @@ class EditSolicitation extends Component{
                         date:res.data.solicitation.date,
                         description:res.data.solicitation.description,
                         priority: res.data.solicitation.priority,
-                        photo: res.data.solicitation.photosURL,
+                        photos: res.data.solicitation.photosURL,
                         tree:res.data.solicitation.tree})
                 }
             })
@@ -168,8 +168,11 @@ class EditSolicitation extends Component{
                         </div>
                         <div id="editSolicitation-photos">
                             <h5>Fotos</h5>
-                            {this.state.photos.length === 0 ? 
-                                <h4>Não há fotos nessa solicitação</h4>:<h4>Tem fotos</h4>}
+                            {<div class="photos-list">
+                            {this.state.photos.length === 0 ? <h6>Não há fotos nessa solicitação</h6> : this.state.photos.map((value) =>{
+                                return (<div class="img-view-container"><div class="img-view"><img src={value} height={300} width={300} /></div></div>)
+                            })}
+                            </div>}
                         </div>                   
                         <div id="editSolicitation-priority">
                             <h5>Definir grau de prioridade</h5>

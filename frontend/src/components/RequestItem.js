@@ -6,9 +6,6 @@ function RequestItem({type,address,date,status}){
             <div className="details">
                 <p className="item-title">{type} | {address}</p>
                 <p>Data de solicitação: {date}</p>
-                <div id="solicitation-option">
-                   Opções: <p>Laudo</p>
-                </div>
             </div>
             <div className="status">
                 <p>{status}</p>

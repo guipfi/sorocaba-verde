@@ -99,9 +99,9 @@ function FormSolicitation(props) {
                     {message.length > 0 ? <h5 id="alert-newSolicitation">A sua solicitação deve conter uma descrição!</h5>:null}
 
                     <label>Fotos</label>
-                    <div class="img-preview-container">
+                    <div class="img-view-container">
                         {photos.map((value) =>{
-                            return <div class="img-preview"><img src={value} height={300} width={300} /></div>
+                            return <div class="img-view"><img src={value} height={300} width={300} /></div>
                         })}
                     </div>
                 
