@@ -81,6 +81,19 @@ class EditSolicitation extends Component{
         }
     }
 
+    renderSwitchStatus = () =>{
+        switch(this.state.status){
+            case 1:
+                return(<h6>Na fila de espera</h6>)
+            case 2:
+                return(<h6>Em atendimento</h6>)
+            case 3:
+                return(<h6>Concluído</h6>)
+            default:
+                return(<h6>Não Definido</h6>)
+        }
+    }
+
     back(){
         this.props.history.goBack()
     }
@@ -89,8 +102,12 @@ class EditSolicitation extends Component{
         this.setState({...this.state, priority:newPriority})
     }
 
+    handleStatus(newStatus){
+        this.setState({...this.state, status:newStatus})
+    }
+
     confirmEdit(){
-        axios.post('http://localhost:8082/api/solicitations/solicitation/content/'+this.props.match.params.id, {priority:this.state.priority, tree:this.state.tree})
+        axios.post('http://localhost:8082/api/solicitations/solicitation/content/'+this.props.match.params.id, {priority:this.state.priority, status: this.state.status, tree:this.state.tree})
         .then(res =>{
             if(res.data.code == 1){
                 this.props.history.goBack()
@@ -147,6 +164,11 @@ class EditSolicitation extends Component{
                             </div>
 
                             <div class="editSolicitation-info">
+                                <h5>Status de atendimento</h5>
+                                {this.renderSwitchStatus()}
+                            </div>
+
+                            <div class="editSolicitation-info">
                                 <h5>Data</h5>
                                 <h6>{this.state.date}</h6>
                             </div>
@@ -181,6 +203,19 @@ class EditSolicitation extends Component{
                                     ["Emergência","Urgente","Pouco Urgente","Não Urgente"].map((element,index) => {
                                         if(index+1 != this.state.priority)
                                             return(<div onClick={() => this.handlePriority(index+1)} class="priority-button">{element}</div>)
+                                        else
+                                        return(<div class="priority-button-select">{element}</div>)
+                                    })
+                                }
+                            </div>
+                        </div>
+                        <div id="editSolicitation-status">
+                            <h5>Definir o status da atendimento</h5>
+                            <div id="status-buttons">
+                                {
+                                    ["Na fila de espera","Em atendimento","Concluído"].map((element,index) => {
+                                        if(index+1 != this.state.status)
+                                            return(<div onClick={() => this.handleStatus(index+1)} class="priority-button">{element}</div>)
                                         else
                                         return(<div class="priority-button-select">{element}</div>)
                                     })

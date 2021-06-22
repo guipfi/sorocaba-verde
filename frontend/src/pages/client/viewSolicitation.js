@@ -77,6 +77,19 @@ const ViewSolicitation = (props) => {
         }
     }
 
+    const renderSwitchStatus = () => {
+        switch(infos.status){
+            case 1:
+                return(<h6>Na fila de espera</h6>)
+            case 2:
+                return(<h6>Em atendimento</h6>)
+            case 3:
+                return(<h6>Concluído</h6>)
+            default:
+                return(<h6>Não Definido</h6>)
+        }
+    }
+
     const back = () => {
         props.history.goBack()
     }
@@ -93,6 +106,11 @@ const ViewSolicitation = (props) => {
                         <h2>{infos.type} | {infos.address}</h2>
                     </div>
                     <div id="editSolicitation-infos">
+                    <div class="editSolicitation-info">
+                            <h5>Status de atendimento</h5>
+                            {renderSwitchStatus()}
+                        </div>
+                        
                         <div class="editSolicitation-info">
                             <h5>Grau de Prioridade</h5>
                             {renderSwitch()}

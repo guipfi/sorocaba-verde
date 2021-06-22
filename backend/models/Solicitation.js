@@ -32,8 +32,8 @@ const SolicitationSchema = new mongoose.Schema({
         default: 0
     },
     status: {
-        type: String,
-        default: 'Na fila de espera'
+        type: Number,
+        default: 1
     },
     lat: {
         type: Number,

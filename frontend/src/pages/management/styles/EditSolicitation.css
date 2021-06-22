@@ -23,12 +23,12 @@
     padding-bottom: 5%;   
 }
 
-#editSolicitation-photos, .report-list, #editSolicitation-priority{
+#editSolicitation-photos, .report-list, #editSolicitation-priority, #editSolicitation-status{
     margin-top: 2%;
     margin-left: 5%;
 }
 
-#priority-buttons{
+#priority-buttons, #status-buttons{
     display: flex;
 }
 
