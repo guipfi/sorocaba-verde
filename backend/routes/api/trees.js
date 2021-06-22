@@ -1,13 +1,12 @@
 const express = require('express');
 const { postTree } = require('../../controllers/TreeController');
-const verifyLogin = require('../../middleware/login')
 const verifyAdminLogin = require('../../middleware/loginAdmin');
-
-const upload = require('../../middleware/upload.js');
-const imageValidation = require("../../middleware/imageValidation.js");
+const multer = require('multer');
+const multerConfig = require('../../config/multer');
+const {uploadPhotos} = require('../../services/firebase');
 
 const router = express.Router();
 
-router.post('/new', verifyAdminLogin, upload, postTree);
+router.post('/new', multer(multerConfig).array('files',5), uploadPhotos, postTree);
 
 module.exports = router;

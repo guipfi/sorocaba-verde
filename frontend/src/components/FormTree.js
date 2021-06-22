@@ -8,36 +8,35 @@ import "./styles/FormTree.css";
 function FormTree(props) {
 
     const [quantity, setQuantity] = useState(1);
+    const [photosView, setPhotosView] = useState([]);
+    const [photos, setPhotos] = useState([]);
+
+    const handlePhoto = (event) =>{
+        const uploaded_photos = Array.from(event.target.files)
+        const newPhotosView = uploaded_photos.map((value =>{
+            return URL.createObjectURL(value);
+        }))
+        
+        setPhotosView(newPhotosView);
+        setPhotos(uploaded_photos);
+    }
     
     const handleSubmit = (event) => {
         
         event.preventDefault();
 
-        let img_index
-        if(quantity > 1) {
-            img_index = 4;
-        } else {
-            img_index = 6
-        }
-        const imagesQtd = event.target[img_index].files.length; 
-        let photosURL = [];
-
-        for(var i = 0; i < imagesQtd; i++)
-            photosURL.push(event.target[img_index].files[i].name)
-
-        console.log("aqui");
         axios.get('http://localhost:8082/api/admin/isLogged',{withCredentials: true, credentials: 'include'})
         .then(res=>{
-            console.log(res);
-            if(res.data.code === 1){
-                
+            if(res.data.code === 1){                
                 var bodyFormData = new FormData();
+                for(let i = 0; i < photos.length;i++){
+                    bodyFormData.append('files', photos[i]);
+                }
                 bodyFormData.append('address', props.address);
                 bodyFormData.append('lat', props.lat);
                 bodyFormData.append('lng', props.lng);
                 bodyFormData.append('quantity', event.target[1].value);
                 bodyFormData.append('name', event.target[2].value);
-                bodyFormData.append('photosURL', photosURL);
 
                 if(quantity > 1) {
                     bodyFormData.append('description', event.target[3].value);
@@ -47,11 +46,11 @@ function FormTree(props) {
                     bodyFormData.append('description', event.target[5].value);
                 }
                            
-                console.log("hello");
                 axios.post('http://localhost:8082/api/trees/new', bodyFormData)
                 .then(res =>{
                     if(res.status === 200){
-                        window.location.href = "/sistema/home" 
+                        window.location.href = "/sistema/home"
+                        window.alert("Árvore cadastrada com sucesso!")
                     } else {
                         console.log(res.statusText);
                     }
@@ -100,7 +99,12 @@ function FormTree(props) {
                 </div>
                 
                 <label>Fotos</label>
-                <input className="photo-input" type="file" placeholder="Adicionar Imagem" multiple></input>
+                <div class="img-view-container">
+                    {photosView.map((value) =>{
+                        return <div class="img-view"><img src={value} height={300} width={300} alt="Cadastrando imagem" /></div>
+                    })}
+                </div>
+                <input className="photo-input" type="file" placeholder="Adicionar Imagem" multiple onChange={handlePhoto}></input>
 
                 <div id="button-container">
                     <button onClick={() => window.location.href="/sistema/home"} id="cancel-button">Cancelar</button>

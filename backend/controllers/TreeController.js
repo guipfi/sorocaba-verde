@@ -21,15 +21,7 @@ const postTree = async (req, res) => {
 		const quantity = req.body.quantity;
 		const name = req.body.name;
 		const description = req.body.description;
-		
-		const photo_paths = []
-		req.files.forEach((file) => {
-			photo_paths.push(file.filename)
-		})
-
-		const photosURL = photo_paths;
-
-		var newTree;
+		const photosURL = req.files.photoURL;
 
 		if(quantity > 1) {
 			newTree = new Tree({

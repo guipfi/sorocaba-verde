@@ -8,6 +8,7 @@ import FormTree from '../../components/FormTree';
 function TreeRegister(props){
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         const params = new URLSearchParams(props.location.search); 
         setAddress(params.get('address'));
         setCoords([params.get('lat'), params.get('lng')]);
