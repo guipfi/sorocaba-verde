@@ -33,6 +33,7 @@ function Mapa(props) {
 	const [newSolicitations, setNewSolicitations] = useState([]);
 	const [solicitationsQueue, setSolicitationsQueue] = useState([]);
   const [solicitations, setSolicitations] = useState([]);
+  const [trees, setTrees] = useState([]);
 
   const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
@@ -97,10 +98,21 @@ function Mapa(props) {
         throw new Error(err);
       }
     }
+
+    async function loadTrees() {
+      try {
+        const response = await axios.get('http://localhost:8082/api/trees/0');
+        setTrees(response.data.treesList);
+      } catch(err) {
+        throw new Error(err);
+      }
+    }
   
     async function loadAll() {
       await loadNewSolicitations();
       await loadSolicitationsQueue();
+      await loadTrees();
+      console.log(trees);
       setIsloading(false);
     }
 
@@ -123,8 +135,8 @@ function Mapa(props) {
     if(props.isSystem) {
       switch(type) {
         case "tree":
-          base = "sistema/treeRegister?";
-          buttonTittle = "Ver informações";
+          console.log(currentID);
+          buttonTittle = "Ver informações - em desenvolvimento";
           break;
         case "solicitation":
           location = `edit/${currentID}`;
@@ -141,6 +153,9 @@ function Mapa(props) {
     } else {
       switch(type) {
         case "tree":
+          console.log(currentID);
+          buttonTittle = "Ver informações - em desenvolvimento";
+          break;
         case "newPin":
           base = "/solicitationRegister?";
           buttonTittle = "Criar nova solicitação";
@@ -255,6 +270,19 @@ function Mapa(props) {
     setInfoWindowVisible(true);
   }
 
+  async function handleTreesMarkerClick(index) {
+    setMarkerType("tree");
+    const position = {
+      lat: trees[index].lat,
+      lng: trees[index].lng
+    }
+    console.log(trees[index]);
+    setCurrentAddress(trees[index].address);
+    setCurrentID(trees[index]._id);
+    setInfoWindowPosition(position);
+    setInfoWindowVisible(true);
+  }
+
   function renderInfoWindow() {
 
     let title = "";
@@ -283,7 +311,9 @@ function Mapa(props) {
     )
   }
 
-  const renderMap = (solicitations) => {
+  const renderMap = (solicitations, trees) => {
+
+    console.log(trees);
 
     function onLoadMap(map) {
       if(!mapRef)
@@ -337,6 +367,15 @@ function Mapa(props) {
         );
       }
     })}
+    {trees?.map((tree, index) => {
+      if(tree.lat && tree.lng) {
+        let position = { lat: tree.lat, lng: tree.lng };
+      
+        return (
+          <Marker position={position} icon={treePin} onClick={() => handleTreesMarkerClick(index)}></Marker>
+        );
+      }
+    })}
     {currentMarker ? <Marker position={currentMarker} onClick={handleNewMarkerClick} style={{height: '10rem'}} draggable={true}></Marker> : null}
     {infoWindowVisible ? renderInfoWindow() : null}
     <button onClick={getCurrentLocation} style={styles.buttonStyle}><i class="fas fa-crosshairs"></i></button>
@@ -359,7 +398,7 @@ function Mapa(props) {
     )
   }
 
-  return isLoaded && !isLoading ? renderMap(solicitations) : <div>Loading...</div>
+  return isLoaded && !isLoading ? renderMap(solicitations, trees) : <div>Loading...</div>
 }
 
 const styles = {

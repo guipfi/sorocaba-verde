@@ -9,7 +9,7 @@ const {uploadPhotos} = require('../../services/firebase');
 
 const router = express.Router();
 
-router.get('/:type/:page', verifyAdminLogin, getSolicitations);
+router.get('/:type/:page', getSolicitations);
 router.post('/new', multer(multerConfig).array('files',5), uploadPhotos,  postSolicitation);
 router.get('/userSolicitations', verifyLogin, getUserSolicitations);
 router.get('/solicitation/content/:id', getSolicitationById);

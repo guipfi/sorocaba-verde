@@ -110,7 +110,7 @@ function HomeSistema(props) {
 						<button onClick={() => props.history.replace('/sistema/solicitacoes')}>Acessar solicitações</button>
 					</section>
 					<section className="map-container">
-						<Mapa solicitations={[...newSolicitations, ...solicitationsQueue]} isSystem={true}/>
+						<Mapa isSystem={true}/>
 					</section>
 				</div>
 			</div>

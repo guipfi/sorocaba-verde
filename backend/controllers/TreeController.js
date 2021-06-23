@@ -11,6 +11,45 @@ function date_format(date) {
 	return formated_date;
 }
 
+const getTrees = async (req, res) => {
+
+	let limit = 0;
+
+	if(req.query?.limit) {
+		limit = Number(req.query.limit);
+	}
+
+	try {	
+		const treesNumber = await Tree
+			.countDocuments();
+
+		var treesList = await Tree
+			.find()
+			.sort({date: "desc"})
+			.limit(limit)
+			.skip(Number(req.params.page * limit));
+
+		let trees = treesList.map(item => {
+			let formated_date = date_format(item.date);
+			let result = {
+				...item._doc,
+				date: formated_date
+			}
+			return result;
+		});
+			
+		let response = {
+			total: treesNumber,
+			treesList: trees
+		}
+
+		res.status(200).json(response);
+		
+	} catch (err) {
+		res.status(400).json({ error: err });
+	}
+}
+
 const postTree = async (req, res) => {
 
 	try{
@@ -58,4 +97,4 @@ const postTree = async (req, res) => {
 	}
 }
 
-module.exports = { postTree }
+module.exports = { postTree, getTrees }
