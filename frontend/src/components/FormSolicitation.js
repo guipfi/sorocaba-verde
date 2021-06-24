@@ -20,7 +20,7 @@ function FormSolicitation(props) {
             setMessage("O campo de descrição é obrigatório");
             
         } else{
-            axios.get('http://localhost:8082/api/users/isLogged',{withCredentials: true, credentials: 'include'})
+            axios.get(`${process.env.REACT_APP_API_URL}/users/isLogged`,{withCredentials: true, credentials: 'include'})
             .then(res=>{
                 if(res.data.code === 1){
                     
@@ -37,7 +37,7 @@ function FormSolicitation(props) {
                     bodyFormData.append('description', description);
                     bodyFormData.append('solicitator', res.data.user._id);
         
-                    axios.post('http://localhost:8082/api/solicitations/new', bodyFormData)
+                    axios.post(`${process.env.REACT_APP_API_URL}/solicitations/new`, bodyFormData)
                     .then(res =>{
                         if(res.status === 200){
                             setModal(true)

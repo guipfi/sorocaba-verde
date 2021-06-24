@@ -60,7 +60,7 @@ function SolicitacoesSistema(props) {
 		if(!isFirstRun.current) {
 			async function loadSolicitations() {
 				try {
-					const response = await axios.get(`http://localhost:8082/api/solicitations/${props.type}/${page}?filters=${JSON.stringify(filters)}&limit=6`);
+					const response = await axios.get(`${process.env.REACT_APP_API_URL}/solicitations/${props.type}/${page}?filters=${JSON.stringify(filters)}&limit=6`);
 					let newSolicitations = response.data.solicitationsList;
 					setSolicitations(newSolicitations);
 					setSolicitationsTotal(response.data.total);
@@ -75,7 +75,7 @@ function SolicitacoesSistema(props) {
 	useEffect(() => {
 
 		async function verifyLogin() {
-			axios.get('http://localhost:8082/api/admin/isLogged',{withCredentials: true, credentials: 'include'})
+			axios.get(`${process.env.REACT_APP_API_URL}/admin/isLogged`,{withCredentials: true, credentials: 'include'})
 			.then(res =>{
 				if(res.data.code !== 1){
 					props.history.replace('/sistema/login');
@@ -86,7 +86,7 @@ function SolicitacoesSistema(props) {
 		async function loadSolicitations() {
 
 			try {
-				const response = await axios.get(`http://localhost:8082/api/solicitations/${props.type}/${page}?filters=${JSON.stringify(filters)}&limit=6`);
+				const response = await axios.get(`${process.env.REACT_APP_API_URL}/solicitations/${props.type}/${page}?filters=${JSON.stringify(filters)}&limit=6`);
 				let newSolicitations = [...solicitations, ...response.data.solicitationsList];
 				setSolicitations(newSolicitations);
 				setSolicitationsTotal(response.data.total);

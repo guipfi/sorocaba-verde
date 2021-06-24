@@ -40,14 +40,14 @@ class RegisterUser extends Component{
 
     onSubmit = (e) =>{
         e.preventDefault();
-        axios.post('http://localhost:8082/api/users/register',this.state)
+        axios.post(`${process.env.REACT_APP_API_URL}/users/register`,this.state)
         .then((res) =>{
             switch(res.data.code){
                 case 0:
                     this.setState({...this.state, message:"Os campos senha e de confirmação de senha devem ser iguais."})
                     break;
                 case 1:
-                    axios.post('http://localhost:8082/api/users/login',this.state,{withCredentials: true, credentials: 'include'})
+                    axios.post(`${process.env.REACT_APP_API_URL}/users/login`,this.state,{withCredentials: true, credentials: 'include'})
                     .then(res =>{
                         if(res.data.code === 1){
                             this.props.history.replace('/user');

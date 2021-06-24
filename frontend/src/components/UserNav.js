@@ -19,7 +19,7 @@ class UserNav extends Component{
     }
 
     logout = () =>{
-        axios.get('http://localhost:8082/api/users/logout',{withCredentials: true, credentials: 'include'}).then((res) =>{
+        axios.get(`${process.env.REACT_APP_API_URL}/users/logout`,{withCredentials: true, credentials: 'include'}).then((res) =>{
             if(res.data.code === 1){
               this.setState({
                 isLogged: false
@@ -31,7 +31,7 @@ class UserNav extends Component{
     }
 
     componentDidMount(){
-        axios.get('http://localhost:8082/api/users/isLogged',{withCredentials: true, credentials: 'include'})
+        axios.get(`${process.env.REACT_APP_API_URL}/users/isLogged`,{withCredentials: true, credentials: 'include'})
         .then((res) =>{
           if(res.data.code === 1){
             this.setState({

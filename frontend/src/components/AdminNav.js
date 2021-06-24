@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { useHistory } from 'react-router';
 import axios from 'axios';
 import AdminMenuItems from './AdminMenuItems';
 import "../styles/global.css"
@@ -14,7 +15,7 @@ class AdminNav extends Component{
     }
 
     componentDidMount(){
-        axios.get('http://localhost:8082/api/admin/isLogged',{withCredentials: true, credentials: 'include'})
+        axios.get(`${process.env.REACT_APP_API_URL}/admin/isLogged` ,{withCredentials: true, credentials: 'include'})
         .then((res) =>{
           if(res.data.code === 1){
             this.setState({
@@ -29,7 +30,7 @@ class AdminNav extends Component{
       }
 
     logout = () =>{
-        axios.get('http://localhost:8082/api/admin/logout',{withCredentials: true, credentials: 'include'}).then((res) =>{
+        axios.get(`${process.env.REACT_APP_API_URL}/admin/logout`,{withCredentials: true, credentials: 'include'}).then((res) =>{
             if(res.data.code === 1){
               this.setState({
                 isLogged: false

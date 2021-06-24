@@ -18,7 +18,7 @@ const Login = (props) =>{
     const onSubmit = (e) => {
         e.preventDefault();
         if(props.isAdmin !== true){
-            axios.post('http://localhost:8082/api/users/login', data,{withCredentials: true, credentials: 'include'}).then(res => {
+            axios.post(`${process.env.REACT_APP_API_URL}/users/login`, data,{withCredentials: true, credentials: 'include'}).then(res => {
                 switch(res.data.code){
                     case 1:
                         props.history.replace('/user')
@@ -35,7 +35,7 @@ const Login = (props) =>{
                 
             }).catch(err => console.log(err))
         } else{
-            axios.post('http://localhost:8082/api/admin/login', data,{withCredentials: true, credentials: 'include'}).then(res=>{
+            axios.post(`${process.env.REACT_APP_API_URL}/admin/login`, data,{withCredentials: true, credentials: 'include'}).then(res=>{
                 switch(res.data.code){
                     case 1:
                         props.history.replace('/sistema/home')

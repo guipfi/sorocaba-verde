@@ -24,7 +24,7 @@ class ReportRegister extends Component{
 
     componentDidMount(){
         const verifyLogin = async () =>{
-            axios.get('http://localhost:8082/api/admin/isLogged',{withCredentials: true, credentials: 'include'})
+            axios.get(`${process.env.REACT_APP_API_URL}/admin/isLogged`,{withCredentials: true, credentials: 'include'})
             .then(res =>{
                 if(res.data.code !== 1){
                     this.props.history.replace('/sistema/login');
@@ -36,7 +36,7 @@ class ReportRegister extends Component{
 
 
         const getSolicitationById = async (id) => {
-            axios.get('http://localhost:8082/api/solicitations/solicitation/content/'+id)
+            axios.get(`${process.env.REACT_APP_API_URL}/solicitations/solicitation/content/`+id)
             .then(res =>{
                 if(res.data.code !==1){
                     this.props.history.goBack();
@@ -92,7 +92,7 @@ class ReportRegister extends Component{
         data.append("adminId", this.state.adminId)
         data.append("solicitation",this.state.solicitation)
         if(this.state.tree !== null)  data.append("tree", this.state.tree)
-        axios.post('http://localhost:8082/api/reports/upload', data)
+        axios.post(`${process.env.REACT_APP_API_URL}/reports/upload`, data)
         .then(res =>{
             this.back()
         }).catch(res =>{

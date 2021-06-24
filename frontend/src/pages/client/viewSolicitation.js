@@ -17,7 +17,7 @@ const ViewSolicitation = (props) => {
 
     useEffect(() => {
         const verifyLogin = async () => {
-            axios.get('http://localhost:8082/api/users/isLogged',{withCredentials: true, credentials: 'include'})
+            axios.get(`${process.env.REACT_APP_API_URL}/users/isLogged`,{withCredentials: true, credentials: 'include'})
             .then(res =>{
                 if(res.data.code !== 1){
                     props.history.replace('/login');
@@ -25,7 +25,7 @@ const ViewSolicitation = (props) => {
             })
         }
         const getSolicitationById = async (id) => {
-            axios.get('http://localhost:8082/api/solicitations/solicitation/content/'+id)
+            axios.get(`${process.env.REACT_APP_API_URL}/solicitations/solicitation/content/`+id)
             .then(res =>{
                 console.log(res);
                 if(res.data.code !==1){
