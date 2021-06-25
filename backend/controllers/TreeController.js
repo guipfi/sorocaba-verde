@@ -1,4 +1,5 @@
 const Tree = require('../models/Tree');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 function date_format(date) {
 
@@ -50,6 +51,32 @@ const getTrees = async (req, res) => {
 	}
 }
 
+const getTreeById = async (req,res) =>{
+	try{
+		Tree.findOne({_id:ObjectId(req.params.id)})
+		.then((tree) => {
+			let treeFormated = {...tree._doc, date:date_format(tree.date)}
+			res.status(200).json({
+				code:1,
+				tree: treeFormated
+			})
+		})
+	} catch(err){
+		res.status(400).json({code:0, error:err});
+	}
+}
+
+const editTree = async (req,res) => {
+	try{
+		const filter = { _id: req.params.id};
+		const update = {quantity: req.body.quantity, height: req.body.height, age: req.body.age};
+		const doc = await Tree.findOneAndUpdate(filter,update);
+		res.status(200).json({code:1, update:doc})
+	} catch(err){
+		res.status(400).json({code:0, error: err });
+	}
+}
+
 const postTree = async (req, res) => {
 
 	try{
@@ -60,6 +87,8 @@ const postTree = async (req, res) => {
 		const quantity = req.body.quantity;
 		const name = req.body.name;
 		const description = req.body.description;
+		const height = req.body.height;
+		const age = req.body.age;
 		const photosURL = req.files.photoURL;
 
 		if(quantity > 1) {
@@ -70,7 +99,9 @@ const postTree = async (req, res) => {
 				address,
 				lat,
 				lng,
-				photosURL
+				photosURL,
+				age,
+				height
 			});
 		} else {
 			const height = req.body.height;
@@ -97,4 +128,4 @@ const postTree = async (req, res) => {
 	}
 }
 
-module.exports = { postTree, getTrees }
+module.exports = { postTree, getTrees, editTree, getTreeById }
