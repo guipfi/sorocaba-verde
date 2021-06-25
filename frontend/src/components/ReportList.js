@@ -15,6 +15,7 @@ class ReportList extends Component{
     }
 
     componentDidMount(){
+        window.scrollTo(0, 0);
 
         if(this.props.isTree === true){
             axios.get(`${process.env.REACT_APP_API_URL}/reports/tree/`+this.props.id)

@@ -23,6 +23,8 @@ class ReportRegister extends Component{
     }
 
     componentDidMount(){
+        window.scrollTo(0, 0);
+
         const verifyLogin = async () =>{
             axios.get(`${process.env.REACT_APP_API_URL}/admin/isLogged`,{withCredentials: true, credentials: 'include'})
             .then(res =>{
