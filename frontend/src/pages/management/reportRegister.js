@@ -48,17 +48,36 @@ class ReportRegister extends Component{
                 }
             })
         }
+
+        const getTreeById = async (id) =>{
+            axios.get(`${process.env.REACT_APP_API_URL}/trees/tree/content/`+id)
+            .then(res=>{
+                if(res.data.code !==1){
+                    this.props.history.goBack();
+                } else{
+                    this.setState({...this.state,
+                     address:res.data.tree.address,
+                     tree: res.data.tree._id,
+                     solicitation:null})
+                }
+            })
+        }
         
         const loadAll = async () =>{
             await verifyLogin();
-            await getSolicitationById(this.props.match.params.id)
+            if(this.props.location.state.isTree === true){
+                await getTreeById(this.props.match.params.id)
+            } else{
+                await getSolicitationById(this.props.match.params.id)
+            }
+
             this.setState({...this.state,isLoading:false});
         }
 
         loadAll();
     }
     
-    back(){
+    back(){ 
         this.props.history.goBack()
     }
 
@@ -90,7 +109,8 @@ class ReportRegister extends Component{
         data.append("address", this.state.address)
         data.append("adminName", this.state.adminName)
         data.append("adminId", this.state.adminId)
-        data.append("solicitation",this.state.solicitation)
+        if(!this.props.location.state.isTree)
+            data.append("solicitation",this.state.solicitation)
         if(this.state.tree !== null)  data.append("tree", this.state.tree)
         axios.post(`${process.env.REACT_APP_API_URL}/reports/upload`, data)
         .then(res =>{

@@ -27,7 +27,7 @@ const AdminMenuItems = [
     },
 
     {   title: "Banco de Árvores",
-        url:"#",
+        url:"/sistema/banco-arvores",
         cName:"nav-links",
         type: 0
     },

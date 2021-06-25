@@ -51,7 +51,7 @@ class ReportList extends Component{
                                     <div class="title">{name}</div>    
                                     <div class="subtitle">Data: {value.date}</div>
                                 </div>
-                                <Link style={{color:'black'}} to={{pathname:"/laudo/"+value._id, isAdmin: true}}>
+                                <Link style={{color:'black'}} to={{pathname:"/laudo/"+value._id, state:{isAdmin:this.props.isAdmin}}}>
                                     <div class="reportItem-button">Ver Laudo</div>
                                 </Link>
                             </div>

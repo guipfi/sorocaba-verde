@@ -58,7 +58,7 @@ class ViewReport extends Component{
         if(this.state.isLoading === false){
             return(
                 <div class="viewReport">
-                    {this.props.location.isAdmin === true ?  <AdminNav {...this.props} />: <UserNav {...this.props}/>}
+                    {this.props.location.state.isAdmin === true ?  <AdminNav {...this.props} />: <UserNav {...this.props}/>}
                     <div class="viewReport-content">
                         <div class="viewReport-title">
                             <div class="edit-back">

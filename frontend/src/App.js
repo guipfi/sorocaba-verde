@@ -9,6 +9,7 @@ import Sistema from './sistema';
 import AdminLogin from './pages/management/AdminLogin';
 import HomeSistema from './pages/management/Home';
 import SolicitacoesSistema from './pages/management/Solicitations';
+import TreeBase from './pages/management/TreeBase';
 import UserPage from './pages/client/UserPage';
 import Solicitation from './pages/client/Solicitation';
 import EditSolicitation from './pages/management/editSolicitation';
@@ -16,6 +17,7 @@ import TreeRegister from './pages/management/TreeRegister';
 import ReportRegister from './pages/management/reportRegister';
 import ViewReport from './pages/ViewReport';
 import ViewSolicitation from './pages/client/viewSolicitation';
+import EditTree from './pages/management/editTree';
 
 class App extends Component {
   constructor () {
@@ -57,10 +59,12 @@ class App extends Component {
             <Route path='/login' component= {UserLogin} />
             <Route path='/sistema/home' component= {HomeSistema} />
             <Route path='/sistema/novas-solicitacoes' component={(props) => <SolicitacoesSistema {...props} type={"new"} />} />
+            <Route path='/sistema/banco-arvores' component={(props) => <TreeBase {...props} type={"new"} />} />
             <Route path='/sistema/solicitacoes' component={(props) => <SolicitacoesSistema {...props} type={"queue"} />}/>
             <Route path='/sistema/login' component={AdminLogin}/>
             <Route path='/sistema/cadastrar-laudo/:id' component={ReportRegister} />
             <Route path='/sistema/edit/:id' component={EditSolicitation}/>
+            <Route path='/sistema/tree-page/:id' component={EditTree}/>
             <Route path='/laudo/:id' component={ViewReport} />
             <Route path='/user' component={UserPage} />
             <Route path='/solicitationRegister' render={(props) => <Solicitation {...props} />} />

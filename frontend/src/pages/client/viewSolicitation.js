@@ -146,7 +146,7 @@ const ViewSolicitation = (props) => {
                     </div>                   
                     <div class="report-list" id="report-edit">
                         <h5>Laudos</h5>
-                        <ReportList id={infos.id} isTree={false} />
+                        <ReportList id={infos.id} isTree={false} isAdmin ={false} />
                     </div>
                 </div>
             </div>

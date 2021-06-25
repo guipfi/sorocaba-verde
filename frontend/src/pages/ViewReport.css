@@ -1,5 +1,6 @@
 .viewReport{
     background-color: var(--gray-light);
+    height: 100vh
 }
 
 .viewReport-content{
