@@ -152,16 +152,34 @@ const postSolicitation = async (req, res) => {
 		const lng = req.body.lng;
 		const solicitator = req.body.solicitator;
 		const photosURL = req.files.photoURL
+		const tree = req.body.tree;
 
-		const newSolicitation = new Solicitation({
-			solicitator,
-			type,
-			description,
-			address,
-			lat,
-			lng,
-			photosURL
-		});
+		var solicitationData;
+
+		if(tree) {
+			solicitationData = {
+				solicitator,
+				type,
+				description,
+				address,
+				lat,
+				lng,
+				photosURL,
+				tree
+			}
+		} else {
+			solicitationData = {
+				solicitator,
+				type,
+				description,
+				address,
+				lat,
+				lng,
+				photosURL,
+			}
+		}
+
+		newSolicitation = new Solicitation(solicitationData);
 
 		newSolicitation.save()
 		.then(() => res.status(200).json("Solicitação adicionada!"))

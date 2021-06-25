@@ -35,9 +35,6 @@ function Mapa(props) {
   const [solicitations, setSolicitations] = useState([]);
   const [trees, setTrees] = useState([]);
 
-  const [error, setError] = useState("");
-  const [showError, setShowError] = useState(false);
-
   const [centerPos, setCenterPos] = useState({
     lat: -23.5062, 
     lng: -47.4559 
@@ -62,8 +59,6 @@ function Mapa(props) {
       if(!currentAddress) {
         setCurrentMarker(null);
         console.log("Endereço inválido, lembre-se nosso sistema de arborização é válido somente em Sorocaba");
-        setError("Endereço inválido, lembre-se nosso sistema de arborização é válido somente em Sorocaba");
-        setShowError(true);
       } 
     }
   },[currentAddress]);
@@ -135,26 +130,24 @@ function Mapa(props) {
     if(props.isSystem) {
       switch(type) {
         case "tree":
-          console.log(currentID);
-          buttonTittle = "Ver informações - em desenvolvimento";
+          buttonTittle = "Ver informações";
+          location = `tree/${currentID}`;
           break;
         case "solicitation":
           location = `edit/${currentID}`;
           buttonTittle = "Ver informações";
           break;
         case "newPin":
-          base = "treeRegister?";
           buttonTittle = "Cadastrar nova árvore";
-          const coords = `lat=${currentMarker.lat}&lng=${currentMarker.lng}&`;
-          const address = `address=${currentAddress}`;
-          location = base+coords+address;
+          location = `treeRegister?lat=${currentMarker.lat}&lng=${currentMarker.lng}&address=${currentAddress}`;
           break;
       }
     } else {
       switch(type) {
         case "tree":
           console.log(currentID);
-          buttonTittle = "Ver informações - em desenvolvimento";
+          buttonTittle = "Ver informações";
+          location = `tree/${currentID}`;
           break;
         case "newPin":
           base = "/solicitationRegister?";
@@ -287,6 +280,9 @@ function Mapa(props) {
 
     let title = "";
     switch(markerType) {
+      case "tree":
+        title = "Árvore"
+        break;
       case "newPin":
         title = "Nova solicitação"
         break;

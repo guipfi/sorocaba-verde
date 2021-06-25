@@ -17,6 +17,7 @@ import TreeRegister from './pages/management/TreeRegister';
 import ReportRegister from './pages/management/reportRegister';
 import ViewReport from './pages/ViewReport';
 import ViewSolicitation from './pages/client/viewSolicitation';
+import ViewTree from './pages/client/viewTree';
 import EditTree from './pages/management/editTree';
 
 class App extends Component {
@@ -70,6 +71,7 @@ class App extends Component {
             <Route path='/solicitationRegister' render={(props) => <Solicitation {...props} />} />
             <Route path='/sistema/treeRegister' render={(props) => <TreeRegister {...props} />} />
             <Route path='/solicitation/:id' component={ViewSolicitation} />
+            <Route path='/tree/:id' component={ViewTree} />
           </Router>
         );
       }  

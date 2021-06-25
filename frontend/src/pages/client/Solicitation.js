@@ -17,11 +17,15 @@ function Solicitation(props){
         const params = new URLSearchParams(props.location.search); 
         setAddress(params.get('address'));
         setCoords([params.get('lat'), params.get('lng')]);
+        if(params.get('tree')) {
+            setTree(params.get('tree'));
+        }
     }, [props.location.search]);
 
 
     const [address, setAddress] = useState('');
     const [coords, setCoords] = useState([]);
+    const [tree, setTree] = useState(null);
 
 
     return(
@@ -55,7 +59,7 @@ function Solicitation(props){
                         <img src={forw} onClick={showSection} alt="Mostrar"/>
                     </div>   */}
 
-                    <FormSolicitation {...props} address={address} lat={coords[0]} lng={coords[1]}/>
+                    <FormSolicitation {...props} address={address} lat={coords[0]} lng={coords[1]} tree={tree}/>
 
                 </aside>
             </div>

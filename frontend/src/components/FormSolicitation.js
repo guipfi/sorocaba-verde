@@ -30,6 +30,10 @@ function FormSolicitation(props) {
                         bodyFormData.append('files', photosData[i]);
                     }
 
+                    if(props.tree) {
+                        bodyFormData.append('tree', props.tree);
+                    }
+
                     bodyFormData.append('address', props.address);
                     bodyFormData.append('lat', props.lat);
                     bodyFormData.append('lng', props.lng);
