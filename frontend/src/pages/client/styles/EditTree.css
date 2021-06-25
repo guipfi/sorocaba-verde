@@ -1,0 +1,99 @@
+.editTree{
+    background-color: var(--gray-light);
+}
+
+.editTree-content{
+    margin: 3% 10% 0% 2%;
+}
+
+
+.editTree-title{
+    display: flex;
+    align-items: center;
+}
+
+.editTree-info, .editTree-options{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.editTree-options{
+    display: flex;
+    margin-top: 5%;
+    padding-bottom: 5%;   
+}
+
+#editTree-photos, .report-list, #editTree-priority, #editTree-status{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+#priority-buttons, #status-buttons{
+    display: flex;
+}
+
+#report-edit h5{
+    margin-top: 5%;
+}
+
+.priority-button,.priority-button-select{
+    border: 1px solid var(--gray);
+    border-radius: 7px;
+    color:  var(--gray);
+    width: 20%;
+    padding: 0.5%;
+    padding-left: 1%;
+    margin-right: 2%;
+    cursor: pointer;
+}
+
+.priority-button-select{
+    background-color: var(--green);
+    color:  var(--white);
+}
+
+#insert-report{
+    width: 40%;
+    margin-top: 5%;
+    font-weight: bold;
+}
+
+#editSVG{
+    margin-left: 2%;
+    cursor: pointer;
+}
+
+#editTree{
+    display: none;
+}
+
+#editTreeInput{
+    border: 1px solid var(--gray) ;
+    border-radius: 5%;
+    max-width: 20%;
+    background-color: transparent;
+
+}
+
+.salvarButton{
+    background-color: var(--green);
+    border: 1px solid var(--green);
+    color:  var(--white);
+    margin-left: 2%;
+}
+
+.cancelarButton{
+    background-color: transparent;
+    border: 1px solid var(--green);
+    color: var(--dark-green);
+}
+
+.salvarButton,.cancelarButton{
+    margin-top: 1%;
+    border-radius: 8px;
+    padding: 0.2%;
+    text-align: center;
+    width: 4%;
+    cursor: pointer;
+    margin-right: 1%;
+}
