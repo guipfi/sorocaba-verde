@@ -17,12 +17,12 @@ class ReportList extends Component{
     componentDidMount(){
 
         if(this.props.isTree === true){
-            axios.get('http://localhost:8082/api/reports/tree/'+this.props.id)
+            axios.get(`${process.env.REACT_APP_API_URL}/reports/tree/`+this.props.id)
             .then(res =>{
                 this.setState({reports:res.data.reports});
             })
         } else{
-            axios.get('http://localhost:8082/api/reports/solicitation/'+this.props.id)
+            axios.get(`${process.env.REACT_APP_API_URL}/reports/solicitation/`+this.props.id)
             .then(res =>{
                 this.setState({reports:res.data.reports});
             })

@@ -25,7 +25,7 @@ function FormTree(props) {
         
         event.preventDefault();
 
-        axios.get('http://localhost:8082/api/admin/isLogged',{withCredentials: true, credentials: 'include'})
+        axios.get(`${process.env.REACT_APP_API_URL}/api/admin/isLogged`,{withCredentials: true, credentials: 'include'})
         .then(res=>{
             if(res.data.code === 1){                
                 var bodyFormData = new FormData();
@@ -46,7 +46,7 @@ function FormTree(props) {
                     bodyFormData.append('description', event.target[5].value);
                 }
                            
-                axios.post('http://localhost:8082/api/trees/new', bodyFormData)
+                axios.post(`${process.env.REACT_APP_API_URL}/trees/new`, bodyFormData)
                 .then(res =>{
                     if(res.status === 200){
                         window.location.href = "/sistema/home"

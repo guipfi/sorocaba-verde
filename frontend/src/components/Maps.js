@@ -83,7 +83,7 @@ function Mapa(props) {
   useEffect(() => {
     async function loadNewSolicitations() {
       try {
-        const response = await axios.get('http://localhost:8082/api/solicitations/new/0');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/solicitations/new/0`);
         setNewSolicitations(response.data.solicitationsList);
       } catch(err) {
         throw new Error(err);
@@ -92,7 +92,7 @@ function Mapa(props) {
   
     async function loadSolicitationsQueue() {
       try {
-        const response = await axios.get('http://localhost:8082/api/solicitations/queue/0');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/solicitations/queue/0`);
         setSolicitationsQueue(response.data.solicitationsList);
       } catch(err) {
         throw new Error(err);
@@ -101,7 +101,7 @@ function Mapa(props) {
 
     async function loadTrees() {
       try {
-        const response = await axios.get('http://localhost:8082/api/trees/0');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/trees/0`);
         setTrees(response.data.treesList);
       } catch(err) {
         throw new Error(err);

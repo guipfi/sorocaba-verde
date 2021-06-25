@@ -20,7 +20,7 @@ class ViewReport extends Component{
     componentDidMount(){
         
         const getReportById = async (id) => {
-            axios.get("http://localhost:8082/api/reports/report/"+id)
+            axios.get(`${process.env.REACT_APP_API_URL}/reports/report/`+id)
             .then((res) =>{
                 let name = res.data.report.docName.split('.')[0]
                 this.setState({...this.state, ...res.data.report, title: name})

@@ -30,7 +30,7 @@ class EditSolicitation extends Component{
     
     componentDidMount(){
         const verifyLogin = async () => {
-			axios.get('http://localhost:8082/api/admin/isLogged',{withCredentials: true, credentials: 'include'})
+			axios.get(`${process.env.REACT_APP_API_URL}/admin/isLogged`,{withCredentials: true, credentials: 'include'})
 			.then(res =>{
 				if(res.data.code !== 1){
 					this.props.history.replace('/sistema/login');
@@ -39,7 +39,7 @@ class EditSolicitation extends Component{
 		}
 
         const getSolicitationById = async (id) => {
-            axios.get('http://localhost:8082/api/solicitations/solicitation/content/'+id)
+            axios.get(`${process.env.REACT_APP_API_URL}/solicitations/solicitation/content/`+id)
             .then(res =>{
                 if(res.data.code !==1){
                     this.props.history.goBack();
@@ -107,7 +107,7 @@ class EditSolicitation extends Component{
     }
 
     confirmEdit(){
-        axios.post('http://localhost:8082/api/solicitations/solicitation/content/'+this.props.match.params.id, {priority:this.state.priority, status: this.state.status, tree:this.state.tree})
+        axios.post(`${process.env.REACT_APP_API_URL}/solicitations/solicitation/content/`+this.props.match.params.id, {priority:this.state.priority, status: this.state.status, tree:this.state.tree})
         .then(res =>{
             if(res.data.code == 1){
                 this.props.history.goBack()

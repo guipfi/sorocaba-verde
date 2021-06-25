@@ -25,11 +25,11 @@ class UserPage extends Component{
     }
 
     componentDidMount(){
-        axios.get('http://localhost:8082/api/users/isLogged',{withCredentials: true, credentials: 'include'})
+        axios.get(`${process.env.REACT_APP_API_URL}/users/isLogged`,{withCredentials: true, credentials: 'include'})
         .then(res =>{
             if(res.data.code === 1){
                 let name = res.data.user.name
-                axios.get('http://localhost:8082/api/solicitations/userSolicitations',
+                axios.get(`${process.env.REACT_APP_API_URL}/solicitations/userSolicitations`,
                 {withCredentials: true, credentials: 'include'}).then(
                     res =>{
                         this.setState({...this.state, name, isLoading:false, solicitations: res.data.solicitations})

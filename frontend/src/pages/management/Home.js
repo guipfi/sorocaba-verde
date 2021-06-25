@@ -23,7 +23,7 @@ function HomeSistema(props) {
 	useEffect(() => {
 
 		async function verifyLogin() {
-			axios.get('http://localhost:8082/api/admin/isLogged',{withCredentials: true, credentials: 'include'})
+			axios.get(`${process.env.REACT_APP_API_URL}/admin/isLogged`,{withCredentials: true, credentials: 'include'})
 			.then(res =>{
 				if(res.data.code !== 1){
 					props.history.replace('/sistema/login');
@@ -33,7 +33,7 @@ function HomeSistema(props) {
 	
 		async function loadNewSolicitations() {
 			try {
-				const response = await axios.get('http://localhost:8082/api/solicitations/new/0?limit=6');
+				const response = await axios.get(`${process.env.REACT_APP_API_URL}/solicitations/new/0?limit=6`);
 				setNewSolicitations(response.data.solicitationsList);
 				setNewSolicitationsTotal(response.data.total);
 			} catch(err) {
@@ -43,7 +43,7 @@ function HomeSistema(props) {
 	
 		async function loadSolicitationsQueue() {
 			try {
-				const response = await axios.get('http://localhost:8082/api/solicitations/queue/0?limit=6');
+				const response = await axios.get(`${process.env.REACT_APP_API_URL}/solicitations/queue/0?limit=6`);
 				setSolicitationsQueue(response.data.solicitationsList);
 				setSolicitationsQueueTotal(response.data.total);
 				console.log(solicitationsQueue)
