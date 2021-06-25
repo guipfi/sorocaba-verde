@@ -226,7 +226,7 @@ class EditSolicitation extends Component{
                             <h5>Laudos</h5>
                             <ReportList id={this.props.match.params.id} isTree={false} />
                             
-                            <Link to={{pathname:"/sistema/cadastrar-laudo/"+this.props.match.params.id, address:this.state.address}}> 
+                            <Link to={{pathname:"/sistema/cadastrar-laudo/"+this.props.match.params.id, state:{isTree:true}}}> 
                                 <div class = "confirm-edit" id="insert-report">
                                     Inserir novo laudo
                                 </div>
