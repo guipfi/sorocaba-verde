@@ -25,7 +25,7 @@ function FormTree(props) {
         
         event.preventDefault();
 
-        axios.get(`${process.env.REACT_APP_API_URL}/api/admin/isLogged`,{withCredentials: true, credentials: 'include'})
+        axios.get(`${process.env.REACT_APP_API_URL}/admin/isLogged`,{withCredentials: true, credentials: 'include'})
         .then(res=>{
             if(res.data.code === 1){                
                 var bodyFormData = new FormData();

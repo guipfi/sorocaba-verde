@@ -59,6 +59,7 @@ function SolicitacoesSistema(props) {
 	useEffect(() => {
 		if(!isFirstRun.current) {
 			async function loadSolicitations() {
+				console.log("loading");
 				try {
 					const response = await axios.get(`${process.env.REACT_APP_API_URL}/solicitations/${props.type}/${page}?filters=${JSON.stringify(filters)}&limit=6`);
 					let newSolicitations = response.data.solicitationsList;
@@ -68,7 +69,11 @@ function SolicitacoesSistema(props) {
 					throw new Error(err);
 				}
 			}
-			loadSolicitations();
+
+			const timeOutId = setTimeout(() => loadSolicitations(), 250);
+			
+			return () => clearTimeout(timeOutId);
+	
 		}
 	}, [filters]);
 
@@ -170,11 +175,8 @@ function SolicitacoesSistema(props) {
 						}
 						<div className="location">
 							<h4>Localização</h4>
-							<input type="text" id="location" name="location" placeholder="Digite a localidade..." onKeyPress={(e) => {
-								if(e.key == "Enter") {
-									console.log(e.target.value);
+							<input type="text" id="location" name="location" placeholder="Digite a localidade..." onChange={(e) => {
 									updateFilters("location", e.target.value)
-								}
 							}} />
 						</div>
 					</section>
