@@ -46,7 +46,8 @@ function Mapa(props) {
   });
 
   useEffect(() => {
-    if(solicitationsQueue.length > 0 && newSolicitations.length > 0) {
+    if(solicitationsQueue.length > 0 || newSolicitations.length > 0) {
+
       setSolicitations([...solicitationsQueue, ...newSolicitations]);
     }
 
@@ -80,6 +81,7 @@ function Mapa(props) {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/solicitations/new/0`);
         setNewSolicitations(response.data.solicitationsList);
+        console.log(response);
       } catch(err) {
         throw new Error(err);
       }
@@ -107,7 +109,6 @@ function Mapa(props) {
       await loadNewSolicitations();
       await loadSolicitationsQueue();
       await loadTrees();
-      console.log(trees);
       setIsloading(false);
     }
 
@@ -131,7 +132,7 @@ function Mapa(props) {
       switch(type) {
         case "tree":
           buttonTittle = "Ver informações";
-          location = `tree/${currentID}`;
+          location = `tree-page/${currentID}`;
           break;
         case "solicitation":
           location = `edit/${currentID}`;
@@ -309,7 +310,7 @@ function Mapa(props) {
 
   const renderMap = (solicitations, trees) => {
 
-    console.log(trees);
+    console.log(solicitations);
 
     function onLoadMap(map) {
       if(!mapRef)
@@ -394,7 +395,7 @@ function Mapa(props) {
     )
   }
 
-  return isLoaded && !isLoading ? renderMap(solicitations, trees) : <div>Loading...</div>
+  return ((isLoaded && !isLoading) ? renderMap(solicitations, trees) : <div>Loading...</div>);
 }
 
 const styles = {

@@ -212,10 +212,10 @@ class EditTree extends Component{
                             </Link>
                         </div>
 
-                        <div class="editTree-options">
+                        {/* <div class="editTree-options">
                             <div class = "cancel-edit" onClick={()=> this.props.history.goBack()}>Cancelar</div>
                             <div class = "confirm-edit" onClick={this.confirmEdit.bind(this)} >Confirmar</div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             )

@@ -29,7 +29,7 @@ class ReportRegister extends Component{
                 if(res.data.code !== 1){
                     this.props.history.replace('/sistema/login');
                 } else{
-                    this.setState({...this.state, adminName:res.data.admin.name, adminId:res.data.admin.id});
+                    this.setState({...this.state, adminName:res.data.admin.name, adminId:res.data.admin._id});
                 }
             })
         }
